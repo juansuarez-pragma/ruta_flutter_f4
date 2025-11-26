@@ -1,0 +1,20 @@
+name: fake_store_design_system
+description: Sistema de diseño Flutter para la aplicación Fake Store. Proporciona tokens de diseño, componentes UI reutilizables y soporte para temas claro/oscuro.
+version: 1.0.0
+homepage: https://github.com/usuario/fake_store_design_system
+
+environment:
+  sdk: ^3.9.2
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  equatable: ^2.0.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:

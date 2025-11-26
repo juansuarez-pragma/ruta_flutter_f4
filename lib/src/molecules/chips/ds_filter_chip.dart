@@ -1,0 +1,94 @@
+import 'package:flutter/material.dart';
+
+import '../../tokens/tokens.dart';
+import '../../utils/extensions/extensions.dart';
+
+/// Chip de filtro del sistema de diseño.
+///
+/// Ideal para seleccionar categorías u opciones de filtrado.
+///
+/// ## Uso básico
+///
+/// ```dart
+/// DSFilterChip(
+///   label: 'Electronics',
+///   isSelected: selectedCategory == 'electronics',
+///   onTap: () => selectCategory('electronics'),
+/// )
+/// ```
+///
+/// ## Con ícono
+///
+/// ```dart
+/// DSFilterChip(
+///   label: 'Favoritos',
+///   icon: Icons.favorite,
+///   isSelected: showFavorites,
+///   onTap: () => toggleFavorites(),
+/// )
+/// ```
+class DSFilterChip extends StatelessWidget {
+  /// Texto del chip.
+  final String label;
+
+  /// Si el chip está seleccionado.
+  final bool isSelected;
+
+  /// Callback cuando se toca el chip.
+  final VoidCallback? onTap;
+
+  /// Ícono opcional.
+  final IconData? icon;
+
+  /// Si muestra un checkmark cuando está seleccionado.
+  final bool showCheckmark;
+
+  const DSFilterChip({
+    super.key,
+    required this.label,
+    this.isSelected = false,
+    this.onTap,
+    this.icon,
+    this.showCheckmark = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return FilterChip(
+      label: Text(label),
+      selected: isSelected,
+      onSelected: onTap != null ? (_) => onTap!() : null,
+      avatar: icon != null && !isSelected
+          ? Icon(
+              icon,
+              size: DSSizes.iconSm,
+              color: isSelected
+                  ? tokens.chipTextSelected
+                  : tokens.chipText,
+            )
+          : null,
+      showCheckmark: showCheckmark,
+      checkmarkColor: tokens.colorBrandPrimary,
+      backgroundColor: tokens.chipBackground,
+      selectedColor: tokens.chipBackgroundSelected,
+      labelStyle: tokens.typographyLabelMedium.copyWith(
+        color: isSelected ? tokens.chipTextSelected : tokens.chipText,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(DSBorderRadius.full),
+        side: BorderSide(
+          color: isSelected
+              ? tokens.colorBrandPrimary
+              : tokens.chipBorder,
+          width: DSSizes.borderThin,
+        ),
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: DSSpacing.md,
+        vertical: DSSpacing.sm,
+      ),
+    );
+  }
+}
