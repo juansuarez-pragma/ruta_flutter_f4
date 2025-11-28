@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../tokens/tokens.dart';
-import 'ds_theme_data.dart';
+import 'package:fake_store_design_system/src/tokens/tokens.dart';
+import 'package:fake_store_design_system/src/foundations/theme/ds_theme_data.dart';
 
 /// Implementación del tema claro del sistema de diseño.
 ///

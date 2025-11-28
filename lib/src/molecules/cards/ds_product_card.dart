@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../atoms/atoms.dart';
-import '../../tokens/tokens.dart';
-import '../../utils/enums/enums.dart';
-import '../../utils/extensions/extensions.dart';
-import 'ds_card.dart';
+import 'package:fake_store_design_system/src/atoms/atoms.dart';
+import 'package:fake_store_design_system/src/tokens/tokens.dart';
+import 'package:fake_store_design_system/src/utils/enums/enums.dart';
+import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:fake_store_design_system/src/molecules/cards/ds_card.dart';
 
 /// Card especializada para mostrar productos.
 ///

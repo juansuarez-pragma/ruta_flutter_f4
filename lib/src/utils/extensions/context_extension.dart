@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../foundations/theme/ds_theme_data.dart';
-import '../../foundations/theme/fake_store_theme.dart';
+import 'package:fake_store_design_system/src/foundations/theme/ds_theme_data.dart';
+import 'package:fake_store_design_system/src/foundations/theme/fake_store_theme.dart';
 
 /// Extensión de BuildContext para acceder fácilmente a los tokens del tema.
 ///

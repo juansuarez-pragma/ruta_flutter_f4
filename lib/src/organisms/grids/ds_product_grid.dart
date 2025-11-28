@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../molecules/molecules.dart';
-import '../../tokens/tokens.dart';
+import 'package:fake_store_design_system/src/molecules/molecules.dart';
+import 'package:fake_store_design_system/src/tokens/tokens.dart';
 
 /// Grid de productos del sistema de diseño.
 ///

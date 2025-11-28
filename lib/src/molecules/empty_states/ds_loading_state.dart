@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../atoms/atoms.dart';
-import '../../tokens/tokens.dart';
-import '../../utils/enums/enums.dart';
+import 'package:fake_store_design_system/src/atoms/atoms.dart';
+import 'package:fake_store_design_system/src/tokens/tokens.dart';
+import 'package:fake_store_design_system/src/utils/enums/enums.dart';
 
 /// Vista para estados de carga del sistema de diseño.
 ///
