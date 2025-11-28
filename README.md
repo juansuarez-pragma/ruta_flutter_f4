@@ -324,6 +324,25 @@ lib/
         └── enums/
 ```
 
+## Showcase
+
+El paquete incluye una aplicación de demostración interactiva en la carpeta `example/`:
+
+```bash
+cd example
+flutter run -d chrome
+```
+
+La aplicación showcase muestra:
+- **Tokens**: Colores, tipografía, espaciado, border radius y elevación
+- **Átomos**: Buttons, badges, inputs, loaders y tipografía
+- **Moléculas**: Cards, chips y estados vacíos/error/carga
+- **Organismos**: AppBar, grids y navegación
+
+Cada componente incluye código de ejemplo copiable y toggle de tema claro/oscuro.
+
+Ver [example/README.md](example/README.md) para más detalles.
+
 ## Contribuir
 
 1. Sigue la estructura de carpetas existente

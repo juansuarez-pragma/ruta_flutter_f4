@@ -1,0 +1,17 @@
+name: fake_store_design_system_example
+description: Showcase del sistema de diseño Fake Store
+publish_to: 'none'
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fake_store_design_system:
+    path: ../
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
