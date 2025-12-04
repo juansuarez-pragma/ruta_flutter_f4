@@ -53,44 +53,6 @@ abstract final class DSSizes {
   static const double buttonXl = 56;
 
   // ============================================
-  // INPUT HEIGHTS
-  // ============================================
-
-  /// Altura de input pequeño - 36px
-  static const double inputSm = 36;
-
-  /// Altura de input medio - 44px
-  static const double inputMd = 44;
-
-  /// Altura de input grande - 52px
-  static const double inputLg = 52;
-
-  // ============================================
-  // AVATAR SIZES
-  // ============================================
-
-  /// Avatar extra pequeño - 24px
-  static const double avatarXs = 24;
-
-  /// Avatar pequeño - 32px
-  static const double avatarSm = 32;
-
-  /// Avatar medio - 40px
-  static const double avatarMd = 40;
-
-  /// Avatar base - 48px
-  static const double avatarBase = 48;
-
-  /// Avatar grande - 64px
-  static const double avatarLg = 64;
-
-  /// Avatar extra grande - 80px
-  static const double avatarXl = 80;
-
-  /// Avatar jumbo - 96px
-  static const double avatarXxl = 96;
-
-  // ============================================
   // LOADER SIZES
   // ============================================
 
@@ -105,16 +67,6 @@ abstract final class DSSizes {
 
   /// Loader extra grande - 48px
   static const double loaderXl = 48;
-
-  // ============================================
-  // TOUCH TARGETS
-  // ============================================
-
-  /// Touch target mínimo recomendado - 44px
-  static const double touchTargetMin = 44;
-
-  /// Touch target estándar - 48px
-  static const double touchTarget = 48;
 
   // ============================================
   // BORDER WIDTHS
