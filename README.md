@@ -128,6 +128,13 @@ DSSkeleton(
 )
 ```
 
+Documentación detallada de átomos:
+- Typography: `lib/src/atoms/typography/text.md`
+- Loaders: `lib/src/atoms/loaders/loader.md`
+- Inputs: `lib/src/atoms/inputs/text_field.md`
+- Buttons: `lib/src/atoms/buttons/button.md`
+- Badges: `lib/src/atoms/badges/badge.md`
+
 ### Moléculas
 
 Combinaciones de átomos:

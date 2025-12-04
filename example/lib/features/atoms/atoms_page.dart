@@ -215,8 +215,19 @@ DSButton.primary(
 // ICON BUTTONS SECTION
 // =============================================================================
 
-class _IconButtonsSection extends StatelessWidget {
+class _IconButtonsSection extends StatefulWidget {
   const _IconButtonsSection();
+
+  @override
+  State<_IconButtonsSection> createState() => _IconButtonsSectionState();
+}
+
+class _IconButtonsSectionState extends State<_IconButtonsSection> {
+  DSButtonVariant _variant = DSButtonVariant.ghost;
+  DSButtonSize _size = DSButtonSize.medium;
+  bool _isLoading = false;
+  bool _isDisabled = false;
+  bool _showTooltip = true;
 
   @override
   Widget build(BuildContext context) {
@@ -308,6 +319,142 @@ DSIconButton(
                 icon: Icons.settings,
                 size: DSButtonSize.large,
                 onPressed: () {},
+              ),
+            ],
+          ),
+        ),
+        ComponentCard(
+          title: 'Estados',
+          description: 'Disabled y Loading con tooltip',
+          code: '''
+// Disabled
+const DSIconButton(
+  icon: Icons.download,
+  onPressed: null,
+  tooltip: 'Descarga deshabilitada',
+)
+
+// Loading
+const DSIconButton(
+  icon: Icons.sync,
+  isLoading: true,
+  tooltip: 'Sincronizando',
+)''',
+          child: Wrap(
+            spacing: DSSpacing.md,
+            runSpacing: DSSpacing.md,
+            children: const [
+              DSIconButton(
+                icon: Icons.download,
+                onPressed: null,
+                tooltip: 'Descarga deshabilitada',
+              ),
+              DSIconButton(
+                icon: Icons.sync,
+                isLoading: true,
+                tooltip: 'Sincronizando',
+              ),
+            ],
+          ),
+        ),
+        ComponentCard(
+          title: 'Playground',
+          description: 'Cambia variante, tamaño, estados y tooltip',
+          code: '''
+DSIconButton(
+  icon: Icons.notifications,
+  variant: currentVariant,
+  size: currentSize,
+  isLoading: isLoading,
+  onPressed: isDisabled ? null : () {},
+  tooltip: showTooltip ? 'Notificaciones' : null,
+)''',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Wrap(
+                spacing: DSSpacing.md,
+                runSpacing: DSSpacing.md,
+                children: [
+                  DropdownButton<DSButtonVariant>(
+                    value: _variant,
+                    onChanged: (value) {
+                      if (value != null) {
+                        setState(() => _variant = value);
+                      }
+                    },
+                    items: const [
+                      DropdownMenuItem(
+                        value: DSButtonVariant.primary,
+                        child: Text('Primary'),
+                      ),
+                      DropdownMenuItem(
+                        value: DSButtonVariant.secondary,
+                        child: Text('Secondary'),
+                      ),
+                      DropdownMenuItem(
+                        value: DSButtonVariant.ghost,
+                        child: Text('Ghost'),
+                      ),
+                      DropdownMenuItem(
+                        value: DSButtonVariant.danger,
+                        child: Text('Danger'),
+                      ),
+                    ],
+                  ),
+                  DropdownButton<DSButtonSize>(
+                    value: _size,
+                    onChanged: (value) {
+                      if (value != null) {
+                        setState(() => _size = value);
+                      }
+                    },
+                    items: const [
+                      DropdownMenuItem(
+                        value: DSButtonSize.small,
+                        child: Text('Small'),
+                      ),
+                      DropdownMenuItem(
+                        value: DSButtonSize.medium,
+                        child: Text('Medium'),
+                      ),
+                      DropdownMenuItem(
+                        value: DSButtonSize.large,
+                        child: Text('Large'),
+                      ),
+                    ],
+                  ),
+                  FilterChip(
+                    label: const Text('Loading'),
+                    selected: _isLoading,
+                    onSelected: (value) {
+                      setState(() => _isLoading = value);
+                    },
+                  ),
+                  FilterChip(
+                    label: const Text('Disabled'),
+                    selected: _isDisabled,
+                    onSelected: (value) {
+                      setState(() => _isDisabled = value);
+                    },
+                  ),
+                  FilterChip(
+                    label: const Text('Tooltip'),
+                    selected: _showTooltip,
+                    onSelected: (value) {
+                      setState(() => _showTooltip = value);
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: DSSpacing.md),
+              DSIconButton(
+                icon: Icons.notifications,
+                variant: _variant,
+                size: _size,
+                isLoading: _isLoading,
+                onPressed: _isDisabled ? null : () {},
+                tooltip: _showTooltip ? 'Notificaciones' : null,
               ),
             ],
           ),
