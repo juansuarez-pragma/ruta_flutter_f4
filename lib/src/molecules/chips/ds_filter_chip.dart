@@ -64,24 +64,36 @@ class DSFilterChip extends StatelessWidget {
           ? Icon(
               icon,
               size: DSSizes.iconSm,
-              color: isSelected
-                  ? tokens.chipTextSelected
-                  : tokens.chipText,
+              color: isSelected ? tokens.chipTextSelected : tokens.chipText,
             )
           : null,
       showCheckmark: showCheckmark,
       checkmarkColor: tokens.colorBrandPrimary,
-      backgroundColor: tokens.chipBackground,
-      selectedColor: tokens.chipBackgroundSelected,
+      color: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          if (states.contains(WidgetState.pressed)) {
+            return tokens.chipBackgroundPressed;
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return tokens.chipBackgroundHover;
+          }
+          return tokens.chipBackgroundSelected;
+        }
+        if (states.contains(WidgetState.pressed)) {
+          return tokens.chipBackgroundPressed;
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return tokens.chipBackgroundHover;
+        }
+        return tokens.chipBackground;
+      }),
       labelStyle: tokens.typographyLabelMedium.copyWith(
         color: isSelected ? tokens.chipTextSelected : tokens.chipText,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(DSBorderRadius.full),
         side: BorderSide(
-          color: isSelected
-              ? tokens.colorBrandPrimary
-              : tokens.chipBorder,
+          color: isSelected ? tokens.colorBrandPrimary : tokens.chipBorder,
           width: DSSizes.borderThin,
         ),
       ),
@@ -91,4 +103,5 @@ class DSFilterChip extends StatelessWidget {
       ),
     );
   }
+
 }

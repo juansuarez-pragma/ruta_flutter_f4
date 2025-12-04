@@ -97,7 +97,8 @@ abstract final class DSThemeLight {
         // BUTTON - DANGER
         // ============================================
         buttonDangerBackground: DSColors.error500,
-        buttonDangerBackgroundHover: DSColors.error700,
+        buttonDangerBackgroundHover: DSColors.error600,
+        buttonDangerBackgroundPressed: DSColors.error700,
         buttonDangerText: DSColors.white,
 
         // ============================================
@@ -122,6 +123,8 @@ abstract final class DSThemeLight {
         // CHIP
         // ============================================
         chipBackground: DSColors.neutral100,
+        chipBackgroundHover: DSColors.neutral200,
+        chipBackgroundPressed: DSColors.neutral300,
         chipBackgroundSelected: DSColors.primary100,
         chipText: DSColors.neutral700,
         chipTextSelected: DSColors.primary700,

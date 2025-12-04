@@ -206,6 +206,9 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
   /// Fondo del botón de peligro en hover
   final Color buttonDangerBackgroundHover;
 
+  /// Fondo del botón de peligro presionado
+  final Color buttonDangerBackgroundPressed;
+
   /// Texto del botón de peligro
   final Color buttonDangerText;
 
@@ -253,6 +256,12 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
 
   /// Fondo del chip
   final Color chipBackground;
+
+  /// Fondo del chip en hover
+  final Color chipBackgroundHover;
+
+  /// Fondo del chip presionado
+  final Color chipBackgroundPressed;
 
   /// Fondo del chip seleccionado
   final Color chipBackgroundSelected;
@@ -415,6 +424,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     // Button Danger
     required this.buttonDangerBackground,
     required this.buttonDangerBackgroundHover,
+    required this.buttonDangerBackgroundPressed,
     required this.buttonDangerText,
     // Card
     required this.cardBackground,
@@ -430,6 +440,8 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     required this.inputPlaceholder,
     // Chip
     required this.chipBackground,
+    required this.chipBackgroundHover,
+    required this.chipBackgroundPressed,
     required this.chipBackgroundSelected,
     required this.chipText,
     required this.chipTextSelected,
@@ -526,6 +538,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     // Button Danger
     Color? buttonDangerBackground,
     Color? buttonDangerBackgroundHover,
+    Color? buttonDangerBackgroundPressed,
     Color? buttonDangerText,
     // Card
     Color? cardBackground,
@@ -541,6 +554,8 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     Color? inputPlaceholder,
     // Chip
     Color? chipBackground,
+    Color? chipBackgroundHover,
+    Color? chipBackgroundPressed,
     Color? chipBackgroundSelected,
     Color? chipText,
     Color? chipTextSelected,
@@ -660,6 +675,8 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
           buttonDangerBackground ?? this.buttonDangerBackground,
       buttonDangerBackgroundHover:
           buttonDangerBackgroundHover ?? this.buttonDangerBackgroundHover,
+      buttonDangerBackgroundPressed:
+          buttonDangerBackgroundPressed ?? this.buttonDangerBackgroundPressed,
       buttonDangerText: buttonDangerText ?? this.buttonDangerText,
       // Card
       cardBackground: cardBackground ?? this.cardBackground,
@@ -676,6 +693,9 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       inputPlaceholder: inputPlaceholder ?? this.inputPlaceholder,
       // Chip
       chipBackground: chipBackground ?? this.chipBackground,
+      chipBackgroundHover: chipBackgroundHover ?? this.chipBackgroundHover,
+      chipBackgroundPressed:
+          chipBackgroundPressed ?? this.chipBackgroundPressed,
       chipBackgroundSelected:
           chipBackgroundSelected ?? this.chipBackgroundSelected,
       chipText: chipText ?? this.chipText,
@@ -837,6 +857,8 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
           Color.lerp(buttonDangerBackground, other.buttonDangerBackground, t)!,
       buttonDangerBackgroundHover: Color.lerp(
           buttonDangerBackgroundHover, other.buttonDangerBackgroundHover, t)!,
+      buttonDangerBackgroundPressed: Color.lerp(
+          buttonDangerBackgroundPressed, other.buttonDangerBackgroundPressed, t)!,
       buttonDangerText:
           Color.lerp(buttonDangerText, other.buttonDangerText, t)!,
       // Card
@@ -858,6 +880,10 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
           Color.lerp(inputPlaceholder, other.inputPlaceholder, t)!,
       // Chip
       chipBackground: Color.lerp(chipBackground, other.chipBackground, t)!,
+      chipBackgroundHover:
+          Color.lerp(chipBackgroundHover, other.chipBackgroundHover, t)!,
+      chipBackgroundPressed:
+          Color.lerp(chipBackgroundPressed, other.chipBackgroundPressed, t)!,
       chipBackgroundSelected:
           Color.lerp(chipBackgroundSelected, other.chipBackgroundSelected, t)!,
       chipText: Color.lerp(chipText, other.chipText, t)!,

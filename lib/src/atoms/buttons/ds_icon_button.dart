@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fake_store_design_system/src/foundations/foundations.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/enums/enums.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
@@ -83,49 +84,20 @@ class DSIconButton extends StatelessWidget {
     final tokens = context.tokens;
     final isDisabled = onPressed == null || isLoading;
 
-    Color backgroundColor;
-    Color foregroundColor;
-
-    switch (variant) {
-      case DSButtonVariant.primary:
-        backgroundColor = isDisabled
-            ? tokens.buttonPrimaryBackgroundDisabled
-            : tokens.buttonPrimaryBackground;
-        foregroundColor = isDisabled
-            ? tokens.buttonPrimaryTextDisabled
-            : tokens.buttonPrimaryText;
-        break;
-      case DSButtonVariant.secondary:
-        backgroundColor = tokens.buttonSecondaryBackground;
-        foregroundColor = isDisabled
-            ? tokens.buttonSecondaryTextDisabled
-            : tokens.buttonSecondaryText;
-        break;
-      case DSButtonVariant.ghost:
-        backgroundColor = tokens.buttonGhostBackground;
-        foregroundColor = isDisabled
-            ? tokens.buttonGhostTextDisabled
-            : tokens.buttonGhostText;
-        break;
-      case DSButtonVariant.danger:
-        backgroundColor = isDisabled
-            ? tokens.buttonPrimaryBackgroundDisabled
-            : tokens.buttonDangerBackground;
-        foregroundColor = isDisabled
-            ? tokens.buttonPrimaryTextDisabled
-            : tokens.buttonDangerText;
-        break;
-    }
+    final colors = _getColors(tokens, isDisabled);
 
     Widget button = SizedBox(
       width: _size,
       height: _size,
       child: Material(
-        color: backgroundColor,
+        color: colors.background,
         shape: const CircleBorder(),
         child: InkWell(
           onTap: isDisabled ? null : onPressed,
           customBorder: const CircleBorder(),
+          hoverColor: colors.hoverBackground,
+          splashColor: colors.pressedBackground,
+          highlightColor: colors.pressedBackground,
           child: Center(
             child: isLoading
                 ? SizedBox(
@@ -133,13 +105,14 @@ class DSIconButton extends StatelessWidget {
                     height: _iconSize,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(foregroundColor),
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(colors.foreground),
                     ),
                   )
                 : Icon(
                     icon,
                     size: _iconSize,
-                    color: foregroundColor,
+                    color: colors.foreground,
                   ),
           ),
         ),
@@ -155,4 +128,63 @@ class DSIconButton extends StatelessWidget {
 
     return button;
   }
+
+  _IconButtonColors _getColors(DSThemeData tokens, bool isDisabled) {
+    switch (variant) {
+      case DSButtonVariant.primary:
+        return _IconButtonColors(
+          background: isDisabled
+              ? tokens.buttonPrimaryBackgroundDisabled
+              : tokens.buttonPrimaryBackground,
+          hoverBackground: tokens.buttonPrimaryBackgroundHover,
+          pressedBackground: tokens.buttonPrimaryBackgroundPressed,
+          foreground: isDisabled
+              ? tokens.buttonPrimaryTextDisabled
+              : tokens.buttonPrimaryText,
+        );
+      case DSButtonVariant.secondary:
+        return _IconButtonColors(
+          background: tokens.buttonSecondaryBackground,
+          hoverBackground: tokens.buttonSecondaryBackgroundHover,
+          pressedBackground: tokens.buttonSecondaryBackgroundPressed,
+          foreground: isDisabled
+              ? tokens.buttonSecondaryTextDisabled
+              : tokens.buttonSecondaryText,
+        );
+      case DSButtonVariant.ghost:
+        return _IconButtonColors(
+          background: tokens.buttonGhostBackground,
+          hoverBackground: tokens.buttonGhostBackgroundHover,
+          pressedBackground: tokens.buttonGhostBackgroundPressed,
+          foreground: isDisabled
+              ? tokens.buttonGhostTextDisabled
+              : tokens.buttonGhostText,
+        );
+      case DSButtonVariant.danger:
+        return _IconButtonColors(
+          background: isDisabled
+              ? tokens.buttonPrimaryBackgroundDisabled
+              : tokens.buttonDangerBackground,
+          hoverBackground: tokens.buttonDangerBackgroundHover,
+          pressedBackground: tokens.buttonDangerBackgroundPressed,
+          foreground: isDisabled
+              ? tokens.buttonPrimaryTextDisabled
+              : tokens.buttonDangerText,
+        );
+    }
+  }
+}
+
+class _IconButtonColors {
+  final Color background;
+  final Color hoverBackground;
+  final Color pressedBackground;
+  final Color foreground;
+
+  const _IconButtonColors({
+    required this.background,
+    required this.hoverBackground,
+    required this.pressedBackground,
+    required this.foreground,
+  });
 }

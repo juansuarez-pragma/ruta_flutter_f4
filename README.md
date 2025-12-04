@@ -9,7 +9,8 @@ Sistema de diseño Flutter para la aplicación Fake Store. Proporciona tokens de
 - **Temas**: Soporte para modo claro y oscuro con transiciones suaves
 - **ThemeExtension**: Integración nativa con el sistema de temas de Flutter
 - **Context Extensions**: Acceso fácil a tokens via `context.tokens`
-- **Tipado fuerte**: APIs tipadas con documentación inline
+- **Tipado fuerte**: APIs tipadas con documentación inline (DSThemeData en lugar de dynamic)
+- **Estados Interactivos**: Soporte completo para hover/pressed en web y desktop
 
 ## Instalación
 

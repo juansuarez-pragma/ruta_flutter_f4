@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fake_store_design_system/src/foundations/foundations.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
 
@@ -111,7 +112,7 @@ class _NavItem extends StatelessWidget {
   final DSBottomNavItem item;
   final bool isSelected;
   final VoidCallback onTap;
-  final dynamic tokens;
+  final DSThemeData tokens;
 
   const _NavItem({
     required this.item,

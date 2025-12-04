@@ -98,6 +98,7 @@ abstract final class DSThemeDark {
         // ============================================
         buttonDangerBackground: DSColors.error400,
         buttonDangerBackgroundHover: DSColors.error300,
+        buttonDangerBackgroundPressed: DSColors.error500,
         buttonDangerText: DSColors.neutral900,
 
         // ============================================
@@ -122,6 +123,8 @@ abstract final class DSThemeDark {
         // CHIP
         // ============================================
         chipBackground: DSColors.neutral800,
+        chipBackgroundHover: DSColors.neutral700,
+        chipBackgroundPressed: DSColors.neutral600,
         chipBackgroundSelected: DSColors.primary900,
         chipText: DSColors.neutral300,
         chipTextSelected: DSColors.primary300,

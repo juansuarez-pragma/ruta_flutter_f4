@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fake_store_design_system/src/foundations/foundations.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
 
@@ -69,7 +70,7 @@ class DSCard extends StatelessWidget {
     this.height,
   });
 
-  List<BoxShadow> _getElevation(dynamic tokens) {
+  List<BoxShadow> _getElevation(DSThemeData tokens) {
     switch (elevation) {
       case 0:
         return DSElevation.none;
@@ -114,6 +115,9 @@ class DSCard extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(borderRadius),
+          hoverColor: tokens.cardBackgroundHover.withValues(alpha: 0.5),
+          splashColor: tokens.cardBackgroundHover,
+          highlightColor: tokens.cardBackgroundHover.withValues(alpha: 0.3),
           child: card,
         ),
       );

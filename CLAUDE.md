@@ -72,7 +72,7 @@ lib/
     │
     ├── foundations/                  # Sistema de Temas
     │   └── theme/
-    │       ├── ds_theme_data.dart   # ThemeExtension (80+ tokens semánticos)
+    │       ├── ds_theme_data.dart   # ThemeExtension (83+ tokens semánticos)
     │       ├── ds_theme_light.dart  # Tema claro completo
     │       ├── ds_theme_dark.dart   # Tema oscuro completo
     │       └── fake_store_theme.dart # Clase de conveniencia
@@ -144,7 +144,7 @@ Distribución de tokens via árbol de widgets:
 class DSThemeData extends ThemeExtension<DSThemeData> {
   final Color colorSurfacePrimary;
   final Color colorTextPrimary;
-  // ... 80+ tokens
+  // ... 83+ tokens (incluye estados hover/pressed)
 
   @override
   ThemeExtension<DSThemeData> copyWith({...});
@@ -303,7 +303,44 @@ tokens.typographyBodyMedium   // Estilo para cuerpo de texto
 // Elevación
 tokens.elevationLevel1        // Sombra nivel 1
 tokens.elevationLevel2        // Sombra nivel 2
+
+// Estados de Botones (hover/pressed)
+tokens.buttonPrimaryBackgroundHover    // Hover del botón primario
+tokens.buttonPrimaryBackgroundPressed  // Pressed del botón primario
+tokens.buttonDangerBackgroundPressed   // Pressed del botón danger
+
+// Estados de Chips (hover/pressed)
+tokens.chipBackgroundHover     // Hover del chip
+tokens.chipBackgroundPressed   // Pressed del chip
 ```
+
+### Estados Interactivos (Hover/Active)
+
+Los componentes implementan estados visuales para mejor UX en web/desktop:
+
+```dart
+// DSButton usa WidgetStateProperty para estados reactivos
+style: ButtonStyle(
+  backgroundColor: WidgetStateProperty.resolveWith((states) {
+    if (states.contains(WidgetState.disabled)) {
+      return tokens.buttonPrimaryBackgroundDisabled;
+    }
+    if (states.contains(WidgetState.pressed)) {
+      return tokens.buttonPrimaryBackgroundPressed;
+    }
+    if (states.contains(WidgetState.hovered)) {
+      return tokens.buttonPrimaryBackgroundHover;
+    }
+    return tokens.buttonPrimaryBackground;
+  }),
+)
+```
+
+Componentes con soporte hover/active:
+- `DSButton` - Todas las variantes (primary, secondary, ghost, danger)
+- `DSIconButton` - Todas las variantes
+- `DSCard` - Cuando tiene `onTap`
+- `DSFilterChip` - Estados seleccionado y hover
 
 ## Tests
 

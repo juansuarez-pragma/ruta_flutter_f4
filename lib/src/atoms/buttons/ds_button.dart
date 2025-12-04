@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fake_store_design_system/src/foundations/foundations.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/enums/enums.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
@@ -191,7 +192,7 @@ class DSButton extends StatelessWidget {
 
   Widget _buildButton(
     BuildContext context,
-    dynamic tokens,
+    DSThemeData tokens,
     bool isDisabled,
   ) {
     switch (variant) {
@@ -208,22 +209,36 @@ class DSButton extends StatelessWidget {
 
   Widget _buildPrimaryButton(
     BuildContext context,
-    dynamic tokens,
+    DSThemeData tokens,
     bool isDisabled,
   ) {
     return ElevatedButton(
       onPressed: isDisabled ? null : onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isDisabled
-            ? tokens.buttonPrimaryBackgroundDisabled
-            : tokens.buttonPrimaryBackground,
-        foregroundColor: isDisabled
-            ? tokens.buttonPrimaryTextDisabled
-            : tokens.buttonPrimaryText,
-        elevation: 0,
-        padding: _padding,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(DSBorderRadius.md),
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.buttonPrimaryBackgroundDisabled;
+          }
+          if (states.contains(WidgetState.pressed)) {
+            return tokens.buttonPrimaryBackgroundPressed;
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return tokens.buttonPrimaryBackgroundHover;
+          }
+          return tokens.buttonPrimaryBackground;
+        }),
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.buttonPrimaryTextDisabled;
+          }
+          return tokens.buttonPrimaryText;
+        }),
+        elevation: const WidgetStatePropertyAll(0),
+        padding: WidgetStatePropertyAll(_padding),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(DSBorderRadius.md),
+          ),
         ),
       ),
       child: _buildContent(
@@ -236,25 +251,47 @@ class DSButton extends StatelessWidget {
 
   Widget _buildSecondaryButton(
     BuildContext context,
-    dynamic tokens,
+    DSThemeData tokens,
     bool isDisabled,
   ) {
     return OutlinedButton(
       onPressed: isDisabled ? null : onPressed,
-      style: OutlinedButton.styleFrom(
-        foregroundColor: isDisabled
-            ? tokens.buttonSecondaryTextDisabled
-            : tokens.buttonSecondaryText,
-        backgroundColor: tokens.buttonSecondaryBackground,
-        side: BorderSide(
-          color: isDisabled
-              ? tokens.buttonSecondaryTextDisabled
-              : tokens.buttonSecondaryBorder,
-          width: DSSizes.borderThin,
-        ),
-        padding: _padding,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(DSBorderRadius.md),
+      style: ButtonStyle(
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.buttonSecondaryTextDisabled;
+          }
+          return tokens.buttonSecondaryText;
+        }),
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.buttonSecondaryBackground;
+          }
+          if (states.contains(WidgetState.pressed)) {
+            return tokens.buttonSecondaryBackgroundPressed;
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return tokens.buttonSecondaryBackgroundHover;
+          }
+          return tokens.buttonSecondaryBackground;
+        }),
+        side: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return BorderSide(
+              color: tokens.buttonSecondaryTextDisabled,
+              width: DSSizes.borderThin,
+            );
+          }
+          return BorderSide(
+            color: tokens.buttonSecondaryBorder,
+            width: DSSizes.borderThin,
+          );
+        }),
+        padding: WidgetStatePropertyAll(_padding),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(DSBorderRadius.md),
+          ),
         ),
       ),
       child: _buildContent(
@@ -267,19 +304,35 @@ class DSButton extends StatelessWidget {
 
   Widget _buildGhostButton(
     BuildContext context,
-    dynamic tokens,
+    DSThemeData tokens,
     bool isDisabled,
   ) {
     return TextButton(
       onPressed: isDisabled ? null : onPressed,
-      style: TextButton.styleFrom(
-        foregroundColor: isDisabled
-            ? tokens.buttonGhostTextDisabled
-            : tokens.buttonGhostText,
-        backgroundColor: tokens.buttonGhostBackground,
-        padding: _padding,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(DSBorderRadius.md),
+      style: ButtonStyle(
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.buttonGhostTextDisabled;
+          }
+          return tokens.buttonGhostText;
+        }),
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.buttonGhostBackground;
+          }
+          if (states.contains(WidgetState.pressed)) {
+            return tokens.buttonGhostBackgroundPressed;
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return tokens.buttonGhostBackgroundHover;
+          }
+          return tokens.buttonGhostBackground;
+        }),
+        padding: WidgetStatePropertyAll(_padding),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(DSBorderRadius.md),
+          ),
         ),
       ),
       child: _buildContent(
@@ -292,22 +345,36 @@ class DSButton extends StatelessWidget {
 
   Widget _buildDangerButton(
     BuildContext context,
-    dynamic tokens,
+    DSThemeData tokens,
     bool isDisabled,
   ) {
     return ElevatedButton(
       onPressed: isDisabled ? null : onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isDisabled
-            ? tokens.buttonPrimaryBackgroundDisabled
-            : tokens.buttonDangerBackground,
-        foregroundColor: isDisabled
-            ? tokens.buttonPrimaryTextDisabled
-            : tokens.buttonDangerText,
-        elevation: 0,
-        padding: _padding,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(DSBorderRadius.md),
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.buttonPrimaryBackgroundDisabled;
+          }
+          if (states.contains(WidgetState.pressed)) {
+            return tokens.buttonDangerBackgroundPressed;
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return tokens.buttonDangerBackgroundHover;
+          }
+          return tokens.buttonDangerBackground;
+        }),
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.buttonPrimaryTextDisabled;
+          }
+          return tokens.buttonDangerText;
+        }),
+        elevation: const WidgetStatePropertyAll(0),
+        padding: WidgetStatePropertyAll(_padding),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(DSBorderRadius.md),
+          ),
         ),
       ),
       child: _buildContent(
