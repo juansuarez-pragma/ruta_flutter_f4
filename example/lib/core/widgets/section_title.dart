@@ -6,21 +6,14 @@ class SectionTitle extends StatelessWidget {
   final String title;
   final String? subtitle;
 
-  const SectionTitle({
-    super.key,
-    required this.title,
-    this.subtitle,
-  });
+  const SectionTitle({super.key, required this.title, this.subtitle});
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
     return Padding(
-      padding: const EdgeInsets.only(
-        top: DSSpacing.xl,
-        bottom: DSSpacing.md,
-      ),
+      padding: const EdgeInsets.only(top: DSSpacing.xl, bottom: DSSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

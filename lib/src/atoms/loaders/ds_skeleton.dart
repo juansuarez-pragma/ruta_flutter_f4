@@ -43,38 +43,28 @@ class DSSkeleton extends StatefulWidget {
   });
 
   /// Crea un skeleton circular.
-  const DSSkeleton.circular({
-    super.key,
-    required double size,
-  })  : width = size,
-        height = size,
-        borderRadius = DSBorderRadius.full,
-        isCircular = true;
+  const DSSkeleton.circular({super.key, required double size})
+    : width = size,
+      height = size,
+      borderRadius = DSBorderRadius.full,
+      isCircular = true;
 
   /// Crea un skeleton para texto.
-  const DSSkeleton.text({
-    super.key,
-    this.width,
-    double? height,
-  })  : height = height ?? 16,
-        borderRadius = DSBorderRadius.xs,
-        isCircular = false;
+  const DSSkeleton.text({super.key, this.width, double? height})
+    : height = height ?? 16,
+      borderRadius = DSBorderRadius.xs,
+      isCircular = false;
 
   /// Crea un skeleton para un título.
-  const DSSkeleton.title({
-    super.key,
-    this.width,
-  })  : height = 24,
-        borderRadius = DSBorderRadius.sm,
-        isCircular = false;
+  const DSSkeleton.title({super.key, this.width})
+    : height = 24,
+      borderRadius = DSBorderRadius.sm,
+      isCircular = false;
 
   /// Crea un skeleton para una imagen.
-  const DSSkeleton.image({
-    super.key,
-    this.width,
-    this.height,
-  })  : borderRadius = DSBorderRadius.md,
-        isCircular = false;
+  const DSSkeleton.image({super.key, this.width, this.height})
+    : borderRadius = DSBorderRadius.md,
+      isCircular = false;
 
   @override
   State<DSSkeleton> createState() => _DSSkeletonState();
@@ -88,14 +78,13 @@ class _DSSkeletonState extends State<DSSkeleton>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: DSDuration.long,
-      vsync: this,
-    )..repeat(reverse: true);
+    _controller = AnimationController(duration: DSDuration.long, vsync: this)
+      ..repeat(reverse: true);
 
-    _animation = Tween<double>(begin: 0.3, end: 0.6).animate(
-      CurvedAnimation(parent: _controller, curve: DSCurves.standard),
-    );
+    _animation = Tween<double>(
+      begin: 0.3,
+      end: 0.6,
+    ).animate(CurvedAnimation(parent: _controller, curve: DSCurves.standard));
   }
 
   @override
@@ -115,7 +104,9 @@ class _DSSkeletonState extends State<DSSkeleton>
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
-            color: tokens.colorBorderPrimary.withValues(alpha: _animation.value),
+            color: tokens.colorBorderPrimary.withValues(
+              alpha: _animation.value,
+            ),
             borderRadius: widget.isCircular
                 ? null
                 : BorderRadius.circular(widget.borderRadius),

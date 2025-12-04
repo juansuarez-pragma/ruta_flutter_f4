@@ -109,7 +109,8 @@ class DSProductCard extends StatelessWidget {
                     borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(DSBorderRadius.base),
                     ),
-                    child: imageWidget ??
+                    child:
+                        imageWidget ??
                         Image.network(
                           imageUrl,
                           fit: BoxFit.contain,

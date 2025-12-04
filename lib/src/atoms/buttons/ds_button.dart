@@ -404,20 +404,14 @@ class DSButton extends StatelessWidget {
     if (icon == null) {
       return Text(
         text,
-        style: TextStyle(
-          fontSize: _fontSize,
-          fontWeight: DSFontWeight.medium,
-        ),
+        style: TextStyle(fontSize: _fontSize, fontWeight: DSFontWeight.medium),
       );
     }
 
     final iconWidget = Icon(icon, size: _iconSize, color: color);
     final textWidget = Text(
       text,
-      style: TextStyle(
-        fontSize: _fontSize,
-        fontWeight: DSFontWeight.medium,
-      ),
+      style: TextStyle(fontSize: _fontSize, fontWeight: DSFontWeight.medium),
     );
 
     final children = iconPosition == DSButtonIconPosition.start

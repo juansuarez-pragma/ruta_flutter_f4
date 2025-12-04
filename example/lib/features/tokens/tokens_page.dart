@@ -1,7 +1,7 @@
 import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/widgets/widgets.dart';
+import 'package:fake_store_design_system_example/core/widgets/widgets.dart';
 
 /// Página de demostración de tokens del sistema de diseño.
 class TokensPage extends StatelessWidget {
@@ -43,7 +43,8 @@ class _ColorsSection extends StatelessWidget {
         // Colores semánticos
         ComponentCard(
           title: 'Colores Semánticos',
-          description: 'Colores con significado contextual que cambian según el tema',
+          description:
+              'Colores con significado contextual que cambian según el tema',
           code: '''
 // Acceso via context.tokens
 final tokens = context.tokens;
@@ -56,10 +57,7 @@ Container(color: tokens.colorFeedbackSuccess)''',
             spacing: DSSpacing.md,
             runSpacing: DSSpacing.md,
             children: [
-              _ColorBox(
-                color: tokens.colorBrandPrimary,
-                name: 'Brand Primary',
-              ),
+              _ColorBox(color: tokens.colorBrandPrimary, name: 'Brand Primary'),
               _ColorBox(
                 color: tokens.colorBrandSecondary,
                 name: 'Brand Secondary',
@@ -73,10 +71,7 @@ Container(color: tokens.colorFeedbackSuccess)''',
                 color: tokens.colorSurfaceSecondary,
                 name: 'Surface Secondary',
               ),
-              _ColorBox(
-                color: tokens.colorTextPrimary,
-                name: 'Text Primary',
-              ),
+              _ColorBox(color: tokens.colorTextPrimary, name: 'Text Primary'),
               _ColorBox(
                 color: tokens.colorFeedbackSuccess,
                 name: 'Feedback Success',
@@ -89,10 +84,7 @@ Container(color: tokens.colorFeedbackSuccess)''',
                 color: tokens.colorFeedbackWarning,
                 name: 'Feedback Warning',
               ),
-              _ColorBox(
-                color: tokens.colorFeedbackInfo,
-                name: 'Feedback Info',
-              ),
+              _ColorBox(color: tokens.colorFeedbackInfo, name: 'Feedback Info'),
             ],
           ),
         ),
@@ -137,7 +129,12 @@ DSColors.neutral900  // #212121''',
             spacing: DSSpacing.sm,
             runSpacing: DSSpacing.sm,
             children: [
-              _ColorBox(color: DSColors.neutral50, name: '50', small: true, hasBorder: true),
+              _ColorBox(
+                color: DSColors.neutral50,
+                name: '50',
+                small: true,
+                hasBorder: true,
+              ),
               _ColorBox(color: DSColors.neutral100, name: '100', small: true),
               _ColorBox(color: DSColors.neutral200, name: '200', small: true),
               _ColorBox(color: DSColors.neutral300, name: '300', small: true),
@@ -153,7 +150,8 @@ DSColors.neutral900  // #212121''',
         // Paleta Feedback
         const ComponentCard(
           title: 'Paleta Feedback',
-          description: 'Colores para estados de éxito, error, advertencia e información',
+          description:
+              'Colores para estados de éxito, error, advertencia e información',
           code: '''
 DSColors.success500  // #4CAF50
 DSColors.error500    // #B00020
@@ -280,10 +278,7 @@ class _ColorRow extends StatelessWidget {
   final String label;
   final List<Color> colors;
 
-  const _ColorRow({
-    required this.label,
-    required this.colors,
-  });
+  const _ColorRow({required this.label, required this.colors});
 
   @override
   Widget build(BuildContext context) {
@@ -293,28 +288,27 @@ class _ColorRow extends StatelessWidget {
       children: [
         SizedBox(
           width: 70,
-          child: Text(
-            label,
-            style: tokens.typographyLabelSmall,
+          child: Text(label, style: tokens.typographyLabelSmall),
+        ),
+        ...colors.map(
+          (color) => Expanded(
+            child: Container(
+              height: 32,
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: colors.indexOf(color) == 0
+                    ? const BorderRadius.horizontal(
+                        left: Radius.circular(DSBorderRadius.sm),
+                      )
+                    : colors.indexOf(color) == colors.length - 1
+                    ? const BorderRadius.horizontal(
+                        right: Radius.circular(DSBorderRadius.sm),
+                      )
+                    : null,
+              ),
+            ),
           ),
         ),
-        ...colors.map((color) => Expanded(
-              child: Container(
-                height: 32,
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: colors.indexOf(color) == 0
-                      ? const BorderRadius.horizontal(
-                          left: Radius.circular(DSBorderRadius.sm),
-                        )
-                      : colors.indexOf(color) == colors.length - 1
-                          ? const BorderRadius.horizontal(
-                              right: Radius.circular(DSBorderRadius.sm),
-                            )
-                          : null,
-                ),
-              ),
-            )),
       ],
     );
   }
@@ -550,10 +544,7 @@ class _SpacingRow extends StatelessWidget {
   final String name;
   final double value;
 
-  const _SpacingRow({
-    required this.name,
-    required this.value,
-  });
+  const _SpacingRow({required this.name, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -565,10 +556,7 @@ class _SpacingRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 60,
-            child: Text(
-              name,
-              style: tokens.typographyLabelSmall,
-            ),
+            child: Text(name, style: tokens.typographyLabelSmall),
           ),
           SizedBox(
             width: 50,
@@ -630,10 +618,7 @@ tokens.elevationLevel4  // Navigation drawers''',
             spacing: DSSpacing.lg,
             runSpacing: DSSpacing.lg,
             children: [
-              const _ElevationBox(
-                label: 'Level 0',
-                elevation: [],
-              ),
+              const _ElevationBox(label: 'Level 0', elevation: []),
               _ElevationBox(
                 label: 'Level 1',
                 elevation: tokens.elevationLevel1,
@@ -662,10 +647,7 @@ class _ElevationBox extends StatelessWidget {
   final String label;
   final List<BoxShadow> elevation;
 
-  const _ElevationBox({
-    required this.label,
-    required this.elevation,
-  });
+  const _ElevationBox({required this.label, required this.elevation});
 
   @override
   Widget build(BuildContext context) {
@@ -732,7 +714,10 @@ DSBorderRadius.full  // 9999px (circular)''',
               _BorderRadiusBox(label: 'none', radius: DSBorderRadius.none),
               _BorderRadiusBox(label: 'xs (4px)', radius: DSBorderRadius.xs),
               _BorderRadiusBox(label: 'sm (8px)', radius: DSBorderRadius.sm),
-              _BorderRadiusBox(label: 'base (12px)', radius: DSBorderRadius.base),
+              _BorderRadiusBox(
+                label: 'base (12px)',
+                radius: DSBorderRadius.base,
+              ),
               _BorderRadiusBox(label: 'lg (16px)', radius: DSBorderRadius.lg),
               _BorderRadiusBox(label: 'xl (20px)', radius: DSBorderRadius.xl),
               _BorderRadiusBox(label: 'full', radius: DSBorderRadius.full),
@@ -748,10 +733,7 @@ class _BorderRadiusBox extends StatelessWidget {
   final String label;
   final double radius;
 
-  const _BorderRadiusBox({
-    required this.label,
-    required this.radius,
-  });
+  const _BorderRadiusBox({required this.label, required this.radius});
 
   @override
   Widget build(BuildContext context) {

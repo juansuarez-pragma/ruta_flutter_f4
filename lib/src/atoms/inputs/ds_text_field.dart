@@ -167,7 +167,9 @@ class DSTextField extends StatelessWidget {
             helperText: helperText,
             helperStyle: tokens.typographyCaption,
             filled: true,
-            fillColor: enabled ? tokens.inputBackground : tokens.colorSurfaceSecondary,
+            fillColor: enabled
+                ? tokens.inputBackground
+                : tokens.colorSurfaceSecondary,
             prefixIcon: prefixIcon != null
                 ? Icon(
                     prefixIcon,

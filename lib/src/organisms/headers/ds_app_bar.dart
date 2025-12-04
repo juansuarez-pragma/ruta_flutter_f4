@@ -83,16 +83,16 @@ class DSAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => Size.fromHeight(
-        toolbarHeight + (bottom?.preferredSize.height ?? 0),
-      );
+  Size get preferredSize =>
+      Size.fromHeight(toolbarHeight + (bottom?.preferredSize.height ?? 0));
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
     return AppBar(
-      title: titleWidget ??
+      title:
+          titleWidget ??
           (title != null
               ? Text(
                   title!,

@@ -105,10 +105,7 @@ class DSProductGrid<T> extends StatelessWidget {
 
     // Estado de error
     if (error != null) {
-      return DSErrorState(
-        message: error!,
-        onRetry: onRetry,
-      );
+      return DSErrorState(message: error!, onRetry: onRetry);
     }
 
     // Estado vacío
@@ -160,11 +157,7 @@ class DSProductGrid<T> extends StatelessWidget {
       );
     } catch (_) {
       // Si no tiene las propiedades esperadas, mostrar placeholder
-      return DSCard(
-        child: Center(
-          child: Text('Item $index'),
-        ),
-      );
+      return DSCard(child: Center(child: Text('Item $index')));
     }
   }
 }

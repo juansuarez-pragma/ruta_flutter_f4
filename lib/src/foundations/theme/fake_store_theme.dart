@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'ds_theme_data.dart';
-import 'ds_theme_dark.dart';
-import 'ds_theme_light.dart';
+import 'package:fake_store_design_system/src/foundations/theme/ds_theme_dark.dart';
+import 'package:fake_store_design_system/src/foundations/theme/ds_theme_data.dart';
+import 'package:fake_store_design_system/src/foundations/theme/ds_theme_light.dart';
 
 /// Configuración principal del tema del sistema de diseño Fake Store.
 ///

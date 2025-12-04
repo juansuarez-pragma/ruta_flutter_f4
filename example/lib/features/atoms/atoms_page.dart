@@ -1,7 +1,7 @@
 import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/widgets/widgets.dart';
+import 'package:fake_store_design_system_example/core/widgets/widgets.dart';
 
 /// Página de demostración de componentes atómicos.
 class AtomsPage extends StatelessWidget {
@@ -180,14 +180,8 @@ DSButton.primary(
             spacing: DSSpacing.md,
             runSpacing: DSSpacing.md,
             children: [
-              const DSButton.primary(
-                text: 'Disabled',
-                onPressed: null,
-              ),
-              const DSButton.secondary(
-                text: 'Disabled',
-                onPressed: null,
-              ),
+              const DSButton.primary(text: 'Disabled', onPressed: null),
+              const DSButton.secondary(text: 'Disabled', onPressed: null),
               DSButton.primary(
                 text: 'Cargando',
                 isLoading: true,
@@ -518,8 +512,9 @@ DSTextField(
                 hint: '********',
                 obscureText: _obscurePassword,
                 prefixIcon: Icons.lock,
-                suffixIcon:
-                    _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                suffixIcon: _obscurePassword
+                    ? Icons.visibility
+                    : Icons.visibility_off,
                 onSuffixIconTap: () {
                   setState(() => _obscurePassword = !_obscurePassword);
                 },
@@ -645,10 +640,7 @@ DSSkeleton(
                 ],
               ),
               SizedBox(height: DSSpacing.lg),
-              DSSkeleton(
-                width: double.infinity,
-                height: 120,
-              ),
+              DSSkeleton(width: double.infinity, height: 120),
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/widgets/widgets.dart';
+import 'package:fake_store_design_system_example/core/widgets/widgets.dart';
 
 /// Página de demostración de componentes de organismo.
 class OrganismsPage extends StatelessWidget {
@@ -52,9 +52,7 @@ DSAppBar(
               borderRadius: BorderRadius.circular(DSBorderRadius.sm),
             ),
             clipBehavior: Clip.antiAlias,
-            child: const DSAppBar(
-              title: 'Productos',
-            ),
+            child: const DSAppBar(title: 'Productos'),
           ),
         ),
         // Con actions
@@ -172,7 +170,8 @@ class _ProductGridSection extends StatelessWidget {
         reviewCount: 120,
       ),
       const _MockProduct(
-        imageUrl: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+        imageUrl:
+            'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
         title: 'Slim Fit T-Shirt',
         price: 22.30,
         rating: 4.1,
@@ -186,7 +185,8 @@ class _ProductGridSection extends StatelessWidget {
         reviewCount: 500,
       ),
       const _MockProduct(
-        imageUrl: 'https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg',
+        imageUrl:
+            'https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg',
         title: 'Gold Dragon Ring',
         price: 695.00,
         rating: 4.6,
@@ -383,10 +383,7 @@ DSBottomNav(
                   selectedIcon: Icons.home,
                   label: 'Inicio',
                 ),
-                DSBottomNavItem(
-                  icon: Icons.search,
-                  label: 'Buscar',
-                ),
+                DSBottomNavItem(icon: Icons.search, label: 'Buscar'),
                 DSBottomNavItem(
                   icon: Icons.favorite_outline,
                   selectedIcon: Icons.favorite,

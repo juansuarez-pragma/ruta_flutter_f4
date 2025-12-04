@@ -7,11 +7,7 @@ class CodePreview extends StatefulWidget {
   final String code;
   final bool expanded;
 
-  const CodePreview({
-    super.key,
-    required this.code,
-    this.expanded = false,
-  });
+  const CodePreview({super.key, required this.code, this.expanded = false});
 
   @override
   State<CodePreview> createState() => _CodePreviewState();

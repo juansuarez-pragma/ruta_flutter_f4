@@ -746,190 +746,417 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
 
     return DSThemeData(
       // Surface
-      colorSurfacePrimary:
-          Color.lerp(colorSurfacePrimary, other.colorSurfacePrimary, t)!,
-      colorSurfaceSecondary:
-          Color.lerp(colorSurfaceSecondary, other.colorSurfaceSecondary, t)!,
-      colorSurfaceTertiary:
-          Color.lerp(colorSurfaceTertiary, other.colorSurfaceTertiary, t)!,
-      colorSurfaceInverse:
-          Color.lerp(colorSurfaceInverse, other.colorSurfaceInverse, t)!,
-      colorSurfaceOverlay:
-          Color.lerp(colorSurfaceOverlay, other.colorSurfaceOverlay, t)!,
+      colorSurfacePrimary: Color.lerp(
+        colorSurfacePrimary,
+        other.colorSurfacePrimary,
+        t,
+      )!,
+      colorSurfaceSecondary: Color.lerp(
+        colorSurfaceSecondary,
+        other.colorSurfaceSecondary,
+        t,
+      )!,
+      colorSurfaceTertiary: Color.lerp(
+        colorSurfaceTertiary,
+        other.colorSurfaceTertiary,
+        t,
+      )!,
+      colorSurfaceInverse: Color.lerp(
+        colorSurfaceInverse,
+        other.colorSurfaceInverse,
+        t,
+      )!,
+      colorSurfaceOverlay: Color.lerp(
+        colorSurfaceOverlay,
+        other.colorSurfaceOverlay,
+        t,
+      )!,
       // Text
-      colorTextPrimary:
-          Color.lerp(colorTextPrimary, other.colorTextPrimary, t)!,
-      colorTextSecondary:
-          Color.lerp(colorTextSecondary, other.colorTextSecondary, t)!,
-      colorTextTertiary:
-          Color.lerp(colorTextTertiary, other.colorTextTertiary, t)!,
-      colorTextInverse:
-          Color.lerp(colorTextInverse, other.colorTextInverse, t)!,
-      colorTextDisabled:
-          Color.lerp(colorTextDisabled, other.colorTextDisabled, t)!,
+      colorTextPrimary: Color.lerp(
+        colorTextPrimary,
+        other.colorTextPrimary,
+        t,
+      )!,
+      colorTextSecondary: Color.lerp(
+        colorTextSecondary,
+        other.colorTextSecondary,
+        t,
+      )!,
+      colorTextTertiary: Color.lerp(
+        colorTextTertiary,
+        other.colorTextTertiary,
+        t,
+      )!,
+      colorTextInverse: Color.lerp(
+        colorTextInverse,
+        other.colorTextInverse,
+        t,
+      )!,
+      colorTextDisabled: Color.lerp(
+        colorTextDisabled,
+        other.colorTextDisabled,
+        t,
+      )!,
       colorTextLink: Color.lerp(colorTextLink, other.colorTextLink, t)!,
       // Border
-      colorBorderPrimary:
-          Color.lerp(colorBorderPrimary, other.colorBorderPrimary, t)!,
-      colorBorderSecondary:
-          Color.lerp(colorBorderSecondary, other.colorBorderSecondary, t)!,
-      colorBorderFocus:
-          Color.lerp(colorBorderFocus, other.colorBorderFocus, t)!,
-      colorBorderError:
-          Color.lerp(colorBorderError, other.colorBorderError, t)!,
+      colorBorderPrimary: Color.lerp(
+        colorBorderPrimary,
+        other.colorBorderPrimary,
+        t,
+      )!,
+      colorBorderSecondary: Color.lerp(
+        colorBorderSecondary,
+        other.colorBorderSecondary,
+        t,
+      )!,
+      colorBorderFocus: Color.lerp(
+        colorBorderFocus,
+        other.colorBorderFocus,
+        t,
+      )!,
+      colorBorderError: Color.lerp(
+        colorBorderError,
+        other.colorBorderError,
+        t,
+      )!,
       // Icon
-      colorIconPrimary:
-          Color.lerp(colorIconPrimary, other.colorIconPrimary, t)!,
-      colorIconSecondary:
-          Color.lerp(colorIconSecondary, other.colorIconSecondary, t)!,
-      colorIconInverse:
-          Color.lerp(colorIconInverse, other.colorIconInverse, t)!,
-      colorIconDisabled:
-          Color.lerp(colorIconDisabled, other.colorIconDisabled, t)!,
+      colorIconPrimary: Color.lerp(
+        colorIconPrimary,
+        other.colorIconPrimary,
+        t,
+      )!,
+      colorIconSecondary: Color.lerp(
+        colorIconSecondary,
+        other.colorIconSecondary,
+        t,
+      )!,
+      colorIconInverse: Color.lerp(
+        colorIconInverse,
+        other.colorIconInverse,
+        t,
+      )!,
+      colorIconDisabled: Color.lerp(
+        colorIconDisabled,
+        other.colorIconDisabled,
+        t,
+      )!,
       // Brand
-      colorBrandPrimary:
-          Color.lerp(colorBrandPrimary, other.colorBrandPrimary, t)!,
-      colorBrandSecondary:
-          Color.lerp(colorBrandSecondary, other.colorBrandSecondary, t)!,
-      colorBrandPrimaryLight:
-          Color.lerp(colorBrandPrimaryLight, other.colorBrandPrimaryLight, t)!,
-      colorBrandPrimaryDark:
-          Color.lerp(colorBrandPrimaryDark, other.colorBrandPrimaryDark, t)!,
+      colorBrandPrimary: Color.lerp(
+        colorBrandPrimary,
+        other.colorBrandPrimary,
+        t,
+      )!,
+      colorBrandSecondary: Color.lerp(
+        colorBrandSecondary,
+        other.colorBrandSecondary,
+        t,
+      )!,
+      colorBrandPrimaryLight: Color.lerp(
+        colorBrandPrimaryLight,
+        other.colorBrandPrimaryLight,
+        t,
+      )!,
+      colorBrandPrimaryDark: Color.lerp(
+        colorBrandPrimaryDark,
+        other.colorBrandPrimaryDark,
+        t,
+      )!,
       // Feedback
-      colorFeedbackSuccess:
-          Color.lerp(colorFeedbackSuccess, other.colorFeedbackSuccess, t)!,
+      colorFeedbackSuccess: Color.lerp(
+        colorFeedbackSuccess,
+        other.colorFeedbackSuccess,
+        t,
+      )!,
       colorFeedbackSuccessLight: Color.lerp(
-          colorFeedbackSuccessLight, other.colorFeedbackSuccessLight, t)!,
-      colorFeedbackError:
-          Color.lerp(colorFeedbackError, other.colorFeedbackError, t)!,
-      colorFeedbackErrorLight:
-          Color.lerp(colorFeedbackErrorLight, other.colorFeedbackErrorLight, t)!,
-      colorFeedbackWarning:
-          Color.lerp(colorFeedbackWarning, other.colorFeedbackWarning, t)!,
+        colorFeedbackSuccessLight,
+        other.colorFeedbackSuccessLight,
+        t,
+      )!,
+      colorFeedbackError: Color.lerp(
+        colorFeedbackError,
+        other.colorFeedbackError,
+        t,
+      )!,
+      colorFeedbackErrorLight: Color.lerp(
+        colorFeedbackErrorLight,
+        other.colorFeedbackErrorLight,
+        t,
+      )!,
+      colorFeedbackWarning: Color.lerp(
+        colorFeedbackWarning,
+        other.colorFeedbackWarning,
+        t,
+      )!,
       colorFeedbackWarningLight: Color.lerp(
-          colorFeedbackWarningLight, other.colorFeedbackWarningLight, t)!,
-      colorFeedbackInfo:
-          Color.lerp(colorFeedbackInfo, other.colorFeedbackInfo, t)!,
-      colorFeedbackInfoLight:
-          Color.lerp(colorFeedbackInfoLight, other.colorFeedbackInfoLight, t)!,
+        colorFeedbackWarningLight,
+        other.colorFeedbackWarningLight,
+        t,
+      )!,
+      colorFeedbackInfo: Color.lerp(
+        colorFeedbackInfo,
+        other.colorFeedbackInfo,
+        t,
+      )!,
+      colorFeedbackInfoLight: Color.lerp(
+        colorFeedbackInfoLight,
+        other.colorFeedbackInfoLight,
+        t,
+      )!,
       // Button Primary
-      buttonPrimaryBackground:
-          Color.lerp(buttonPrimaryBackground, other.buttonPrimaryBackground, t)!,
+      buttonPrimaryBackground: Color.lerp(
+        buttonPrimaryBackground,
+        other.buttonPrimaryBackground,
+        t,
+      )!,
       buttonPrimaryBackgroundHover: Color.lerp(
-          buttonPrimaryBackgroundHover, other.buttonPrimaryBackgroundHover, t)!,
-      buttonPrimaryBackgroundPressed: Color.lerp(buttonPrimaryBackgroundPressed,
-          other.buttonPrimaryBackgroundPressed, t)!,
+        buttonPrimaryBackgroundHover,
+        other.buttonPrimaryBackgroundHover,
+        t,
+      )!,
+      buttonPrimaryBackgroundPressed: Color.lerp(
+        buttonPrimaryBackgroundPressed,
+        other.buttonPrimaryBackgroundPressed,
+        t,
+      )!,
       buttonPrimaryBackgroundDisabled: Color.lerp(
-          buttonPrimaryBackgroundDisabled,
-          other.buttonPrimaryBackgroundDisabled,
-          t)!,
-      buttonPrimaryText:
-          Color.lerp(buttonPrimaryText, other.buttonPrimaryText, t)!,
+        buttonPrimaryBackgroundDisabled,
+        other.buttonPrimaryBackgroundDisabled,
+        t,
+      )!,
+      buttonPrimaryText: Color.lerp(
+        buttonPrimaryText,
+        other.buttonPrimaryText,
+        t,
+      )!,
       buttonPrimaryTextDisabled: Color.lerp(
-          buttonPrimaryTextDisabled, other.buttonPrimaryTextDisabled, t)!,
+        buttonPrimaryTextDisabled,
+        other.buttonPrimaryTextDisabled,
+        t,
+      )!,
       // Button Secondary
       buttonSecondaryBackground: Color.lerp(
-          buttonSecondaryBackground, other.buttonSecondaryBackground, t)!,
-      buttonSecondaryBackgroundHover: Color.lerp(buttonSecondaryBackgroundHover,
-          other.buttonSecondaryBackgroundHover, t)!,
+        buttonSecondaryBackground,
+        other.buttonSecondaryBackground,
+        t,
+      )!,
+      buttonSecondaryBackgroundHover: Color.lerp(
+        buttonSecondaryBackgroundHover,
+        other.buttonSecondaryBackgroundHover,
+        t,
+      )!,
       buttonSecondaryBackgroundPressed: Color.lerp(
-          buttonSecondaryBackgroundPressed,
-          other.buttonSecondaryBackgroundPressed,
-          t)!,
-      buttonSecondaryBorder:
-          Color.lerp(buttonSecondaryBorder, other.buttonSecondaryBorder, t)!,
-      buttonSecondaryText:
-          Color.lerp(buttonSecondaryText, other.buttonSecondaryText, t)!,
+        buttonSecondaryBackgroundPressed,
+        other.buttonSecondaryBackgroundPressed,
+        t,
+      )!,
+      buttonSecondaryBorder: Color.lerp(
+        buttonSecondaryBorder,
+        other.buttonSecondaryBorder,
+        t,
+      )!,
+      buttonSecondaryText: Color.lerp(
+        buttonSecondaryText,
+        other.buttonSecondaryText,
+        t,
+      )!,
       buttonSecondaryTextDisabled: Color.lerp(
-          buttonSecondaryTextDisabled, other.buttonSecondaryTextDisabled, t)!,
+        buttonSecondaryTextDisabled,
+        other.buttonSecondaryTextDisabled,
+        t,
+      )!,
       // Button Ghost
-      buttonGhostBackground:
-          Color.lerp(buttonGhostBackground, other.buttonGhostBackground, t)!,
+      buttonGhostBackground: Color.lerp(
+        buttonGhostBackground,
+        other.buttonGhostBackground,
+        t,
+      )!,
       buttonGhostBackgroundHover: Color.lerp(
-          buttonGhostBackgroundHover, other.buttonGhostBackgroundHover, t)!,
+        buttonGhostBackgroundHover,
+        other.buttonGhostBackgroundHover,
+        t,
+      )!,
       buttonGhostBackgroundPressed: Color.lerp(
-          buttonGhostBackgroundPressed, other.buttonGhostBackgroundPressed, t)!,
+        buttonGhostBackgroundPressed,
+        other.buttonGhostBackgroundPressed,
+        t,
+      )!,
       buttonGhostText: Color.lerp(buttonGhostText, other.buttonGhostText, t)!,
-      buttonGhostTextDisabled:
-          Color.lerp(buttonGhostTextDisabled, other.buttonGhostTextDisabled, t)!,
+      buttonGhostTextDisabled: Color.lerp(
+        buttonGhostTextDisabled,
+        other.buttonGhostTextDisabled,
+        t,
+      )!,
       // Button Danger
-      buttonDangerBackground:
-          Color.lerp(buttonDangerBackground, other.buttonDangerBackground, t)!,
+      buttonDangerBackground: Color.lerp(
+        buttonDangerBackground,
+        other.buttonDangerBackground,
+        t,
+      )!,
       buttonDangerBackgroundHover: Color.lerp(
-          buttonDangerBackgroundHover, other.buttonDangerBackgroundHover, t)!,
+        buttonDangerBackgroundHover,
+        other.buttonDangerBackgroundHover,
+        t,
+      )!,
       buttonDangerBackgroundPressed: Color.lerp(
-          buttonDangerBackgroundPressed, other.buttonDangerBackgroundPressed, t)!,
-      buttonDangerText:
-          Color.lerp(buttonDangerText, other.buttonDangerText, t)!,
+        buttonDangerBackgroundPressed,
+        other.buttonDangerBackgroundPressed,
+        t,
+      )!,
+      buttonDangerText: Color.lerp(
+        buttonDangerText,
+        other.buttonDangerText,
+        t,
+      )!,
       // Card
       cardBackground: Color.lerp(cardBackground, other.cardBackground, t)!,
-      cardBackgroundHover:
-          Color.lerp(cardBackgroundHover, other.cardBackgroundHover, t)!,
+      cardBackgroundHover: Color.lerp(
+        cardBackgroundHover,
+        other.cardBackgroundHover,
+        t,
+      )!,
       cardBorder: Color.lerp(cardBorder, other.cardBorder, t)!,
       // Input
       inputBackground: Color.lerp(inputBackground, other.inputBackground, t)!,
-      inputBackgroundFocused:
-          Color.lerp(inputBackgroundFocused, other.inputBackgroundFocused, t)!,
+      inputBackgroundFocused: Color.lerp(
+        inputBackgroundFocused,
+        other.inputBackgroundFocused,
+        t,
+      )!,
       inputBorder: Color.lerp(inputBorder, other.inputBorder, t)!,
-      inputBorderFocused:
-          Color.lerp(inputBorderFocused, other.inputBorderFocused, t)!,
-      inputBorderError:
-          Color.lerp(inputBorderError, other.inputBorderError, t)!,
+      inputBorderFocused: Color.lerp(
+        inputBorderFocused,
+        other.inputBorderFocused,
+        t,
+      )!,
+      inputBorderError: Color.lerp(
+        inputBorderError,
+        other.inputBorderError,
+        t,
+      )!,
       inputText: Color.lerp(inputText, other.inputText, t)!,
-      inputPlaceholder:
-          Color.lerp(inputPlaceholder, other.inputPlaceholder, t)!,
+      inputPlaceholder: Color.lerp(
+        inputPlaceholder,
+        other.inputPlaceholder,
+        t,
+      )!,
       // Chip
       chipBackground: Color.lerp(chipBackground, other.chipBackground, t)!,
-      chipBackgroundHover:
-          Color.lerp(chipBackgroundHover, other.chipBackgroundHover, t)!,
-      chipBackgroundPressed:
-          Color.lerp(chipBackgroundPressed, other.chipBackgroundPressed, t)!,
-      chipBackgroundSelected:
-          Color.lerp(chipBackgroundSelected, other.chipBackgroundSelected, t)!,
+      chipBackgroundHover: Color.lerp(
+        chipBackgroundHover,
+        other.chipBackgroundHover,
+        t,
+      )!,
+      chipBackgroundPressed: Color.lerp(
+        chipBackgroundPressed,
+        other.chipBackgroundPressed,
+        t,
+      )!,
+      chipBackgroundSelected: Color.lerp(
+        chipBackgroundSelected,
+        other.chipBackgroundSelected,
+        t,
+      )!,
       chipText: Color.lerp(chipText, other.chipText, t)!,
-      chipTextSelected:
-          Color.lerp(chipTextSelected, other.chipTextSelected, t)!,
+      chipTextSelected: Color.lerp(
+        chipTextSelected,
+        other.chipTextSelected,
+        t,
+      )!,
       chipBorder: Color.lerp(chipBorder, other.chipBorder, t)!,
       // Badge
       badgeBackground: Color.lerp(badgeBackground, other.badgeBackground, t)!,
       badgeText: Color.lerp(badgeText, other.badgeText, t)!,
       // Typography (no lerp needed for TextStyle in most cases)
-      typographyDisplayLarge:
-          TextStyle.lerp(typographyDisplayLarge, other.typographyDisplayLarge, t)!,
+      typographyDisplayLarge: TextStyle.lerp(
+        typographyDisplayLarge,
+        other.typographyDisplayLarge,
+        t,
+      )!,
       typographyDisplayMedium: TextStyle.lerp(
-          typographyDisplayMedium, other.typographyDisplayMedium, t)!,
-      typographyDisplaySmall:
-          TextStyle.lerp(typographyDisplaySmall, other.typographyDisplaySmall, t)!,
-      typographyHeadingLarge:
-          TextStyle.lerp(typographyHeadingLarge, other.typographyHeadingLarge, t)!,
+        typographyDisplayMedium,
+        other.typographyDisplayMedium,
+        t,
+      )!,
+      typographyDisplaySmall: TextStyle.lerp(
+        typographyDisplaySmall,
+        other.typographyDisplaySmall,
+        t,
+      )!,
+      typographyHeadingLarge: TextStyle.lerp(
+        typographyHeadingLarge,
+        other.typographyHeadingLarge,
+        t,
+      )!,
       typographyHeadingMedium: TextStyle.lerp(
-          typographyHeadingMedium, other.typographyHeadingMedium, t)!,
-      typographyHeadingSmall:
-          TextStyle.lerp(typographyHeadingSmall, other.typographyHeadingSmall, t)!,
-      typographyTitleLarge:
-          TextStyle.lerp(typographyTitleLarge, other.typographyTitleLarge, t)!,
-      typographyTitleMedium:
-          TextStyle.lerp(typographyTitleMedium, other.typographyTitleMedium, t)!,
-      typographyTitleSmall:
-          TextStyle.lerp(typographyTitleSmall, other.typographyTitleSmall, t)!,
-      typographyBodyLarge:
-          TextStyle.lerp(typographyBodyLarge, other.typographyBodyLarge, t)!,
-      typographyBodyMedium:
-          TextStyle.lerp(typographyBodyMedium, other.typographyBodyMedium, t)!,
-      typographyBodySmall:
-          TextStyle.lerp(typographyBodySmall, other.typographyBodySmall, t)!,
-      typographyLabelLarge:
-          TextStyle.lerp(typographyLabelLarge, other.typographyLabelLarge, t)!,
-      typographyLabelMedium:
-          TextStyle.lerp(typographyLabelMedium, other.typographyLabelMedium, t)!,
-      typographyLabelSmall:
-          TextStyle.lerp(typographyLabelSmall, other.typographyLabelSmall, t)!,
-      typographyCaption:
-          TextStyle.lerp(typographyCaption, other.typographyCaption, t)!,
-      typographyOverline:
-          TextStyle.lerp(typographyOverline, other.typographyOverline, t)!,
-      typographyButton:
-          TextStyle.lerp(typographyButton, other.typographyButton, t)!,
+        typographyHeadingMedium,
+        other.typographyHeadingMedium,
+        t,
+      )!,
+      typographyHeadingSmall: TextStyle.lerp(
+        typographyHeadingSmall,
+        other.typographyHeadingSmall,
+        t,
+      )!,
+      typographyTitleLarge: TextStyle.lerp(
+        typographyTitleLarge,
+        other.typographyTitleLarge,
+        t,
+      )!,
+      typographyTitleMedium: TextStyle.lerp(
+        typographyTitleMedium,
+        other.typographyTitleMedium,
+        t,
+      )!,
+      typographyTitleSmall: TextStyle.lerp(
+        typographyTitleSmall,
+        other.typographyTitleSmall,
+        t,
+      )!,
+      typographyBodyLarge: TextStyle.lerp(
+        typographyBodyLarge,
+        other.typographyBodyLarge,
+        t,
+      )!,
+      typographyBodyMedium: TextStyle.lerp(
+        typographyBodyMedium,
+        other.typographyBodyMedium,
+        t,
+      )!,
+      typographyBodySmall: TextStyle.lerp(
+        typographyBodySmall,
+        other.typographyBodySmall,
+        t,
+      )!,
+      typographyLabelLarge: TextStyle.lerp(
+        typographyLabelLarge,
+        other.typographyLabelLarge,
+        t,
+      )!,
+      typographyLabelMedium: TextStyle.lerp(
+        typographyLabelMedium,
+        other.typographyLabelMedium,
+        t,
+      )!,
+      typographyLabelSmall: TextStyle.lerp(
+        typographyLabelSmall,
+        other.typographyLabelSmall,
+        t,
+      )!,
+      typographyCaption: TextStyle.lerp(
+        typographyCaption,
+        other.typographyCaption,
+        t,
+      )!,
+      typographyOverline: TextStyle.lerp(
+        typographyOverline,
+        other.typographyOverline,
+        t,
+      )!,
+      typographyButton: TextStyle.lerp(
+        typographyButton,
+        other.typographyButton,
+        t,
+      )!,
       // Elevation (use t to decide which to use)
       elevationLevel1: t < 0.5 ? elevationLevel1 : other.elevationLevel1,
       elevationLevel2: t < 0.5 ? elevationLevel2 : other.elevationLevel2,

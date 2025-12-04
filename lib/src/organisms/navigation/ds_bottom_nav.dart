@@ -139,11 +139,7 @@ class _NavItem extends StatelessWidget {
           Stack(
             clipBehavior: Clip.none,
             children: [
-              Icon(
-                icon,
-                size: DSSizes.iconBase,
-                color: color,
-              ),
+              Icon(icon, size: DSSizes.iconBase, color: color),
               if (item.badgeCount != null && item.badgeCount! > 0)
                 Positioned(
                   right: -8,
@@ -179,7 +175,9 @@ class _NavItem extends StatelessWidget {
             item.label,
             style: TextStyle(
               fontSize: DSFontSize.labelSmall,
-              fontWeight: isSelected ? DSFontWeight.medium : DSFontWeight.regular,
+              fontWeight: isSelected
+                  ? DSFontWeight.medium
+                  : DSFontWeight.regular,
               color: color,
             ),
             maxLines: 1,

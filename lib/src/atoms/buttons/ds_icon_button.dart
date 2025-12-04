@@ -105,25 +105,19 @@ class DSIconButton extends StatelessWidget {
                     height: _iconSize,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(colors.foreground),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        colors.foreground,
+                      ),
                     ),
                   )
-                : Icon(
-                    icon,
-                    size: _iconSize,
-                    color: colors.foreground,
-                  ),
+                : Icon(icon, size: _iconSize, color: colors.foreground),
           ),
         ),
       ),
     );
 
     if (tooltip != null) {
-      button = Tooltip(
-        message: tooltip!,
-        child: button,
-      );
+      button = Tooltip(message: tooltip!, child: button);
     }
 
     return button;

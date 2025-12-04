@@ -1,7 +1,7 @@
 import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/widgets/widgets.dart';
+import 'package:fake_store_design_system_example/core/widgets/widgets.dart';
 
 /// Página de demostración de componentes moleculares.
 class MoleculesPage extends StatelessWidget {
@@ -52,10 +52,7 @@ DSCard(
             padding: const EdgeInsets.all(DSSpacing.lg),
             child: Row(
               children: [
-                Icon(
-                  Icons.info_outline,
-                  color: tokens.colorIconSecondary,
-                ),
+                Icon(Icons.info_outline, color: tokens.colorIconSecondary),
                 const SizedBox(width: DSSpacing.md),
                 Expanded(
                   child: Text(
@@ -82,10 +79,7 @@ DSCard(
             onTap: () {},
             child: Row(
               children: [
-                Icon(
-                  Icons.touch_app,
-                  color: tokens.colorBrandPrimary,
-                ),
+                Icon(Icons.touch_app, color: tokens.colorBrandPrimary),
                 const SizedBox(width: DSSpacing.md),
                 Expanded(
                   child: Column(
@@ -105,10 +99,7 @@ DSCard(
                     ],
                   ),
                 ),
-                Icon(
-                  Icons.chevron_right,
-                  color: tokens.colorIconSecondary,
-                ),
+                Icon(Icons.chevron_right, color: tokens.colorIconSecondary),
               ],
             ),
           ),
@@ -164,10 +155,7 @@ class _ElevatedCard extends StatelessWidget {
         width: 120,
         child: Column(
           children: [
-            Text(
-              'Nivel $level',
-              style: tokens.typographyTitleSmall,
-            ),
+            Text('Nivel $level', style: tokens.typographyTitleSmall),
             const SizedBox(height: DSSpacing.xs),
             Text(
               'elevation: $level',
@@ -215,7 +203,8 @@ DSProductCard(
               children: [
                 Expanded(
                   child: DSProductCard(
-                    imageUrl: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+                    imageUrl:
+                        'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
                     title: 'Backpack Premium',
                     price: 109.95,
                     onTap: () {},
@@ -224,7 +213,8 @@ DSProductCard(
                 const SizedBox(width: DSSpacing.lg),
                 Expanded(
                   child: DSProductCard(
-                    imageUrl: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+                    imageUrl:
+                        'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
                     title: 'Slim Fit T-Shirt',
                     price: 22.30,
                     onTap: () {},
@@ -256,7 +246,8 @@ DSProductCard(
               children: [
                 Expanded(
                   child: DSProductCard(
-                    imageUrl: 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
+                    imageUrl:
+                        'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
                     title: 'Mens Cotton Jacket',
                     price: 55.99,
                     rating: 4.7,
@@ -270,7 +261,8 @@ DSProductCard(
                 const SizedBox(width: DSSpacing.lg),
                 Expanded(
                   child: DSProductCard(
-                    imageUrl: 'https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg',
+                    imageUrl:
+                        'https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg',
                     title: 'Gold Dragon Ring',
                     price: 695.00,
                     rating: 4.6,
@@ -383,11 +375,7 @@ DSFilterChip(
                 isSelected: false,
                 onTap: () {},
               ),
-              DSFilterChip(
-                label: 'Ofertas',
-                isSelected: false,
-                onTap: () {},
-              ),
+              DSFilterChip(label: 'Ofertas', isSelected: false, onTap: () {}),
             ],
           ),
         ),
@@ -457,9 +445,7 @@ DSLoadingState(
 )''',
           child: SizedBox(
             height: 200,
-            child: DSLoadingState(
-              message: 'Cargando productos...',
-            ),
+            child: DSLoadingState(message: 'Cargando productos...'),
           ),
         ),
         // Empty State variante
@@ -475,7 +461,8 @@ DSEmptyState(
           child: DSEmptyState(
             icon: Icons.search_off,
             title: 'Sin resultados',
-            description: 'No encontramos productos que coincidan con tu búsqueda',
+            description:
+                'No encontramos productos que coincidan con tu búsqueda',
           ),
         ),
       ],

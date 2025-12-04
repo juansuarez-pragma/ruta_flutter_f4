@@ -1,7 +1,7 @@
 import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 
-import 'code_preview.dart';
+import 'package:fake_store_design_system_example/core/widgets/code_preview.dart';
 
 /// Card wrapper para mostrar un componente con su código.
 class ComponentCard extends StatelessWidget {
@@ -56,10 +56,7 @@ class ComponentCard extends StatelessWidget {
           const SizedBox(height: DSSpacing.lg),
           child,
           const SizedBox(height: DSSpacing.lg),
-          CodePreview(
-            code: code,
-            expanded: codeExpanded,
-          ),
+          CodePreview(code: code, expanded: codeExpanded),
         ],
       ),
     );

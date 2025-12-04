@@ -68,11 +68,7 @@ class DSEmptyState extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: iconSize,
-              color: tokens.colorIconDisabled,
-            ),
+            Icon(icon, size: iconSize, color: tokens.colorIconDisabled),
             const SizedBox(height: DSSpacing.lg),
             DSText.headingSmall(
               title,
@@ -89,10 +85,7 @@ class DSEmptyState extends StatelessWidget {
             ],
             if (actionText != null && onAction != null) ...[
               const SizedBox(height: DSSpacing.xl),
-              DSButton.primary(
-                text: actionText!,
-                onPressed: onAction,
-              ),
+              DSButton.primary(text: actionText!, onPressed: onAction),
             ],
           ],
         ),

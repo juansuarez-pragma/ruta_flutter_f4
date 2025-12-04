@@ -39,10 +39,7 @@ class DSLoadingState extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(DSSpacing.xxl),
-        child: DSCircularLoader(
-          size: size,
-          message: message,
-        ),
+        child: DSCircularLoader(size: size, message: message),
       ),
     );
   }

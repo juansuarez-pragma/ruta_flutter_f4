@@ -1,10 +1,10 @@
 import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../features/atoms/atoms_page.dart';
-import '../features/molecules/molecules_page.dart';
-import '../features/organisms/organisms_page.dart';
-import '../features/tokens/tokens_page.dart';
+import 'package:fake_store_design_system_example/features/atoms/atoms_page.dart';
+import 'package:fake_store_design_system_example/features/molecules/molecules_page.dart';
+import 'package:fake_store_design_system_example/features/organisms/organisms_page.dart';
+import 'package:fake_store_design_system_example/features/tokens/tokens_page.dart';
 
 /// Aplicación de showcase del sistema de diseño.
 class ShowcaseApp extends StatefulWidget {
@@ -19,8 +19,9 @@ class _ShowcaseAppState extends State<ShowcaseApp> {
 
   void _toggleTheme() {
     setState(() {
-      _themeMode =
-          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+      _themeMode = _themeMode == ThemeMode.light
+          ? ThemeMode.dark
+          : ThemeMode.light;
     });
   }
 
@@ -32,10 +33,7 @@ class _ShowcaseAppState extends State<ShowcaseApp> {
       theme: FakeStoreTheme.light(),
       darkTheme: FakeStoreTheme.dark(),
       themeMode: _themeMode,
-      home: _ShowcaseHome(
-        themeMode: _themeMode,
-        onToggleTheme: _toggleTheme,
-      ),
+      home: _ShowcaseHome(themeMode: _themeMode, onToggleTheme: _toggleTheme),
     );
   }
 }
@@ -44,10 +42,7 @@ class _ShowcaseHome extends StatelessWidget {
   final ThemeMode themeMode;
   final VoidCallback onToggleTheme;
 
-  const _ShowcaseHome({
-    required this.themeMode,
-    required this.onToggleTheme,
-  });
+  const _ShowcaseHome({required this.themeMode, required this.onToggleTheme});
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +57,7 @@ class _ShowcaseHome extends StatelessWidget {
           elevation: 0,
           title: Row(
             children: [
-              Icon(
-                Icons.palette_outlined,
-                color: tokens.colorBrandPrimary,
-              ),
+              Icon(Icons.palette_outlined, color: tokens.colorBrandPrimary),
               const SizedBox(width: DSSpacing.sm),
               Text(
                 'Design System',
