@@ -353,7 +353,7 @@ class DSButton extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonPrimaryBackgroundDisabled;
+            return tokens.buttonDangerBackgroundDisabled;
           }
           if (states.contains(WidgetState.pressed)) {
             return tokens.buttonDangerBackgroundPressed;
@@ -365,7 +365,7 @@ class DSButton extends StatelessWidget {
         }),
         foregroundColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonPrimaryTextDisabled;
+            return tokens.buttonDangerTextDisabled;
           }
           return tokens.buttonDangerText;
         }),
@@ -379,7 +379,7 @@ class DSButton extends StatelessWidget {
       ),
       child: _buildContent(
         tokens.buttonDangerText,
-        tokens.buttonPrimaryTextDisabled,
+        tokens.buttonDangerTextDisabled,
         isDisabled,
       ),
     );
