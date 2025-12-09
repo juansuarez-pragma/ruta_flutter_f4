@@ -46,7 +46,7 @@ abstract final class FakeStoreTheme {
 
   /// Obtiene los tokens del sistema de diseño desde el contexto.
   ///
-  /// Lanza una excepción si el tema no está configurado correctamente.
+  /// Lanza [FlutterError] si el tema no está configurado correctamente.
   ///
   /// ```dart
   /// final tokens = FakeStoreTheme.of(context);
@@ -54,13 +54,24 @@ abstract final class FakeStoreTheme {
   /// ```
   static DSThemeData of(BuildContext context) {
     final themeData = Theme.of(context).extension<DSThemeData>();
-    assert(
-      themeData != null,
-      'No DSThemeData found in context. '
-      'Make sure to use FakeStoreTheme.light() or FakeStoreTheme.dark() '
-      'as your theme in MaterialApp.',
-    );
-    return themeData!;
+    if (themeData == null) {
+      throw FlutterError.fromParts([
+        ErrorSummary('DSThemeData not found in context.'),
+        ErrorDescription(
+          'No DSThemeData was found in the widget tree. '
+          'This usually means FakeStoreTheme.light() or FakeStoreTheme.dark() '
+          'is not set as the theme in MaterialApp.',
+        ),
+        ErrorHint(
+          'Ensure your MaterialApp is configured like this:\n'
+          '  MaterialApp(\n'
+          '    theme: FakeStoreTheme.light(),\n'
+          '    darkTheme: FakeStoreTheme.dark(),\n'
+          '  )',
+        ),
+      ]);
+    }
+    return themeData;
   }
 
   /// Intenta obtener los tokens del sistema de diseño desde el contexto.
