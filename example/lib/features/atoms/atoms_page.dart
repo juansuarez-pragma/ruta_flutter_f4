@@ -323,7 +323,7 @@ DSIconButton(
             ],
           ),
         ),
-        ComponentCard(
+        const ComponentCard(
           title: 'Estados',
           description: 'Disabled y Loading con tooltip',
           code: '''
@@ -343,7 +343,7 @@ const DSIconButton(
           child: Wrap(
             spacing: DSSpacing.md,
             runSpacing: DSSpacing.md,
-            children: const [
+            children: [
               DSIconButton(
                 icon: Icons.download,
                 onPressed: null,
