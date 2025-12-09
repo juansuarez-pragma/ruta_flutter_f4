@@ -98,6 +98,8 @@ class DSBottomNav extends StatelessWidget {
                   isSelected: isSelected,
                   onTap: () => onTap(index),
                   tokens: tokens,
+                  index: index,
+                  totalItems: items.length,
                 ),
               );
             }).toList(),
@@ -113,12 +115,16 @@ class _NavItem extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
   final DSThemeData tokens;
+  final int index;
+  final int totalItems;
 
   const _NavItem({
     required this.item,
     required this.isSelected,
     required this.onTap,
     required this.tokens,
+    required this.index,
+    required this.totalItems,
   });
 
   @override
@@ -131,59 +137,74 @@ class _NavItem extends StatelessWidget {
         ? item.selectedIcon!
         : item.icon;
 
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Icon(icon, size: DSSizes.iconBase, color: color),
-              if (item.badgeCount != null && item.badgeCount! > 0)
-                Positioned(
-                  right: -8,
-                  top: -4,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: DSSpacing.xs,
-                      vertical: DSSpacing.xxs,
-                    ),
-                    decoration: BoxDecoration(
-                      color: tokens.colorFeedbackError,
-                      borderRadius: BorderRadius.circular(DSBorderRadius.full),
-                    ),
-                    constraints: const BoxConstraints(
-                      minWidth: 16,
-                      minHeight: 16,
-                    ),
-                    child: Text(
-                      item.badgeCount! > 99 ? '99+' : '${item.badgeCount}',
-                      style: TextStyle(
-                        fontSize: DSFontSize.labelSmall - 1,
-                        fontWeight: DSFontWeight.bold,
-                        color: tokens.colorTextInverse,
+    // Build semantic label with badge info if present
+    final badgeInfo = item.badgeCount != null && item.badgeCount! > 0
+        ? ', ${item.badgeCount} items'
+        : '';
+    final selectedInfo = isSelected ? ', selected' : '';
+    final positionInfo = 'Tab ${index + 1} of $totalItems';
+
+    return Semantics(
+      selected: isSelected,
+      button: true,
+      label: '${item.label}$badgeInfo$selectedInfo, $positionInfo',
+      child: InkWell(
+        onTap: onTap,
+        excludeFromSemantics: true,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Icon(icon, size: DSSizes.iconBase, color: color),
+                if (item.badgeCount != null && item.badgeCount! > 0)
+                  Positioned(
+                    right: -8,
+                    top: -4,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: DSSpacing.xs,
+                        vertical: DSSpacing.xxs,
                       ),
-                      textAlign: TextAlign.center,
+                      decoration: BoxDecoration(
+                        color: tokens.colorFeedbackError,
+                        borderRadius: BorderRadius.circular(
+                          DSBorderRadius.full,
+                        ),
+                      ),
+                      constraints: const BoxConstraints(
+                        minWidth: 16,
+                        minHeight: 16,
+                      ),
+                      child: Text(
+                        item.badgeCount! > 99 ? '99+' : '${item.badgeCount}',
+                        style: TextStyle(
+                          fontSize: DSFontSize.labelSmall - 1,
+                          fontWeight: DSFontWeight.bold,
+                          color: tokens.colorTextInverse,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
-                ),
-            ],
-          ),
-          const SizedBox(height: DSSpacing.xs),
-          Text(
-            item.label,
-            style: TextStyle(
-              fontSize: DSFontSize.labelSmall,
-              fontWeight: isSelected
-                  ? DSFontWeight.medium
-                  : DSFontWeight.regular,
-              color: color,
+              ],
             ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
+            const SizedBox(height: DSSpacing.xs),
+            Text(
+              item.label,
+              style: TextStyle(
+                fontSize: DSFontSize.labelSmall,
+                fontWeight: isSelected
+                    ? DSFontWeight.medium
+                    : DSFontWeight.regular,
+                color: color,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }

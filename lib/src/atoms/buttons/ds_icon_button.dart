@@ -86,31 +86,45 @@ class DSIconButton extends StatelessWidget {
 
     final colors = _getColors(tokens, isDisabled);
 
-    Widget button = SizedBox(
-      width: _size,
-      height: _size,
-      child: Material(
-        color: colors.background,
-        shape: const CircleBorder(),
-        child: InkWell(
-          onTap: isDisabled ? null : onPressed,
-          customBorder: const CircleBorder(),
-          hoverColor: colors.hoverBackground,
-          splashColor: colors.pressedBackground,
-          highlightColor: colors.pressedBackground,
-          child: Center(
-            child: isLoading
-                ? SizedBox(
-                    width: _iconSize,
-                    height: _iconSize,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        colors.foreground,
+    // Semantic label for accessibility
+    final semanticLabel = tooltip ?? _getDefaultSemanticLabel();
+
+    Widget button = Semantics(
+      button: true,
+      enabled: !isDisabled,
+      label: semanticLabel,
+      child: SizedBox(
+        width: _size,
+        height: _size,
+        child: Material(
+          color: colors.background,
+          shape: const CircleBorder(),
+          child: InkWell(
+            onTap: isDisabled ? null : onPressed,
+            customBorder: const CircleBorder(),
+            hoverColor: colors.hoverBackground,
+            splashColor: colors.pressedBackground,
+            highlightColor: colors.pressedBackground,
+            excludeFromSemantics: true,
+            child: Center(
+              child: isLoading
+                  ? SizedBox(
+                      width: _iconSize,
+                      height: _iconSize,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          colors.foreground,
+                        ),
                       ),
+                    )
+                  : Icon(
+                      icon,
+                      size: _iconSize,
+                      color: colors.foreground,
+                      semanticLabel: null, // Handled by parent Semantics
                     ),
-                  )
-                : Icon(icon, size: _iconSize, color: colors.foreground),
+            ),
           ),
         ),
       ),
@@ -121,6 +135,19 @@ class DSIconButton extends StatelessWidget {
     }
 
     return button;
+  }
+
+  String _getDefaultSemanticLabel() {
+    final variantLabel = switch (variant) {
+      DSButtonVariant.primary => 'primary',
+      DSButtonVariant.secondary => 'secondary',
+      DSButtonVariant.ghost => '',
+      DSButtonVariant.danger => 'danger',
+    };
+    final stateLabel = isLoading ? 'loading' : '';
+    return [variantLabel, 'button', stateLabel]
+        .where((s) => s.isNotEmpty)
+        .join(' ');
   }
 
   _IconButtonColors _getColors(DSThemeData tokens, bool isDisabled) {

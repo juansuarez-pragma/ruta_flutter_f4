@@ -35,16 +35,17 @@ abstract final class DSSizes {
 
   // ============================================
   // BUTTON HEIGHTS
+  // WCAG 2.1 requires minimum touch target of 44px
   // ============================================
 
-  /// Altura de botón extra pequeño - 28px
-  static const double buttonXs = 28;
+  /// Altura de botón extra pequeño - 36px
+  static const double buttonXs = 36;
 
-  /// Altura de botón pequeño - 32px
-  static const double buttonSm = 32;
+  /// Altura de botón pequeño - 44px (WCAG minimum touch target)
+  static const double buttonSm = 44;
 
-  /// Altura de botón medio - 40px
-  static const double buttonMd = 40;
+  /// Altura de botón medio - 44px (WCAG minimum touch target)
+  static const double buttonMd = 44;
 
   /// Altura de botón grande - 48px
   static const double buttonLg = 48;

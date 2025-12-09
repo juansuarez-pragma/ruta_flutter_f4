@@ -71,6 +71,12 @@ class DSProductCard extends StatelessWidget {
   /// Aspecto de la card.
   final double aspectRatio;
 
+  /// Etiqueta semántica para la imagen del producto.
+  ///
+  /// Se usa para lectores de pantalla. Si no se proporciona,
+  /// se usa el [title] del producto.
+  final String? imageSemanticLabel;
+
   const DSProductCard({
     super.key,
     required this.imageUrl,
@@ -84,6 +90,7 @@ class DSProductCard extends StatelessWidget {
     this.onAddToCart,
     this.imageWidget,
     this.aspectRatio = 0.7,
+    this.imageSemanticLabel,
   });
 
   @override
@@ -111,28 +118,33 @@ class DSProductCard extends StatelessWidget {
                     ),
                     child:
                         imageWidget ??
-                        Image.network(
-                          imageUrl,
-                          fit: BoxFit.contain,
-                          errorBuilder: (_, __, ___) => Container(
-                            color: tokens.colorSurfaceSecondary,
-                            child: Icon(
-                              Icons.image_not_supported_outlined,
-                              size: DSSizes.iconXxl,
-                              color: tokens.colorIconDisabled,
-                            ),
-                          ),
-                          loadingBuilder: (_, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Container(
+                        Semantics(
+                          label: imageSemanticLabel ?? 'Product image: $title',
+                          image: true,
+                          child: Image.network(
+                            imageUrl,
+                            fit: BoxFit.contain,
+                            semanticLabel: '', // Handled by parent Semantics
+                            errorBuilder: (_, __, ___) => Container(
                               color: tokens.colorSurfaceSecondary,
-                              child: Center(
-                                child: DSCircularLoader(
-                                  size: DSLoaderSize.small,
-                                ),
+                              child: Icon(
+                                Icons.image_not_supported_outlined,
+                                size: DSSizes.iconXxl,
+                                color: tokens.colorIconDisabled,
                               ),
-                            );
-                          },
+                            ),
+                            loadingBuilder: (_, child, loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Container(
+                                color: tokens.colorSurfaceSecondary,
+                                child: Center(
+                                  child: DSCircularLoader(
+                                    size: DSLoaderSize.small,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                   ),
                   // Badge
