@@ -72,7 +72,7 @@ lib/
     │
     ├── foundations/                  # Sistema de Temas
     │   └── theme/
-    │       ├── ds_theme_data.dart   # ThemeExtension (83+ tokens semánticos)
+    │       ├── ds_theme_data.dart   # ThemeExtension (85+ tokens semánticos)
     │       ├── ds_theme_light.dart  # Tema claro completo
     │       ├── ds_theme_dark.dart   # Tema oscuro completo
     │       └── fake_store_theme.dart # Clase de conveniencia
@@ -144,7 +144,7 @@ Distribución de tokens via árbol de widgets:
 class DSThemeData extends ThemeExtension<DSThemeData> {
   final Color colorSurfacePrimary;
   final Color colorTextPrimary;
-  // ... 83+ tokens (incluye estados hover/pressed)
+  // ... 85+ tokens (incluye estados hover/pressed/disabled)
 
   @override
   ThemeExtension<DSThemeData> copyWith({...});
@@ -304,10 +304,14 @@ tokens.typographyBodyMedium   // Estilo para cuerpo de texto
 tokens.elevationLevel1        // Sombra nivel 1
 tokens.elevationLevel2        // Sombra nivel 2
 
-// Estados de Botones (hover/pressed)
-tokens.buttonPrimaryBackgroundHover    // Hover del botón primario
-tokens.buttonPrimaryBackgroundPressed  // Pressed del botón primario
-tokens.buttonDangerBackgroundPressed   // Pressed del botón danger
+// Estados de Botones (hover/pressed/disabled)
+tokens.buttonPrimaryBackgroundHover      // Hover del botón primario
+tokens.buttonPrimaryBackgroundPressed    // Pressed del botón primario
+tokens.buttonPrimaryBackgroundDisabled   // Disabled del botón primario
+tokens.buttonDangerBackgroundHover       // Hover del botón danger
+tokens.buttonDangerBackgroundPressed     // Pressed del botón danger
+tokens.buttonDangerBackgroundDisabled    // Disabled del botón danger
+tokens.buttonDangerTextDisabled          // Texto disabled del botón danger
 
 // Estados de Chips (hover/pressed)
 tokens.chipBackgroundHover     // Hover del chip
@@ -342,6 +346,58 @@ Componentes con soporte hover/active:
 - `DSCard` - Cuando tiene `onTap`
 - `DSFilterChip` - Estados seleccionado y hover
 
+## Accesibilidad (WCAG 2.1)
+
+El sistema de diseño implementa características de accesibilidad siguiendo las pautas WCAG 2.1:
+
+### Touch Targets
+Todos los elementos interactivos cumplen con el tamaño mínimo de 44px:
+```dart
+// DSSizes - Tamaños de botón WCAG compliant
+static const double buttonSm = 44;  // Mínimo WCAG
+static const double buttonMd = 44;  // Mínimo WCAG
+static const double buttonLg = 48;
+```
+
+### Semantics para Screen Readers
+Los componentes incluyen información semántica para lectores de pantalla:
+
+```dart
+// DSIconButton - Semantics automático
+DSIconButton(
+  icon: Icons.favorite,
+  tooltip: 'Agregar a favoritos',  // Usado como label semántico
+  onPressed: () {},
+)
+
+// DSTextField - semanticLabel personalizable
+DSTextField(
+  label: 'Email',
+  semanticLabel: 'Campo de correo electrónico',  // Para screen readers
+  errorText: 'Email inválido',  // Anunciado automáticamente
+)
+
+// DSProductCard - imageSemanticLabel para imágenes
+DSProductCard(
+  imageUrl: product.image,
+  title: product.title,
+  imageSemanticLabel: 'Foto del producto: ${product.title}',
+)
+
+// DSBottomNav - Posición y estado anunciados
+// "Home, selected, Tab 1 of 4"
+// "Cart, 3 items, Tab 3 of 4"
+```
+
+### Componentes con Soporte de Accesibilidad
+| Componente | Características |
+|------------|-----------------|
+| `DSButton` | Touch target 44px+, estados disabled |
+| `DSIconButton` | Semantics, tooltip como label, loading state |
+| `DSTextField` | semanticLabel, error/password hints |
+| `DSProductCard` | imageSemanticLabel para imágenes |
+| `DSBottomNav` | Posición de tab, badge count, estado seleccionado |
+
 ## Tests
 
 ```bash
@@ -352,10 +408,25 @@ flutter test
 flutter test --coverage
 ```
 
+### Cobertura de Tests (133 tests)
+
+| Categoría | Tests | Descripción |
+|-----------|-------|-------------|
+| **Atoms** | 53 | DSButton, DSBadge, DSText, DSLoaders |
+| **Molecules** | ~25 | DSCard, DSFilterChip, DSStates |
+| **Organisms** | ~25 | DSAppBar, DSBottomNav |
+| **Extensions** | ~10 | Context extensions, breakpoints |
+| **Accessibility** | 21 | Semantics, touch targets WCAG |
+
 Los tests verifican:
 - Creación correcta de temas claro y oscuro
 - Presencia de DSThemeData como ThemeExtension
 - Valores correctos de tokens primitivos (colores, espaciado, border radius)
+- **Rendering de todos los componentes**
+- **Interacciones y callbacks**
+- **Variantes y tamaños**
+- **Touch targets WCAG 2.1 (44px mínimo)**
+- **Semantics para screen readers**
 
 ## Integración con App de Ejemplo
 

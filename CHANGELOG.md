@@ -5,6 +5,44 @@ Todos los cambios notables de este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.1.0] - 2024-12-09
+
+### Agregado
+
+#### Tokens de Accesibilidad
+- `buttonDangerBackgroundDisabled`: Color de fondo para botón danger deshabilitado
+- `buttonDangerTextDisabled`: Color de texto para botón danger deshabilitado
+
+#### Propiedades de Accesibilidad en Componentes
+- `DSTextField.semanticLabel`: Etiqueta semántica personalizable para screen readers
+- `DSProductCard.imageSemanticLabel`: Etiqueta semántica para imágenes de productos
+- `DSIconButton`: Widget Semantics con soporte para tooltip, loading y disabled states
+- `DSBottomNav`: Semantics con posición de tab, badge count y estado seleccionado
+
+#### Tests
+- Suite completa de tests de accesibilidad (21 tests)
+- Tests de componentes Atoms (53 tests)
+- Tests de componentes Molecules (~25 tests)
+- Tests de componentes Organisms (~25 tests)
+- Tests de context extensions (~10 tests)
+- **Total: 133 tests**
+
+### Cambiado
+
+#### WCAG 2.1 Compliance
+- `DSSizes.buttonSm`: 32px → 44px (mínimo WCAG touch target)
+- `DSSizes.buttonMd`: 40px → 44px (mínimo WCAG touch target)
+
+#### Mejoras de Error Handling
+- `FakeStoreTheme.of()`: assert → FlutterError con mensaje descriptivo
+
+### Corregido
+- `DSButton` variante danger: Ahora usa tokens correctos para estado disabled
+  - Antes: `buttonPrimaryBackgroundDisabled` / `buttonPrimaryTextDisabled`
+  - Ahora: `buttonDangerBackgroundDisabled` / `buttonDangerTextDisabled`
+
+---
+
 ## [1.0.0] - 2024-01-XX
 
 ### Agregado
