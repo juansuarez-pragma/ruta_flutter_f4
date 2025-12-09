@@ -100,6 +100,8 @@ abstract final class DSThemeLight {
     buttonDangerBackgroundHover: DSColors.error600,
     buttonDangerBackgroundPressed: DSColors.error700,
     buttonDangerText: DSColors.white,
+    buttonDangerBackgroundDisabled: DSColors.error100,
+    buttonDangerTextDisabled: DSColors.error300,
 
     // ============================================
     // CARD
