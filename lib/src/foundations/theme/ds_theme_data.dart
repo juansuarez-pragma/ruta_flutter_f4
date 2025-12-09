@@ -212,6 +212,12 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
   /// Texto del botón de peligro
   final Color buttonDangerText;
 
+  /// Fondo del botón de peligro deshabilitado
+  final Color buttonDangerBackgroundDisabled;
+
+  /// Texto del botón de peligro deshabilitado
+  final Color buttonDangerTextDisabled;
+
   // ============================================
   // CARD
   // ============================================
@@ -426,6 +432,8 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     required this.buttonDangerBackgroundHover,
     required this.buttonDangerBackgroundPressed,
     required this.buttonDangerText,
+    required this.buttonDangerBackgroundDisabled,
+    required this.buttonDangerTextDisabled,
     // Card
     required this.cardBackground,
     required this.cardBackgroundHover,
@@ -540,6 +548,8 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     Color? buttonDangerBackgroundHover,
     Color? buttonDangerBackgroundPressed,
     Color? buttonDangerText,
+    Color? buttonDangerBackgroundDisabled,
+    Color? buttonDangerTextDisabled,
     // Card
     Color? cardBackground,
     Color? cardBackgroundHover,
@@ -678,6 +688,10 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       buttonDangerBackgroundPressed:
           buttonDangerBackgroundPressed ?? this.buttonDangerBackgroundPressed,
       buttonDangerText: buttonDangerText ?? this.buttonDangerText,
+      buttonDangerBackgroundDisabled:
+          buttonDangerBackgroundDisabled ?? this.buttonDangerBackgroundDisabled,
+      buttonDangerTextDisabled:
+          buttonDangerTextDisabled ?? this.buttonDangerTextDisabled,
       // Card
       cardBackground: cardBackground ?? this.cardBackground,
       cardBackgroundHover: cardBackgroundHover ?? this.cardBackgroundHover,
@@ -1005,6 +1019,16 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       buttonDangerText: Color.lerp(
         buttonDangerText,
         other.buttonDangerText,
+        t,
+      )!,
+      buttonDangerBackgroundDisabled: Color.lerp(
+        buttonDangerBackgroundDisabled,
+        other.buttonDangerBackgroundDisabled,
+        t,
+      )!,
+      buttonDangerTextDisabled: Color.lerp(
+        buttonDangerTextDisabled,
+        other.buttonDangerTextDisabled,
         t,
       )!,
       // Card
