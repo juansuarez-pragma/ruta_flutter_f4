@@ -100,6 +100,8 @@ abstract final class DSThemeDark {
     buttonDangerBackgroundHover: DSColors.error300,
     buttonDangerBackgroundPressed: DSColors.error500,
     buttonDangerText: DSColors.neutral900,
+    buttonDangerBackgroundDisabled: DSColors.error900,
+    buttonDangerTextDisabled: DSColors.error700,
 
     // ============================================
     // CARD
