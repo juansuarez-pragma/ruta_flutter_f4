@@ -66,16 +66,16 @@ void main() {
 
       test('feedback colors are semantically appropriate', () {
         // Error colors should be red-ish in both themes
-        expect(lightTokens.colorFeedbackError.red,
-            greaterThan(lightTokens.colorFeedbackError.green));
-        expect(darkTokens.colorFeedbackError.red,
-            greaterThan(darkTokens.colorFeedbackError.green));
+        expect((lightTokens.colorFeedbackError.r * 255).round(),
+            greaterThan((lightTokens.colorFeedbackError.g * 255).round()));
+        expect((darkTokens.colorFeedbackError.r * 255).round(),
+            greaterThan((darkTokens.colorFeedbackError.g * 255).round()));
 
         // Success colors should be green-ish in both themes
-        expect(lightTokens.colorFeedbackSuccess.green,
-            greaterThan(lightTokens.colorFeedbackSuccess.red));
-        expect(darkTokens.colorFeedbackSuccess.green,
-            greaterThan(darkTokens.colorFeedbackSuccess.red));
+        expect((lightTokens.colorFeedbackSuccess.g * 255).round(),
+            greaterThan((lightTokens.colorFeedbackSuccess.r * 255).round()));
+        expect((darkTokens.colorFeedbackSuccess.g * 255).round(),
+            greaterThan((darkTokens.colorFeedbackSuccess.r * 255).round()));
       });
 
       test('typography styles are consistent across themes', () {
@@ -88,25 +88,25 @@ void main() {
 
     group('Theme Extension lerp', () {
       test('lerp at 0.0 returns start theme', () {
-        final lerped = lightTokens.lerp(darkTokens, 0.0) as DSThemeData;
+        final lerped = lightTokens.lerp(darkTokens, 0.0);
         expect(lerped.colorSurfacePrimary,
             equals(lightTokens.colorSurfacePrimary));
       });
 
       test('lerp at 1.0 returns end theme', () {
-        final lerped = lightTokens.lerp(darkTokens, 1.0) as DSThemeData;
+        final lerped = lightTokens.lerp(darkTokens, 1.0);
         expect(lerped.colorSurfacePrimary,
             equals(darkTokens.colorSurfacePrimary));
       });
 
       test('lerp at 0.5 returns intermediate values', () {
-        final lerped = lightTokens.lerp(darkTokens, 0.5) as DSThemeData;
-        final lightRed = lightTokens.colorSurfacePrimary.red;
-        final darkRed = darkTokens.colorSurfacePrimary.red;
+        final lerped = lightTokens.lerp(darkTokens, 0.5);
+        final lightRed = (lightTokens.colorSurfacePrimary.r * 255).round();
+        final darkRed = (darkTokens.colorSurfacePrimary.r * 255).round();
         final expectedRed = ((lightRed + darkRed) / 2).round();
 
         // Allow for rounding differences
-        expect(lerped.colorSurfacePrimary.red, closeTo(expectedRed, 1));
+        expect((lerped.colorSurfacePrimary.r * 255).round(), closeTo(expectedRed, 1));
       });
     });
 

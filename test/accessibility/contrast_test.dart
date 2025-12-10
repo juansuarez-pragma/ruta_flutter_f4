@@ -73,10 +73,6 @@ void main() {
         test('secondary button relies on border for visibility', () {
           // Note: Secondary buttons use transparent/light background with border
           // The contrast is achieved through border visibility, not background
-          final ratio = calculateContrastRatio(
-            tokens.buttonSecondaryText,
-            tokens.buttonSecondaryBackground,
-          );
           // Secondary button text should be readable against surface
           final ratioAgainstSurface = calculateContrastRatio(
             tokens.buttonSecondaryText,

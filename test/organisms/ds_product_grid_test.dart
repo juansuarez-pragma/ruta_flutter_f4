@@ -362,7 +362,7 @@ void main() {
               itemBuilder: (context, product, index) => GestureDetector(
                 key: Key('product-$index'),
                 onTap: () => tappedProduct = product,
-                child: Container(child: Text(product.title)),
+                child: Text(product.title),
               ),
             ),
           ),

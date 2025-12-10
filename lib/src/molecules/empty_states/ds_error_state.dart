@@ -59,6 +59,7 @@ class DSErrorState extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(DSSpacing.xxl),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(

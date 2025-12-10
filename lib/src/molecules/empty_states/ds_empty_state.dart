@@ -66,6 +66,7 @@ class DSEmptyState extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(DSSpacing.xxl),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, size: iconSize, color: tokens.colorIconDisabled),

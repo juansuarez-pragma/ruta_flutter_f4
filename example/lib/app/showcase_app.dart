@@ -2,6 +2,7 @@ import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fake_store_design_system_example/features/atoms/atoms_page.dart';
+import 'package:fake_store_design_system_example/features/estado_del_arte/estado_del_arte_page.dart';
 import 'package:fake_store_design_system_example/features/molecules/molecules_page.dart';
 import 'package:fake_store_design_system_example/features/organisms/organisms_page.dart';
 import 'package:fake_store_design_system_example/features/tokens/tokens_page.dart';
@@ -49,7 +50,7 @@ class _ShowcaseHome extends StatelessWidget {
     final tokens = context.tokens;
 
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         backgroundColor: tokens.colorSurfacePrimary,
         appBar: AppBar(
@@ -87,11 +88,14 @@ class _ShowcaseHome extends StatelessWidget {
             unselectedLabelColor: tokens.colorTextSecondary,
             indicatorColor: tokens.colorBrandPrimary,
             labelStyle: tokens.typographyLabelLarge,
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
             tabs: const [
               Tab(text: 'Tokens'),
               Tab(text: 'Átomos'),
               Tab(text: 'Moléculas'),
               Tab(text: 'Organismos'),
+              Tab(text: 'Estado del Arte'),
             ],
           ),
         ),
@@ -101,6 +105,7 @@ class _ShowcaseHome extends StatelessWidget {
             AtomsPage(),
             MoleculesPage(),
             OrganismsPage(),
+            EstadoDelArtePage(),
           ],
         ),
       ),

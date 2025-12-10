@@ -408,15 +408,16 @@ flutter test
 flutter test --coverage
 ```
 
-### Cobertura de Tests (133 tests)
+### Cobertura de Tests (400+ tests)
 
 | Categoría | Tests | Descripción |
 |-----------|-------|-------------|
-| **Atoms** | 53 | DSButton, DSBadge, DSText, DSLoaders |
-| **Molecules** | ~25 | DSCard, DSFilterChip, DSStates |
-| **Organisms** | ~25 | DSAppBar, DSBottomNav |
-| **Extensions** | ~10 | Context extensions, breakpoints |
-| **Accessibility** | 21 | Semantics, touch targets WCAG |
+| **Atoms** | ~150 | DSButton, DSBadge, DSText, DSLoaders, DSIconButton, DSTextField |
+| **Molecules** | ~80 | DSCard, DSProductCard, DSFilterChip, DSStates |
+| **Organisms** | ~50 | DSAppBar, DSBottomNav, DSProductGrid |
+| **Extensions** | ~20 | Context extensions, breakpoints |
+| **Accessibility** | ~30 | Semantics, touch targets WCAG |
+| **Responsive** | ~70 | Breakpoints, orientación, text scaling |
 
 Los tests verifican:
 - Creación correcta de temas claro y oscuro
@@ -428,10 +429,12 @@ Los tests verifican:
 - **Touch targets WCAG 2.1 (44px mínimo)**
 - **Semantics para screen readers**
 
-## Integración con App de Ejemplo
+## Integración con Apps de Ejemplo
 
-El sistema de diseño está integrado con la app de ejemplo en:
-`/fase_3_paquete_flutter/fake_store_api_client/example/`
+El sistema de diseño cuenta con dos aplicaciones de ejemplo:
+
+1. **Showcase App** (dentro del paquete DS): `example/` - Demuestra todos los componentes
+2. **App de Integración** (Fase 3): `/fase_3_paquete_flutter/fake_store_api_client/example/` - App real usando el DS
 
 ### Mapeo de Componentes
 
@@ -500,6 +503,121 @@ class ProductCard extends StatelessWidget {
 - **Ruta de Crecimiento**: `/ruta-flutter/Ruta de crecimiento.md`
 - **Paquete API Client**: `/fase_3_paquete_flutter/fake_store_api_client/CLAUDE.md`
 - **App de Ejemplo**: `/fase_3_paquete_flutter/fake_store_api_client/example/`
+
+## Estado del Arte (Example App)
+
+La aplicación de ejemplo incluye una sección **"Estado del Arte"** que proporciona una comparativa visual interactiva entre los componentes Flutter nativos y los componentes del Design System.
+
+### Ubicación
+
+```
+example/lib/features/estado_del_arte/
+├── estado_del_arte_page.dart     # Página principal
+├── widgets/
+│   ├── widgets.dart              # Barrel file
+│   ├── comparison_playground.dart # Widget interactivo de comparación
+│   ├── capability_table.dart     # Tabla de capacidades
+│   ├── metric_badge.dart         # Badge para métricas
+│   └── limitation_card.dart      # Card de limitaciones
+└── sections/
+    ├── sections.dart             # Barrel file
+    ├── summary_section.dart      # Resumen con métricas
+    ├── atoms_comparison_section.dart    # Comparativas de átomos
+    ├── molecules_comparison_section.dart # Comparativas de moléculas
+    ├── organisms_comparison_section.dart # Comparativas de organismos
+    ├── capabilities_section.dart  # Tabla de capacidades
+    └── limitations_section.dart   # Limitaciones del sistema
+```
+
+### Matriz de Comparación de Componentes
+
+#### Componentes Basados en Flutter (10)
+
+| Componente DS | Widget Flutter Base | Mejoras del DS |
+|---------------|---------------------|----------------|
+| `DSButton` | `ElevatedButton` / `OutlinedButton` / `TextButton` | 4 variantes, estados hover/pressed, loading integrado |
+| `DSIconButton` | `IconButton` | 4 variantes, loading state, tooltips semánticos |
+| `DSBadge` | `Badge` (Material 3) | 5 tipos semánticos, 3 tamaños |
+| `DSTextField` | `TextField` | Validación visual, semanticLabel, estados de error |
+| `DSCircularLoader` | `CircularProgressIndicator` | 4 tamaños, mensaje opcional, color de marca |
+| `DSText` | `Text` | 12 variantes tipográficas predefinidas |
+| `DSCard` | `Card` | 5 niveles elevación, hover states, onTap integrado |
+| `DSFilterChip` | `FilterChip` | API simplificada, checkmark con color de marca |
+| `DSAppBar` | `AppBar` | Búsqueda integrada, acciones configurables |
+| `DSBottomNav` | `NavigationBar` | Badges con contadores, semántica de posición |
+
+#### Componentes Nuevos sin Equivalente Flutter (6)
+
+| Componente DS | Descripción | Valor Agregado |
+|---------------|-------------|----------------|
+| `DSSkeleton` | Placeholder animado | Shimmer effect para loading states |
+| `DSProductCard` | Card de producto e-commerce | Imagen + título + precio + rating + badge |
+| `DSEmptyState` | Vista de estado vacío | Ícono + título + descripción + acción |
+| `DSErrorState` | Vista de error | Mensaje + detalles + botón retry |
+| `DSLoadingState` | Vista de carga | Spinner centrado + mensaje opcional |
+| `DSProductGrid` | Grid de productos | Manejo automático de loading/error/empty |
+
+### Tabla de Capacidades
+
+| Componente | Categoría | Estados Interactivos | Accesibilidad | Temas | Loading | Variantes |
+|------------|-----------|---------------------|---------------|-------|---------|-----------|
+| DSButton | Átomo | ✅ hover/pressed/disabled | ✅ | ✅ | ✅ | 4 × 3 |
+| DSIconButton | Átomo | ✅ hover/pressed/disabled | ✅ | ✅ | ✅ | 4 × 3 |
+| DSBadge | Átomo | ❌ | ❌ | ✅ | ❌ | 5 × 3 |
+| DSTextField | Átomo | ✅ focus/error | ✅ | ✅ | ❌ | 1 |
+| DSCircularLoader | Átomo | ❌ | ❌ | ✅ | N/A | 4 |
+| DSText | Átomo | ❌ | ❌ | ✅ | ❌ | 12 |
+| DSSkeleton | Átomo | ❌ | ❌ | ✅ | N/A | 2 |
+| DSCard | Molécula | ✅ hover/pressed | ❌ | ✅ | ❌ | 5 |
+| DSProductCard | Molécula | ✅ tap | ✅ | ✅ | ✅ | 1 |
+| DSFilterChip | Molécula | ✅ hover/pressed/selected | ❌ | ✅ | ❌ | 1 |
+| DSEmptyState | Molécula | ❌ | ❌ | ✅ | ❌ | 1 |
+| DSErrorState | Molécula | ❌ | ❌ | ✅ | ❌ | 1 |
+| DSLoadingState | Molécula | ❌ | ❌ | ✅ | N/A | 2 |
+| DSAppBar | Organismo | ✅ | ❌ | ✅ | ❌ | 1 |
+| DSBottomNav | Organismo | ✅ selected | ✅ | ✅ | ❌ | 1 |
+| DSProductGrid | Organismo | ✅ | ✅ | ✅ | ✅ | 3 |
+
+### Limitaciones Documentadas
+
+| Área | Descripción | Impacto |
+|------|-------------|---------|
+| Animaciones | Sin transiciones personalizadas entre estados | UX básica |
+| Responsividad | No hay breakpoint-aware automático | Manual por proyecto |
+| Adaptabilidad | Sin NavigationRail para tablets | Limitado a móviles |
+| Formularios | Sin wrapper TextFormField con validación | Validación manual |
+| Rich Text | Sin soporte para TextSpan en DSText | Solo texto plano |
+| Imágenes | Sin caché de imágenes integrado | Dependencia de network |
+| i18n | Strings hardcodeados ("Reintentar") | Requiere i18n manual |
+| Paginación | Sin scroll infinito en grids | Carga completa |
+
+### Widget ComparisonPlayground
+
+Widget interactivo que permite comparar Flutter nativo vs DS lado a lado:
+
+```dart
+ComparisonPlayground(
+  title: 'Botones',
+  subtitle: 'ElevatedButton vs DSButton',
+  variants: ['Primary', 'Secondary', 'Ghost', 'Danger'],
+  sizes: ['Small', 'Medium', 'Large'],
+  hasLoadingToggle: true,
+  hasDisabledToggle: true,
+  flutterBuilder: (state) => ElevatedButton(...),
+  flutterCodeBuilder: (state) => 'ElevatedButton(...)',
+  dsBuilder: (state) => DSButton.primary(...),
+  dsCodeBuilder: (state) => 'DSButton.primary(...)',
+  advantages: ['API unificada', 'Estados hover', 'Loading integrado'],
+  limitations: ['Sin gradientes', 'Sin autofocus'],
+)
+```
+
+**Controles disponibles:**
+- Selector de variante (dropdown)
+- Selector de tamaño (dropdown)
+- Toggle de loading
+- Toggle de disabled
+- Ver/ocultar código con botón de copiar
 
 ## Recursos Externos
 
