@@ -31,12 +31,18 @@ class DSCircularLoader extends StatelessWidget {
   /// Si no se especifica, usa el color de la marca primaria.
   final Color? color;
 
+  /// Etiqueta semántica personalizada para accesibilidad.
+  ///
+  /// Si no se proporciona, se usa 'Loading' o el mensaje si está disponible.
+  final String? semanticLabel;
+
   /// Crea un loader circular con el tamaño y mensaje especificados.
   const DSCircularLoader({
     super.key,
     this.size = DSLoaderSize.medium,
     this.message,
     this.color,
+    this.semanticLabel,
   });
 
   double get _size {
@@ -70,28 +76,39 @@ class DSCircularLoader extends StatelessWidget {
     final tokens = context.tokens;
     final loaderColor = color ?? tokens.colorBrandPrimary;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          width: _size,
-          height: _size,
-          child: CircularProgressIndicator(
-            strokeWidth: _strokeWidth,
-            valueColor: AlwaysStoppedAnimation<Color>(loaderColor),
-          ),
-        ),
-        if (message != null) ...[
-          const SizedBox(height: DSSpacing.md),
-          Text(
-            message!,
-            style: tokens.typographyBodySmall.copyWith(
-              color: tokens.colorTextSecondary,
+    // Build semantic label
+    final effectiveLabel = semanticLabel ?? message ?? 'Loading';
+
+    return Semantics(
+      label: effectiveLabel,
+      liveRegion: true,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: _size,
+            height: _size,
+            child: ExcludeSemantics(
+              child: CircularProgressIndicator(
+                strokeWidth: _strokeWidth,
+                valueColor: AlwaysStoppedAnimation<Color>(loaderColor),
+              ),
             ),
-            textAlign: TextAlign.center,
           ),
+          if (message != null) ...[
+            const SizedBox(height: DSSpacing.md),
+            ExcludeSemantics(
+              child: Text(
+                message!,
+                style: tokens.typographyBodySmall.copyWith(
+                  color: tokens.colorTextSecondary,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

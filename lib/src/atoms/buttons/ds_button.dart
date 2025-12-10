@@ -64,6 +64,11 @@ class DSButton extends StatelessWidget {
   /// Si el botón ocupa todo el ancho disponible.
   final bool isFullWidth;
 
+  /// Etiqueta semántica personalizada para accesibilidad.
+  ///
+  /// Si no se proporciona, se usa el texto del botón.
+  final String? semanticLabel;
+
   /// Crea un botón con la variante y tamaño especificados.
   ///
   /// Por defecto crea un botón primario de tamaño mediano.
@@ -77,6 +82,7 @@ class DSButton extends StatelessWidget {
     this.size = DSButtonSize.medium,
     this.isLoading = false,
     this.isFullWidth = false,
+    this.semanticLabel,
   });
 
   /// Crea un botón primario.
@@ -89,6 +95,7 @@ class DSButton extends StatelessWidget {
     this.size = DSButtonSize.medium,
     this.isLoading = false,
     this.isFullWidth = false,
+    this.semanticLabel,
   }) : variant = DSButtonVariant.primary;
 
   /// Crea un botón secundario.
@@ -101,6 +108,7 @@ class DSButton extends StatelessWidget {
     this.size = DSButtonSize.medium,
     this.isLoading = false,
     this.isFullWidth = false,
+    this.semanticLabel,
   }) : variant = DSButtonVariant.secondary;
 
   /// Crea un botón ghost.
@@ -113,6 +121,7 @@ class DSButton extends StatelessWidget {
     this.size = DSButtonSize.medium,
     this.isLoading = false,
     this.isFullWidth = false,
+    this.semanticLabel,
   }) : variant = DSButtonVariant.ghost;
 
   /// Crea un botón de peligro.
@@ -125,6 +134,7 @@ class DSButton extends StatelessWidget {
     this.size = DSButtonSize.medium,
     this.isLoading = false,
     this.isFullWidth = false,
+    this.semanticLabel,
   }) : variant = DSButtonVariant.danger;
 
   double get _height {
@@ -185,10 +195,21 @@ class DSButton extends StatelessWidget {
     final tokens = context.tokens;
     final isDisabled = onPressed == null || isLoading;
 
-    return SizedBox(
-      width: isFullWidth ? double.infinity : null,
-      height: _height,
-      child: _buildButton(context, tokens, isDisabled),
+    // Build semantic hint for loading state
+    final String? loadingHint = isLoading ? 'Loading' : null;
+
+    return Semantics(
+      button: true,
+      enabled: !isDisabled,
+      label: semanticLabel ?? text,
+      hint: loadingHint,
+      child: ExcludeSemantics(
+        child: SizedBox(
+          width: isFullWidth ? double.infinity : null,
+          height: _height,
+          child: _buildButton(context, tokens, isDisabled),
+        ),
+      ),
     );
   }
 
@@ -209,6 +230,30 @@ class DSButton extends StatelessWidget {
     }
   }
 
+  /// Helper to resolve background color based on widget state.
+  WidgetStateProperty<Color> _resolveBackgroundColor({
+    required Color base,
+    required Color hover,
+    required Color pressed,
+    required Color disabled,
+  }) =>
+      WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.disabled)) return disabled;
+        if (states.contains(WidgetState.pressed)) return pressed;
+        if (states.contains(WidgetState.hovered)) return hover;
+        return base;
+      });
+
+  /// Helper to resolve foreground color based on widget state.
+  WidgetStateProperty<Color> _resolveForegroundColor({
+    required Color base,
+    required Color disabled,
+  }) =>
+      WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.disabled)) return disabled;
+        return base;
+      });
+
   Widget _buildPrimaryButton(
     BuildContext context,
     DSThemeData tokens,
@@ -216,24 +261,16 @@ class DSButton extends StatelessWidget {
   ) => ElevatedButton(
       onPressed: isDisabled ? null : onPressed,
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonPrimaryBackgroundDisabled;
-          }
-          if (states.contains(WidgetState.pressed)) {
-            return tokens.buttonPrimaryBackgroundPressed;
-          }
-          if (states.contains(WidgetState.hovered)) {
-            return tokens.buttonPrimaryBackgroundHover;
-          }
-          return tokens.buttonPrimaryBackground;
-        }),
-        foregroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonPrimaryTextDisabled;
-          }
-          return tokens.buttonPrimaryText;
-        }),
+        backgroundColor: _resolveBackgroundColor(
+          base: tokens.buttonPrimaryBackground,
+          hover: tokens.buttonPrimaryBackgroundHover,
+          pressed: tokens.buttonPrimaryBackgroundPressed,
+          disabled: tokens.buttonPrimaryBackgroundDisabled,
+        ),
+        foregroundColor: _resolveForegroundColor(
+          base: tokens.buttonPrimaryText,
+          disabled: tokens.buttonPrimaryTextDisabled,
+        ),
         elevation: const WidgetStatePropertyAll(0),
         padding: WidgetStatePropertyAll(_padding),
         shape: WidgetStatePropertyAll(
@@ -256,24 +293,16 @@ class DSButton extends StatelessWidget {
   ) => OutlinedButton(
       onPressed: isDisabled ? null : onPressed,
       style: ButtonStyle(
-        foregroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonSecondaryTextDisabled;
-          }
-          return tokens.buttonSecondaryText;
-        }),
-        backgroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonSecondaryBackground;
-          }
-          if (states.contains(WidgetState.pressed)) {
-            return tokens.buttonSecondaryBackgroundPressed;
-          }
-          if (states.contains(WidgetState.hovered)) {
-            return tokens.buttonSecondaryBackgroundHover;
-          }
-          return tokens.buttonSecondaryBackground;
-        }),
+        foregroundColor: _resolveForegroundColor(
+          base: tokens.buttonSecondaryText,
+          disabled: tokens.buttonSecondaryTextDisabled,
+        ),
+        backgroundColor: _resolveBackgroundColor(
+          base: tokens.buttonSecondaryBackground,
+          hover: tokens.buttonSecondaryBackgroundHover,
+          pressed: tokens.buttonSecondaryBackgroundPressed,
+          disabled: tokens.buttonSecondaryBackground,
+        ),
         side: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
             return BorderSide(
@@ -305,24 +334,16 @@ class DSButton extends StatelessWidget {
   ) => TextButton(
       onPressed: isDisabled ? null : onPressed,
       style: ButtonStyle(
-        foregroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonGhostTextDisabled;
-          }
-          return tokens.buttonGhostText;
-        }),
-        backgroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonGhostBackground;
-          }
-          if (states.contains(WidgetState.pressed)) {
-            return tokens.buttonGhostBackgroundPressed;
-          }
-          if (states.contains(WidgetState.hovered)) {
-            return tokens.buttonGhostBackgroundHover;
-          }
-          return tokens.buttonGhostBackground;
-        }),
+        foregroundColor: _resolveForegroundColor(
+          base: tokens.buttonGhostText,
+          disabled: tokens.buttonGhostTextDisabled,
+        ),
+        backgroundColor: _resolveBackgroundColor(
+          base: tokens.buttonGhostBackground,
+          hover: tokens.buttonGhostBackgroundHover,
+          pressed: tokens.buttonGhostBackgroundPressed,
+          disabled: tokens.buttonGhostBackground,
+        ),
         padding: WidgetStatePropertyAll(_padding),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
@@ -344,24 +365,16 @@ class DSButton extends StatelessWidget {
   ) => ElevatedButton(
       onPressed: isDisabled ? null : onPressed,
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonDangerBackgroundDisabled;
-          }
-          if (states.contains(WidgetState.pressed)) {
-            return tokens.buttonDangerBackgroundPressed;
-          }
-          if (states.contains(WidgetState.hovered)) {
-            return tokens.buttonDangerBackgroundHover;
-          }
-          return tokens.buttonDangerBackground;
-        }),
-        foregroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.disabled)) {
-            return tokens.buttonDangerTextDisabled;
-          }
-          return tokens.buttonDangerText;
-        }),
+        backgroundColor: _resolveBackgroundColor(
+          base: tokens.buttonDangerBackground,
+          hover: tokens.buttonDangerBackgroundHover,
+          pressed: tokens.buttonDangerBackgroundPressed,
+          disabled: tokens.buttonDangerBackgroundDisabled,
+        ),
+        foregroundColor: _resolveForegroundColor(
+          base: tokens.buttonDangerText,
+          disabled: tokens.buttonDangerTextDisabled,
+        ),
         elevation: const WidgetStatePropertyAll(0),
         padding: WidgetStatePropertyAll(_padding),
         shape: WidgetStatePropertyAll(

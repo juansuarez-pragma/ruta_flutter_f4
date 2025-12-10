@@ -752,6 +752,24 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       elevationLevel5: elevationLevel5 ?? this.elevationLevel5,
     );
 
+  /// Lerp helper for List<BoxShadow>.
+  ///
+  /// Interpolates each BoxShadow in the list for smooth theme transitions.
+  static List<BoxShadow> _lerpBoxShadowList(
+    List<BoxShadow> a,
+    List<BoxShadow> b,
+    double t,
+  ) {
+    // If lengths differ, use binary switch at t=0.5
+    if (a.length != b.length) {
+      return t < 0.5 ? a : b;
+    }
+
+    return [
+      for (int i = 0; i < a.length; i++) BoxShadow.lerp(a[i], b[i], t)!,
+    ];
+  }
+
   @override
   DSThemeData lerp(covariant DSThemeData? other, double t) {
     if (other is! DSThemeData) return this;
@@ -1179,12 +1197,32 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
         other.typographyButton,
         t,
       )!,
-      // Elevation (use t to decide which to use)
-      elevationLevel1: t < 0.5 ? elevationLevel1 : other.elevationLevel1,
-      elevationLevel2: t < 0.5 ? elevationLevel2 : other.elevationLevel2,
-      elevationLevel3: t < 0.5 ? elevationLevel3 : other.elevationLevel3,
-      elevationLevel4: t < 0.5 ? elevationLevel4 : other.elevationLevel4,
-      elevationLevel5: t < 0.5 ? elevationLevel5 : other.elevationLevel5,
+      // Elevation (interpolate BoxShadow properties)
+      elevationLevel1: _lerpBoxShadowList(
+        elevationLevel1,
+        other.elevationLevel1,
+        t,
+      ),
+      elevationLevel2: _lerpBoxShadowList(
+        elevationLevel2,
+        other.elevationLevel2,
+        t,
+      ),
+      elevationLevel3: _lerpBoxShadowList(
+        elevationLevel3,
+        other.elevationLevel3,
+        t,
+      ),
+      elevationLevel4: _lerpBoxShadowList(
+        elevationLevel4,
+        other.elevationLevel4,
+        t,
+      ),
+      elevationLevel5: _lerpBoxShadowList(
+        elevationLevel5,
+        other.elevationLevel5,
+        t,
+      ),
     );
   }
 }

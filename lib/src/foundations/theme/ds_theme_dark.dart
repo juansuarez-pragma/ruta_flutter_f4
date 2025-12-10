@@ -70,7 +70,7 @@ abstract final class DSThemeDark {
     buttonPrimaryBackgroundHover: DSColors.primary300,
     buttonPrimaryBackgroundPressed: DSColors.primary500,
     buttonPrimaryBackgroundDisabled: DSColors.neutral700,
-    buttonPrimaryText: DSColors.neutral900,
+    buttonPrimaryText: DSColors.white,
     buttonPrimaryTextDisabled: DSColors.neutral500,
 
     // ============================================
@@ -95,10 +95,10 @@ abstract final class DSThemeDark {
     // ============================================
     // BUTTON - DANGER
     // ============================================
-    buttonDangerBackground: DSColors.error400,
-    buttonDangerBackgroundHover: DSColors.error300,
-    buttonDangerBackgroundPressed: DSColors.error500,
-    buttonDangerText: DSColors.neutral900,
+    buttonDangerBackground: DSColors.error700,
+    buttonDangerBackgroundHover: DSColors.error600,
+    buttonDangerBackgroundPressed: DSColors.error800,
+    buttonDangerText: DSColors.white,
     buttonDangerBackgroundDisabled: DSColors.error900,
     buttonDangerTextDisabled: DSColors.error700,
 
@@ -282,7 +282,7 @@ abstract final class DSThemeDark {
       fontWeight: DSFontWeight.medium,
       height: DSLineHeight.normal,
       letterSpacing: DSLetterSpacing.wide,
-      color: DSColors.neutral900,
+      color: DSColors.white,
     ),
 
     // ============================================

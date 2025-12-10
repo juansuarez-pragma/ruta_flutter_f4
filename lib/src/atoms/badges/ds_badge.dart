@@ -38,6 +38,11 @@ class DSBadge extends StatelessWidget {
   /// Ícono opcional.
   final IconData? icon;
 
+  /// Etiqueta semántica personalizada para accesibilidad.
+  ///
+  /// Si no se proporciona, se usa el texto del badge con el tipo.
+  final String? semanticLabel;
+
   /// Crea un badge con el tipo y tamaño especificados.
   ///
   /// Por defecto crea un badge neutral de tamaño mediano.
@@ -47,6 +52,7 @@ class DSBadge extends StatelessWidget {
     this.type = DSBadgeType.neutral,
     this.size = DSBadgeSize.medium,
     this.icon,
+    this.semanticLabel,
   });
 
   /// Crea un badge de éxito.
@@ -55,6 +61,7 @@ class DSBadge extends StatelessWidget {
     required this.text,
     this.size = DSBadgeSize.medium,
     this.icon,
+    this.semanticLabel,
   }) : type = DSBadgeType.success;
 
   /// Crea un badge de error.
@@ -63,6 +70,7 @@ class DSBadge extends StatelessWidget {
     required this.text,
     this.size = DSBadgeSize.medium,
     this.icon,
+    this.semanticLabel,
   }) : type = DSBadgeType.error;
 
   /// Crea un badge de advertencia.
@@ -71,6 +79,7 @@ class DSBadge extends StatelessWidget {
     required this.text,
     this.size = DSBadgeSize.medium,
     this.icon,
+    this.semanticLabel,
   }) : type = DSBadgeType.warning;
 
   /// Crea un badge de información.
@@ -79,6 +88,7 @@ class DSBadge extends StatelessWidget {
     required this.text,
     this.size = DSBadgeSize.medium,
     this.icon,
+    this.semanticLabel,
   }) : type = DSBadgeType.info;
 
   /// Crea un badge neutral.
@@ -87,6 +97,7 @@ class DSBadge extends StatelessWidget {
     required this.text,
     this.size = DSBadgeSize.medium,
     this.icon,
+    this.semanticLabel,
   }) : type = DSBadgeType.neutral;
 
   EdgeInsetsGeometry get _padding {
@@ -131,6 +142,22 @@ class DSBadge extends StatelessWidget {
     }
   }
 
+  /// Returns the semantic type label for screen readers.
+  String get _typeLabel {
+    switch (type) {
+      case DSBadgeType.success:
+        return 'success';
+      case DSBadgeType.error:
+        return 'error';
+      case DSBadgeType.warning:
+        return 'warning';
+      case DSBadgeType.info:
+        return 'info';
+      case DSBadgeType.neutral:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
@@ -156,29 +183,38 @@ class DSBadge extends StatelessWidget {
         textColor = tokens.badgeText;
     }
 
-    return Container(
-      padding: _padding,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(DSBorderRadius.full),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (icon != null) ...[
-            Icon(icon, size: _iconSize, color: textColor),
-            const SizedBox(width: DSSpacing.xs),
-          ],
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: _fontSize,
-              fontWeight: DSFontWeight.medium,
-              color: textColor,
-              height: 1,
+    // Build semantic label with type info
+    final effectiveLabel = semanticLabel ??
+        (_typeLabel.isNotEmpty ? '$_typeLabel: $text' : text);
+
+    return Semantics(
+      label: effectiveLabel,
+      child: Container(
+        padding: _padding,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(DSBorderRadius.full),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null) ...[
+              Icon(icon, size: _iconSize, color: textColor),
+              const SizedBox(width: DSSpacing.xs),
+            ],
+            ExcludeSemantics(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: _fontSize,
+                  fontWeight: DSFontWeight.medium,
+                  color: textColor,
+                  height: 1,
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

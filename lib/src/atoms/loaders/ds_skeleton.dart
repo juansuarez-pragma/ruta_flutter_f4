@@ -33,6 +33,11 @@ class DSSkeleton extends StatefulWidget {
   /// Si el skeleton es circular.
   final bool isCircular;
 
+  /// Etiqueta semántica personalizada para accesibilidad.
+  ///
+  /// Si no se proporciona, se usa 'Loading content'.
+  final String? semanticLabel;
+
   /// Crea un skeleton rectangular con las dimensiones especificadas.
   const DSSkeleton({
     super.key,
@@ -40,29 +45,30 @@ class DSSkeleton extends StatefulWidget {
     this.height,
     this.borderRadius = DSBorderRadius.sm,
     this.isCircular = false,
+    this.semanticLabel,
   });
 
   /// Crea un skeleton circular.
-  const DSSkeleton.circular({super.key, required double size})
+  const DSSkeleton.circular({super.key, required double size, this.semanticLabel})
     : width = size,
       height = size,
       borderRadius = DSBorderRadius.full,
       isCircular = true;
 
   /// Crea un skeleton para texto.
-  const DSSkeleton.text({super.key, this.width, double? height})
+  const DSSkeleton.text({super.key, this.width, double? height, this.semanticLabel})
     : height = height ?? 16,
       borderRadius = DSBorderRadius.xs,
       isCircular = false;
 
   /// Crea un skeleton para un título.
-  const DSSkeleton.title({super.key, this.width})
+  const DSSkeleton.title({super.key, this.width, this.semanticLabel})
     : height = 24,
       borderRadius = DSBorderRadius.sm,
       isCircular = false;
 
   /// Crea un skeleton para una imagen.
-  const DSSkeleton.image({super.key, this.width, this.height})
+  const DSSkeleton.image({super.key, this.width, this.height, this.semanticLabel})
     : borderRadius = DSBorderRadius.md,
       isCircular = false;
 
@@ -97,21 +103,27 @@ class _DSSkeletonState extends State<DSSkeleton>
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) => Container(
-          width: widget.width,
-          height: widget.height,
-          decoration: BoxDecoration(
-            color: tokens.colorBorderPrimary.withValues(
-              alpha: _animation.value,
+    // Build semantic label
+    final effectiveLabel = widget.semanticLabel ?? 'Loading content';
+
+    return Semantics(
+      label: effectiveLabel,
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, child) => Container(
+            width: widget.width,
+            height: widget.height,
+            decoration: BoxDecoration(
+              color: tokens.colorBorderPrimary.withValues(
+                alpha: _animation.value,
+              ),
+              borderRadius: widget.isCircular
+                  ? null
+                  : BorderRadius.circular(widget.borderRadius),
+              shape: widget.isCircular ? BoxShape.circle : BoxShape.rectangle,
             ),
-            borderRadius: widget.isCircular
-                ? null
-                : BorderRadius.circular(widget.borderRadius),
-            shape: widget.isCircular ? BoxShape.circle : BoxShape.rectangle,
           ),
-        ),
+      ),
     );
   }
 }
