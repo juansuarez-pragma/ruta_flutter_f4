@@ -1,7 +1,7 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'responsive_helper.dart';
 
 void main() {
@@ -478,7 +478,6 @@ void main() {
           buildResponsiveTestWidget(
             DSFilterChip(
               label: 'Filter Option',
-              isSelected: false,
               onTap: () {},
             ),
           ),
@@ -496,7 +495,6 @@ void main() {
           buildResponsiveTestWidget(
             DSFilterChip(
               label: 'Filter Option',
-              isSelected: false,
               onTap: () {},
             ),
           ),

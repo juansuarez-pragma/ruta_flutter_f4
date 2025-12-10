@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Skeleton para estados de carga del sistema de diseño.
 ///
@@ -34,6 +33,7 @@ class DSSkeleton extends StatefulWidget {
   /// Si el skeleton es circular.
   final bool isCircular;
 
+  /// Crea un skeleton rectangular con las dimensiones especificadas.
   const DSSkeleton({
     super.key,
     this.width,
@@ -99,8 +99,7 @@ class _DSSkeletonState extends State<DSSkeleton>
 
     return AnimatedBuilder(
       animation: _animation,
-      builder: (context, child) {
-        return Container(
+      builder: (context, child) => Container(
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
@@ -112,8 +111,7 @@ class _DSSkeletonState extends State<DSSkeleton>
                 : BorderRadius.circular(widget.borderRadius),
             shape: widget.isCircular ? BoxShape.circle : BoxShape.rectangle,
           ),
-        );
-      },
+        ),
     );
   }
 }

@@ -1,23 +1,20 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSProductCard', () {
     group('Rendering', () {
       testWidgets('renders with required properties',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Test Product',
               price: 29.99,
@@ -26,14 +23,14 @@ void main() {
         );
 
         expect(find.text('Test Product'), findsOneWidget);
-        expect(find.text('\$29.99'), findsOneWidget);
+        expect(find.text(r'$29.99'), findsOneWidget);
       });
 
       testWidgets('renders title with proper truncation',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'A very long product title that should be truncated',
               price: 19.99,
@@ -47,10 +44,10 @@ void main() {
       });
 
       testWidgets('formats price correctly with two decimals',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Product',
               price: 100.5,
@@ -58,14 +55,14 @@ void main() {
           ),
         );
 
-        expect(find.text('\$100.50'), findsOneWidget);
+        expect(find.text(r'$100.50'), findsOneWidget);
       });
 
       testWidgets('renders rating when provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Rated Product',
               price: 49.99,
@@ -79,10 +76,10 @@ void main() {
       });
 
       testWidgets('renders review count with rating',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Popular Product',
               price: 39.99,
@@ -97,10 +94,10 @@ void main() {
       });
 
       testWidgets('does not render rating section when rating is null',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'No Rating Product',
               price: 29.99,
@@ -111,10 +108,10 @@ void main() {
         expect(find.byIcon(Icons.star), findsNothing);
       });
 
-      testWidgets('renders badge when provided', (WidgetTester tester) async {
+      testWidgets('renders badge when provided', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'New Product',
               price: 59.99,
@@ -129,7 +126,7 @@ void main() {
       });
 
       testWidgets('renders add to cart button when callback provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductCard(
@@ -146,10 +143,10 @@ void main() {
       });
 
       testWidgets('does not render add to cart button when callback is null',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Simple Product',
               price: 19.99,
@@ -161,7 +158,7 @@ void main() {
       });
 
       testWidgets('renders custom image widget when provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductCard(
@@ -182,7 +179,7 @@ void main() {
 
     group('Interactions', () {
       testWidgets('calls onTap when card is tapped',
-          (WidgetTester tester) async {
+          (tester) async {
         bool wasTapped = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -200,7 +197,7 @@ void main() {
       });
 
       testWidgets('calls onAddToCart when cart button is tapped',
-          (WidgetTester tester) async {
+          (tester) async {
         bool wasAddedToCart = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -218,10 +215,10 @@ void main() {
       });
 
       testWidgets('card is not tappable when onTap is null',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Non-tappable Product',
               price: 29.99,
@@ -235,10 +232,10 @@ void main() {
     });
 
     group('Badge Variants', () {
-      testWidgets('renders success badge', (WidgetTester tester) async {
+      testWidgets('renders success badge', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Product',
               price: 29.99,
@@ -251,10 +248,10 @@ void main() {
         expect(find.text('In Stock'), findsOneWidget);
       });
 
-      testWidgets('renders error badge', (WidgetTester tester) async {
+      testWidgets('renders error badge', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Product',
               price: 29.99,
@@ -267,10 +264,10 @@ void main() {
         expect(find.text('Out of Stock'), findsOneWidget);
       });
 
-      testWidgets('renders warning badge', (WidgetTester tester) async {
+      testWidgets('renders warning badge', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Product',
               price: 29.99,
@@ -283,10 +280,10 @@ void main() {
         expect(find.text('Low Stock'), findsOneWidget);
       });
 
-      testWidgets('renders info badge', (WidgetTester tester) async {
+      testWidgets('renders info badge', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Product',
               price: 29.99,
@@ -300,10 +297,10 @@ void main() {
       });
 
       testWidgets('renders neutral badge by default',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Product',
               price: 29.99,
@@ -318,16 +315,16 @@ void main() {
 
     group('Layout', () {
       testWidgets('respects aspectRatio parameter',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            SizedBox(
+            const SizedBox(
               width: 200,
               child: DSProductCard(
                 imageUrl: 'https://example.com/image.jpg',
                 title: 'Aspect Ratio Product',
                 price: 49.99,
-                aspectRatio: 1.0,
+                aspectRatio: 1,
               ),
             ),
           ),
@@ -339,10 +336,10 @@ void main() {
       });
 
       testWidgets('uses default aspectRatio of 0.7',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            SizedBox(
+            const SizedBox(
               width: 200,
               child: DSProductCard(
                 imageUrl: 'https://example.com/image.jpg',
@@ -357,10 +354,10 @@ void main() {
         expect(aspectRatio.aspectRatio, equals(0.7));
       });
 
-      testWidgets('wraps content in DSCard', (WidgetTester tester) async {
+      testWidgets('wraps content in DSCard', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Card Product',
               price: 29.99,
@@ -374,10 +371,10 @@ void main() {
 
     group('Accessibility', () {
       testWidgets('image has semantic label using title by default',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Accessible Product',
               price: 59.99,
@@ -387,16 +384,15 @@ void main() {
 
         final semantics = tester.widgetList<Semantics>(find.byType(Semantics));
         final imageSemantics = semantics.where((s) =>
-            s.properties.label?.contains('Product image: Accessible Product') ==
-            true);
+            s.properties.label?.contains('Product image: Accessible Product') ?? false);
         expect(imageSemantics, isNotEmpty);
       });
 
       testWidgets('uses custom imageSemanticLabel when provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            DSProductCard(
+            const DSProductCard(
               imageUrl: 'https://example.com/image.jpg',
               title: 'Product Name',
               price: 49.99,
@@ -407,12 +403,12 @@ void main() {
 
         final semantics = tester.widgetList<Semantics>(find.byType(Semantics));
         final imageSemantics = semantics.where(
-            (s) => s.properties.label?.contains('A beautiful red dress') == true);
+            (s) => s.properties.label?.contains('A beautiful red dress') ?? false);
         expect(imageSemantics, isNotEmpty);
       });
 
       testWidgets('add to cart button has tooltip for accessibility',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductCard(

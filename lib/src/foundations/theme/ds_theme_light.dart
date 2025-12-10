@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
-
-import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/foundations/theme/ds_theme_data.dart';
+import 'package:fake_store_design_system/src/tokens/tokens.dart';
+import 'package:flutter/material.dart';
 
 /// Implementación del tema claro del sistema de diseño.
 ///
 /// Proporciona todos los valores de tokens para el modo claro.
 abstract final class DSThemeLight {
   /// Obtiene los datos del tema claro.
-  static DSThemeData get data => DSThemeData(
+  static DSThemeData get data => const DSThemeData(
     // ============================================
     // SURFACE COLORS
     // ============================================
@@ -302,7 +301,6 @@ abstract final class DSThemeLight {
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSeed(
       seedColor: DSColors.primary500,
-      brightness: Brightness.light,
     ),
     scaffoldBackgroundColor: DSColors.neutral50,
     appBarTheme: const AppBarTheme(

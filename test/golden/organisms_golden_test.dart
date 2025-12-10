@@ -1,7 +1,7 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'golden_test_helper.dart';
 
 void main() {
@@ -119,7 +119,6 @@ void main() {
                 {'title': 'Product 3', 'price': 39.99},
                 {'title': 'Product 4', 'price': 49.99},
               ],
-              crossAxisCount: 2,
               itemBuilder: (context, product, index) => DSCard(
                 child: Padding(
                   padding: const EdgeInsets.all(8),
@@ -156,8 +155,9 @@ void main() {
       testWidgets('loading state match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            const DSProductGrid<Map<String, dynamic>>(
+            DSProductGrid<Map<String, dynamic>>(
               isLoading: true,
+              itemBuilder: (context, product, index) => const SizedBox(),
             ),
             size: const Size(350, 300),
           ),
@@ -178,6 +178,7 @@ void main() {
             DSProductGrid<Map<String, dynamic>>(
               error: 'Failed to load products',
               onRetry: () {},
+              itemBuilder: (context, product, index) => const SizedBox(),
             ),
             size: const Size(400, 350),
           ),

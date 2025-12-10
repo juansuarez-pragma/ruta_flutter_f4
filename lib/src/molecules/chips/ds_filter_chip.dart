@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Chip de filtro del sistema de diseño.
 ///
@@ -43,6 +42,7 @@ class DSFilterChip extends StatelessWidget {
   /// Si muestra un checkmark cuando está seleccionado.
   final bool showCheckmark;
 
+  /// Crea un chip de filtro seleccionable.
   const DSFilterChip({
     super.key,
     required this.label,
@@ -94,7 +94,6 @@ class DSFilterChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(DSBorderRadius.full),
         side: BorderSide(
           color: isSelected ? tokens.colorBrandPrimary : tokens.chipBorder,
-          width: DSSizes.borderThin,
         ),
       ),
       padding: const EdgeInsets.symmetric(

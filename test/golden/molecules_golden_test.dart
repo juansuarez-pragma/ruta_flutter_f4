@@ -1,7 +1,7 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'golden_test_helper.dart';
 
 void main() {
@@ -10,11 +10,11 @@ void main() {
       testWidgets('elevations match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Wrap(
+            const Wrap(
               spacing: 8,
               runSpacing: 8,
               alignment: WrapAlignment.center,
-              children: const [
+              children: [
                 DSCard(
                   elevation: 0,
                   child: Padding(
@@ -23,7 +23,6 @@ void main() {
                   ),
                 ),
                 DSCard(
-                  elevation: 1,
                   child: Padding(
                     padding: EdgeInsets.all(12),
                     child: Text('Elev 1'),
@@ -60,7 +59,6 @@ void main() {
               children: [
                 DSFilterChip(
                   label: 'Unselected',
-                  isSelected: false,
                   onTap: () {},
                 ),
                 DSFilterChip(
@@ -70,7 +68,6 @@ void main() {
                 ),
                 const DSFilterChip(
                   label: 'Disabled',
-                  isSelected: false,
                 ),
               ],
             ),

@@ -1,19 +1,16 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSEmptyState', () {
     group('Rendering', () {
-      testWidgets('renders with icon', (WidgetTester tester) async {
+      testWidgets('renders with icon', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSEmptyState(
@@ -27,7 +24,7 @@ void main() {
         expect(find.text('No items'), findsOneWidget);
       });
 
-      testWidgets('renders with description', (WidgetTester tester) async {
+      testWidgets('renders with description', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSEmptyState(
@@ -41,7 +38,7 @@ void main() {
         expect(find.text('Add items to get started'), findsOneWidget);
       });
 
-      testWidgets('renders with action button', (WidgetTester tester) async {
+      testWidgets('renders with action button', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSEmptyState(
@@ -59,7 +56,7 @@ void main() {
 
     group('Interactions', () {
       testWidgets('calls onAction when button is tapped',
-          (WidgetTester tester) async {
+          (tester) async {
         bool wasPressed = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -80,7 +77,7 @@ void main() {
 
   group('DSErrorState', () {
     group('Rendering', () {
-      testWidgets('renders error message', (WidgetTester tester) async {
+      testWidgets('renders error message', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSErrorState(
@@ -92,7 +89,7 @@ void main() {
         expect(find.text('Something went wrong'), findsOneWidget);
       });
 
-      testWidgets('renders with custom icon', (WidgetTester tester) async {
+      testWidgets('renders with custom icon', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSErrorState(
@@ -105,7 +102,7 @@ void main() {
         expect(find.byIcon(Icons.cloud_off), findsOneWidget);
       });
 
-      testWidgets('renders with details', (WidgetTester tester) async {
+      testWidgets('renders with details', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSErrorState(
@@ -118,7 +115,7 @@ void main() {
         expect(find.text('Please try again later'), findsOneWidget);
       });
 
-      testWidgets('renders with retry button', (WidgetTester tester) async {
+      testWidgets('renders with retry button', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSErrorState(
@@ -135,7 +132,7 @@ void main() {
 
     group('Interactions', () {
       testWidgets('calls onRetry when retry button is tapped',
-          (WidgetTester tester) async {
+          (tester) async {
         bool wasRetried = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -154,7 +151,7 @@ void main() {
 
   group('DSLoadingState', () {
     group('Rendering', () {
-      testWidgets('renders loading indicator', (WidgetTester tester) async {
+      testWidgets('renders loading indicator', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSLoadingState(),
@@ -164,7 +161,7 @@ void main() {
         expect(find.byType(DSCircularLoader), findsOneWidget);
       });
 
-      testWidgets('renders with message', (WidgetTester tester) async {
+      testWidgets('renders with message', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSLoadingState(

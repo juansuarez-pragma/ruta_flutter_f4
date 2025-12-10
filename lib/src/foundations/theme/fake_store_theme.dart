@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/foundations/theme/ds_theme_dark.dart';
 import 'package:fake_store_design_system/src/foundations/theme/ds_theme_data.dart';
 import 'package:fake_store_design_system/src/foundations/theme/ds_theme_light.dart';
+import 'package:flutter/material.dart';
 
 /// Configuración principal del tema del sistema de diseño Fake Store.
 ///
@@ -77,9 +76,7 @@ abstract final class FakeStoreTheme {
   /// Intenta obtener los tokens del sistema de diseño desde el contexto.
   ///
   /// Retorna null si el tema no está configurado.
-  static DSThemeData? maybeOf(BuildContext context) {
-    return Theme.of(context).extension<DSThemeData>();
-  }
+  static DSThemeData? maybeOf(BuildContext context) => Theme.of(context).extension<DSThemeData>();
 
   /// Obtiene solo los datos del tema claro (sin ThemeData completo).
   static DSThemeData get lightData => DSThemeLight.data;

@@ -1,13 +1,12 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 
 void main() {
   group('DSContextExtension', () {
     group('tokens', () {
       testWidgets('returns DSThemeData from light theme',
-          (WidgetTester tester) async {
+          (tester) async {
         DSThemeData? capturedTokens;
 
         await tester.pumpWidget(
@@ -27,7 +26,7 @@ void main() {
       });
 
       testWidgets('returns DSThemeData from dark theme',
-          (WidgetTester tester) async {
+          (tester) async {
         DSThemeData? capturedTokens;
 
         await tester.pumpWidget(
@@ -49,7 +48,7 @@ void main() {
 
     group('isDarkMode', () {
       testWidgets('returns false for light theme',
-          (WidgetTester tester) async {
+          (tester) async {
         bool? isDark;
 
         await tester.pumpWidget(
@@ -67,7 +66,7 @@ void main() {
         expect(isDark, isFalse);
       });
 
-      testWidgets('returns true for dark theme', (WidgetTester tester) async {
+      testWidgets('returns true for dark theme', (tester) async {
         bool? isDark;
 
         await tester.pumpWidget(
@@ -87,7 +86,7 @@ void main() {
     });
 
     group('isLightMode', () {
-      testWidgets('returns true for light theme', (WidgetTester tester) async {
+      testWidgets('returns true for light theme', (tester) async {
         bool? isLight;
 
         await tester.pumpWidget(
@@ -105,7 +104,7 @@ void main() {
         expect(isLight, isTrue);
       });
 
-      testWidgets('returns false for dark theme', (WidgetTester tester) async {
+      testWidgets('returns false for dark theme', (tester) async {
         bool? isLight;
 
         await tester.pumpWidget(
@@ -126,7 +125,7 @@ void main() {
 
     group('responsive breakpoints', () {
       testWidgets('isMobile returns true for small screens',
-          (WidgetTester tester) async {
+          (tester) async {
         tester.view.physicalSize = const Size(400, 800);
         tester.view.devicePixelRatio = 1.0;
 
@@ -151,7 +150,7 @@ void main() {
       });
 
       testWidgets('isTablet returns true for medium screens',
-          (WidgetTester tester) async {
+          (tester) async {
         tester.view.physicalSize = const Size(800, 1024);
         tester.view.devicePixelRatio = 1.0;
 

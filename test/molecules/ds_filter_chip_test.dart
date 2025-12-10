@@ -1,19 +1,16 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSFilterChip', () {
     group('Rendering', () {
-      testWidgets('renders label text', (WidgetTester tester) async {
+      testWidgets('renders label text', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSFilterChip(
@@ -26,7 +23,7 @@ void main() {
         expect(find.text('Electronics'), findsOneWidget);
       });
 
-      testWidgets('renders with icon', (WidgetTester tester) async {
+      testWidgets('renders with icon', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSFilterChip(
@@ -42,12 +39,11 @@ void main() {
     });
 
     group('Selection state', () {
-      testWidgets('renders unselected state', (WidgetTester tester) async {
+      testWidgets('renders unselected state', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSFilterChip(
               label: 'Filter',
-              isSelected: false,
               onTap: () {},
             ),
           ),
@@ -56,7 +52,7 @@ void main() {
         expect(find.byType(DSFilterChip), findsOneWidget);
       });
 
-      testWidgets('renders selected state', (WidgetTester tester) async {
+      testWidgets('renders selected state', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSFilterChip(
@@ -72,7 +68,7 @@ void main() {
     });
 
     group('Interactions', () {
-      testWidgets('calls onTap when tapped', (WidgetTester tester) async {
+      testWidgets('calls onTap when tapped', (tester) async {
         bool wasTapped = false;
         await tester.pumpWidget(
           buildTestableWidget(

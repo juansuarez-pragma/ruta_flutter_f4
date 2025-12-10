@@ -1,8 +1,7 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 
 /// Standard breakpoints based on Material Design 3 guidelines
 /// Reference: https://m3.material.io/foundations/layout/applying-layout
@@ -74,10 +73,10 @@ class ResponsiveBreakpoints {
 /// Text scale factors for accessibility testing
 /// Reference: WCAG 2.1 guidelines
 class TextScaleFactors {
-  static const double normal = 1.0;
+  static const double normal = 1;
   static const double large = 1.3;
   static const double extraLarge = 1.5;
-  static const double huge = 2.0;
+  static const double huge = 2;
 
   /// iOS accessibility text sizes mapping
   static const double accessibilityMedium = 1.12;
@@ -177,7 +176,6 @@ class ResponsiveTestScenarios {
         const ResponsiveTestConfig(
           size: ResponsiveBreakpoints.iPhone14Pro,
           name: 'Normal (1.0x)',
-          textScaleFactor: TextScaleFactors.normal,
         ),
         const ResponsiveTestConfig(
           size: ResponsiveBreakpoints.iPhone14Pro,
@@ -217,22 +215,18 @@ Widget buildResponsiveTestWidget(
   Size? size,
   double textScaleFactor = 1.0,
   Brightness brightness = Brightness.light,
-}) {
-  return MaterialApp(
+}) => MaterialApp(
     theme: brightness == Brightness.light
         ? FakeStoreTheme.light()
         : FakeStoreTheme.dark(),
-    builder: (context, widget) {
-      return MediaQuery(
+    builder: (context, widget) => MediaQuery(
         data: MediaQuery.of(context).copyWith(
           textScaler: TextScaler.linear(textScaleFactor),
         ),
         child: widget!,
-      );
-    },
+      ),
     home: Scaffold(body: child),
   );
-}
 
 /// Pumps a widget with specific viewport configuration
 Future<void> pumpResponsiveWidget(

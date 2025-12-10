@@ -1,30 +1,43 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/molecules/molecules.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
+import 'package:flutter/material.dart';
 
 /// Grid de productos del sistema de diseño.
 ///
 /// Muestra una cuadrícula de productos con manejo integrado de estados
-/// de carga, error y vacío.
+/// de carga, error y vacío. Requiere un [itemBuilder] para construir
+/// cada elemento del grid, lo que garantiza type safety completo.
 ///
 /// ## Uso básico
 ///
 /// ```dart
-/// DSProductGrid(
+/// DSProductGrid<Product>(
 ///   products: products,
-///   onProductTap: (product) => viewProduct(product),
+///   itemBuilder: (context, product, index) => DSProductCard(
+///     imageUrl: product.image,
+///     title: product.title,
+///     price: product.price,
+///     onTap: () => viewProduct(product),
+///   ),
 /// )
 /// ```
 ///
-/// ## Con estados
+/// ## Con estados de carga y error
 ///
 /// ```dart
-/// DSProductGrid(
+/// DSProductGrid<Product>(
 ///   products: products,
 ///   isLoading: isLoading,
 ///   error: errorMessage,
-///   onProductTap: (product) => viewProduct(product),
+///   itemBuilder: (context, product, index) => DSProductCard(
+///     imageUrl: product.image,
+///     title: product.title,
+///     price: product.price,
+///     rating: product.rating?.rate,
+///     reviewCount: product.rating?.count,
+///     onTap: () => viewProduct(product),
+///     onAddToCart: () => addToCart(product),
+///   ),
 ///   onRetry: () => loadProducts(),
 /// )
 /// ```
@@ -62,15 +75,20 @@ class DSProductGrid<T> extends StatelessWidget {
   /// Padding del grid.
   final EdgeInsetsGeometry padding;
 
-  /// Builder para construir cada producto.
+  /// Builder requerido para construir cada producto.
   ///
-  /// Si no se proporciona, se espera que T tenga propiedades:
-  /// - image (String)
-  /// - title (String)
-  /// - price (double)
-  /// - rating.rate (double?)
-  /// - rating.count (int?)
-  final Widget Function(BuildContext context, T product, int index)? itemBuilder;
+  /// Este builder recibe el contexto, el producto y su índice,
+  /// y debe retornar el widget que representa cada item del grid.
+  ///
+  /// Ejemplo:
+  /// ```dart
+  /// itemBuilder: (context, product, index) => DSProductCard(
+  ///   imageUrl: product.image,
+  ///   title: product.title,
+  ///   price: product.price,
+  /// ),
+  /// ```
+  final Widget Function(BuildContext context, T product, int index) itemBuilder;
 
   /// Mensaje cuando no hay productos.
   final String emptyMessage;
@@ -78,6 +96,9 @@ class DSProductGrid<T> extends StatelessWidget {
   /// Mensaje mientras carga.
   final String loadingMessage;
 
+  /// Crea un grid de productos con manejo de estados integrado.
+  ///
+  /// El [itemBuilder] es requerido para garantizar type safety.
   const DSProductGrid({
     super.key,
     this.products,
@@ -91,7 +112,7 @@ class DSProductGrid<T> extends StatelessWidget {
     this.crossAxisSpacing = DSSpacing.md,
     this.mainAxisSpacing = DSSpacing.md,
     this.padding = const EdgeInsets.all(DSSpacing.base),
-    this.itemBuilder,
+    required this.itemBuilder,
     this.emptyMessage = 'No hay productos disponibles',
     this.loadingMessage = 'Cargando productos...',
   });
@@ -130,34 +151,8 @@ class DSProductGrid<T> extends StatelessWidget {
       itemCount: products!.length,
       itemBuilder: (context, index) {
         final product = products![index];
-
-        if (itemBuilder != null) {
-          return itemBuilder!(context, product, index);
-        }
-
-        // Builder por defecto usando reflexión dinámica
-        return _buildDefaultProductCard(context, product, index);
+        return itemBuilder(context, product, index);
       },
     );
-  }
-
-  Widget _buildDefaultProductCard(BuildContext context, T product, int index) {
-    // Intentar acceder a las propiedades usando dynamic
-    final dynamic p = product;
-
-    try {
-      return DSProductCard(
-        imageUrl: p.image as String,
-        title: p.title as String,
-        price: (p.price as num).toDouble(),
-        rating: p.rating?.rate as double?,
-        reviewCount: p.rating?.count as int?,
-        onTap: onProductTap != null ? () => onProductTap!(product) : null,
-        onAddToCart: onAddToCart != null ? () => onAddToCart!(product) : null,
-      );
-    } catch (_) {
-      // Si no tiene las propiedades esperadas, mostrar placeholder
-      return DSCard(child: Center(child: Text('Item $index')));
-    }
   }
 }

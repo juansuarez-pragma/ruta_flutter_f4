@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/enums/enums.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Indicador de carga circular del sistema de diseño.
 ///
@@ -32,6 +31,7 @@ class DSCircularLoader extends StatelessWidget {
   /// Si no se especifica, usa el color de la marca primaria.
   final Color? color;
 
+  /// Crea un loader circular con el tamaño y mensaje especificados.
   const DSCircularLoader({
     super.key,
     this.size = DSLoaderSize.medium,

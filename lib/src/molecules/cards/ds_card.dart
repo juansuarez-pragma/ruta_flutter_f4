@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/foundations/foundations.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Card base del sistema de diseño.
 ///
@@ -57,6 +56,7 @@ class DSCard extends StatelessWidget {
   /// Alto de la card.
   final double? height;
 
+  /// Crea una card con el contenido y estilo especificados.
   const DSCard({
     super.key,
     required this.child,
@@ -102,7 +102,7 @@ class DSCard extends StatelessWidget {
         color: bgColor,
         borderRadius: BorderRadius.circular(borderRadius),
         border: showBorder
-            ? Border.all(color: tokens.cardBorder, width: DSSizes.borderThin)
+            ? Border.all(color: tokens.cardBorder)
             : null,
         boxShadow: _getElevation(tokens),
       ),

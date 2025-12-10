@@ -1,14 +1,11 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: child),
   );
-}
 
 void main() {
   group('Content Resilience Tests', () {
@@ -41,7 +38,7 @@ void main() {
       testWidgets('handles special characters', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            const DSText.bodyMedium('Special: @#\$%^&*()_+{}|:<>?'),
+            const DSText.bodyMedium(r'Special: @#$%^&*()_+{}|:<>?'),
           ),
         );
 
@@ -169,14 +166,14 @@ void main() {
             DSProductCard(
               imageUrl: '',
               title: 'Free Product',
-              price: 0.0,
+              price: 0,
               onTap: () {},
               imageWidget: Container(color: Colors.grey),
             ),
           ),
         );
 
-        expect(find.text('\$0.00'), findsOneWidget);
+        expect(find.text(r'$0.00'), findsOneWidget);
         expect(tester.takeException(), isNull);
       });
 
@@ -204,7 +201,7 @@ void main() {
               imageUrl: '',
               title: 'New Product',
               price: 19.99,
-              rating: 0.0,
+              rating: 0,
               reviewCount: 0,
               onTap: () {},
               imageWidget: Container(color: Colors.grey),
@@ -273,7 +270,6 @@ void main() {
           buildTestableWidget(
             DSFilterChip(
               label: '',
-              isSelected: false,
               onTap: () {},
             ),
           ),
@@ -288,15 +284,13 @@ void main() {
 
         await tester.pumpWidget(
           StatefulBuilder(
-            builder: (context, setState) {
-              return buildTestableWidget(
+            builder: (context, setState) => buildTestableWidget(
                 DSFilterChip(
                   label: 'Toggle',
                   isSelected: isSelected,
                   onTap: () => setState(() => isSelected = !isSelected),
                 ),
-              );
-            },
+              ),
           ),
         );
 

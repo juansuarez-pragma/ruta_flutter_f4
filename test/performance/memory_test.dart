@@ -1,7 +1,7 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'performance_helper.dart';
 
 void main() {
@@ -426,8 +426,7 @@ void main() {
             theme: FakeStoreTheme.light(),
             home: Scaffold(
               body: StatefulBuilder(
-                builder: (context, setState) {
-                  return Column(
+                builder: (context, setState) => Column(
                     children: [
                       Builder(
                         builder: (context) {
@@ -445,8 +444,7 @@ void main() {
                         },
                       ),
                     ],
-                  );
-                },
+                  ),
               ),
             ),
           ),

@@ -42,81 +42,81 @@ abstract final class DSFontSize {
   // ============================================
 
   /// Display Large - 57px
-  static const double displayLarge = 57.0;
+  static const double displayLarge = 57;
 
   /// Display Medium - 45px
-  static const double displayMedium = 45.0;
+  static const double displayMedium = 45;
 
   /// Display Small - 36px
-  static const double displaySmall = 36.0;
+  static const double displaySmall = 36;
 
   // ============================================
   // HEADING
   // ============================================
 
   /// Heading Large - 32px
-  static const double headingLarge = 32.0;
+  static const double headingLarge = 32;
 
   /// Heading Medium - 28px
-  static const double headingMedium = 28.0;
+  static const double headingMedium = 28;
 
   /// Heading Small - 24px
-  static const double headingSmall = 24.0;
+  static const double headingSmall = 24;
 
   // ============================================
   // TITLE
   // ============================================
 
   /// Title Large - 22px
-  static const double titleLarge = 22.0;
+  static const double titleLarge = 22;
 
   /// Title Medium - 16px
-  static const double titleMedium = 16.0;
+  static const double titleMedium = 16;
 
   /// Title Small - 14px
-  static const double titleSmall = 14.0;
+  static const double titleSmall = 14;
 
   // ============================================
   // BODY
   // ============================================
 
   /// Body Large - 16px
-  static const double bodyLarge = 16.0;
+  static const double bodyLarge = 16;
 
   /// Body Medium - 14px
-  static const double bodyMedium = 14.0;
+  static const double bodyMedium = 14;
 
   /// Body Small - 12px
-  static const double bodySmall = 12.0;
+  static const double bodySmall = 12;
 
   // ============================================
   // LABEL
   // ============================================
 
   /// Label Large - 14px
-  static const double labelLarge = 14.0;
+  static const double labelLarge = 14;
 
   /// Label Medium - 12px
-  static const double labelMedium = 12.0;
+  static const double labelMedium = 12;
 
   /// Label Small - 11px
-  static const double labelSmall = 11.0;
+  static const double labelSmall = 11;
 
   // ============================================
   // UTILITY
   // ============================================
 
   /// Caption - 12px
-  static const double caption = 12.0;
+  static const double caption = 12;
 
   /// Overline - 10px
-  static const double overline = 10.0;
+  static const double overline = 10;
 }
 
 /// Alturas de línea del sistema de diseño.
 abstract final class DSLineHeight {
   /// Tight - 1.0
-  static const double tight = 1.0;
+  static const double tight = 1;
 
   /// Snug - 1.2
   static const double snug = 1.2;
@@ -131,7 +131,7 @@ abstract final class DSLineHeight {
   static const double loose = 1.75;
 
   /// Extra Loose - 2.0
-  static const double extraLoose = 2.0;
+  static const double extraLoose = 2;
 }
 
 /// Espaciado de letras del sistema de diseño.
@@ -143,7 +143,7 @@ abstract final class DSLetterSpacing {
   static const double tight = -0.4;
 
   /// Normal - 0
-  static const double normal = 0.0;
+  static const double normal = 0;
 
   /// Wide - 0.025em
   static const double wide = 0.4;

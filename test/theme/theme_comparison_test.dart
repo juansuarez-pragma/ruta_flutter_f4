@@ -1,7 +1,6 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 
 void main() {
   group('Theme Comparison Tests', () {
@@ -88,13 +87,13 @@ void main() {
 
     group('Theme Extension lerp', () {
       test('lerp at 0.0 returns start theme', () {
-        final lerped = lightTokens.lerp(darkTokens, 0.0);
+        final lerped = lightTokens.lerp(darkTokens, 0);
         expect(lerped.colorSurfacePrimary,
             equals(lightTokens.colorSurfacePrimary));
       });
 
       test('lerp at 1.0 returns end theme', () {
-        final lerped = lightTokens.lerp(darkTokens, 1.0);
+        final lerped = lightTokens.lerp(darkTokens, 1);
         expect(lerped.colorSurfacePrimary,
             equals(darkTokens.colorSurfacePrimary));
       });
@@ -112,7 +111,7 @@ void main() {
 
     group('Theme copyWith', () {
       test('copyWith preserves unchanged values', () {
-        final newColor = Colors.purple;
+        const newColor = Colors.purple;
         final copied = lightTokens.copyWith(colorBrandPrimary: newColor);
 
         expect(copied.colorBrandPrimary, equals(newColor));

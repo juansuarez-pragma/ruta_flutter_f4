@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/utils/enums/enums.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Componente de texto del sistema de diseño.
 ///
@@ -49,6 +48,7 @@ class DSText extends StatelessWidget {
   /// Si el texto debe ser seleccionable.
   final bool selectable;
 
+  /// Crea un texto con la variante y estilo especificados.
   const DSText(
     this.text, {
     super.key,

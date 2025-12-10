@@ -1,20 +1,17 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSCircularLoader', () {
     group('Rendering', () {
       testWidgets('renders CircularProgressIndicator',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCircularLoader(),
@@ -26,7 +23,7 @@ void main() {
     });
 
     group('Sizes', () {
-      testWidgets('renders small size', (WidgetTester tester) async {
+      testWidgets('renders small size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCircularLoader(size: DSLoaderSize.small),
@@ -39,10 +36,10 @@ void main() {
         expect(sizedBox.height, equals(DSSizes.loaderSm));
       });
 
-      testWidgets('renders medium size', (WidgetTester tester) async {
+      testWidgets('renders medium size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
-            const DSCircularLoader(size: DSLoaderSize.medium),
+            const DSCircularLoader(),
           ),
         );
 
@@ -52,7 +49,7 @@ void main() {
         expect(sizedBox.height, equals(DSSizes.loaderMd));
       });
 
-      testWidgets('renders large size', (WidgetTester tester) async {
+      testWidgets('renders large size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCircularLoader(size: DSLoaderSize.large),
@@ -67,7 +64,7 @@ void main() {
     });
 
     group('Custom color', () {
-      testWidgets('applies custom color', (WidgetTester tester) async {
+      testWidgets('applies custom color', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCircularLoader(color: Colors.red),
@@ -86,7 +83,7 @@ void main() {
   group('DSSkeleton', () {
     group('Rendering', () {
       testWidgets('renders with default dimensions',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSSkeleton(),
@@ -97,7 +94,7 @@ void main() {
       });
 
       testWidgets('renders with custom dimensions',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSSkeleton(
@@ -112,7 +109,7 @@ void main() {
     });
 
     group('Shapes', () {
-      testWidgets('renders rectangle shape', (WidgetTester tester) async {
+      testWidgets('renders rectangle shape', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSSkeleton(
@@ -126,7 +123,7 @@ void main() {
         expect(find.byType(DSSkeleton), findsOneWidget);
       });
 
-      testWidgets('renders circular shape', (WidgetTester tester) async {
+      testWidgets('renders circular shape', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSSkeleton.circular(size: 50),
@@ -138,7 +135,7 @@ void main() {
     });
 
     group('Named constructors', () {
-      testWidgets('renders text skeleton', (WidgetTester tester) async {
+      testWidgets('renders text skeleton', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSSkeleton.text(width: 150),
@@ -148,7 +145,7 @@ void main() {
         expect(find.byType(DSSkeleton), findsOneWidget);
       });
 
-      testWidgets('renders title skeleton', (WidgetTester tester) async {
+      testWidgets('renders title skeleton', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSSkeleton.title(width: 200),
@@ -158,7 +155,7 @@ void main() {
         expect(find.byType(DSSkeleton), findsOneWidget);
       });
 
-      testWidgets('renders image skeleton', (WidgetTester tester) async {
+      testWidgets('renders image skeleton', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSSkeleton.image(width: 100, height: 100),
@@ -171,7 +168,7 @@ void main() {
 
     group('Animation', () {
       testWidgets('contains AnimatedContainer or similar animation',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSSkeleton(width: 100, height: 50),

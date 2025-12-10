@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
-
-import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/foundations/theme/ds_theme_data.dart';
+import 'package:fake_store_design_system/src/tokens/tokens.dart';
+import 'package:flutter/material.dart';
 
 /// Implementación del tema oscuro del sistema de diseño.
 ///
 /// Proporciona todos los valores de tokens para el modo oscuro.
 abstract final class DSThemeDark {
   /// Obtiene los datos del tema oscuro.
-  static DSThemeData get data => DSThemeData(
+  static DSThemeData get data => const DSThemeData(
     // ============================================
     // SURFACE COLORS
     // ============================================

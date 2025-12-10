@@ -1,19 +1,16 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSButton', () {
     group('Rendering', () {
-      testWidgets('renders with text', (WidgetTester tester) async {
+      testWidgets('renders with text', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton(
@@ -26,13 +23,12 @@ void main() {
         expect(find.text('Click Me'), findsOneWidget);
       });
 
-      testWidgets('renders with icon at start', (WidgetTester tester) async {
+      testWidgets('renders with icon at start', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton(
               text: 'With Icon',
               icon: Icons.add,
-              iconPosition: DSButtonIconPosition.start,
               onPressed: () {},
             ),
           ),
@@ -41,7 +37,7 @@ void main() {
         expect(find.byIcon(Icons.add), findsOneWidget);
       });
 
-      testWidgets('renders with icon at end', (WidgetTester tester) async {
+      testWidgets('renders with icon at end', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton(
@@ -57,7 +53,7 @@ void main() {
       });
 
       testWidgets('shows loading indicator when isLoading is true',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton(
@@ -73,7 +69,7 @@ void main() {
     });
 
     group('Variants', () {
-      testWidgets('renders primary variant', (WidgetTester tester) async {
+      testWidgets('renders primary variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton.primary(
@@ -86,7 +82,7 @@ void main() {
         expect(find.byType(DSButton), findsOneWidget);
       });
 
-      testWidgets('renders secondary variant', (WidgetTester tester) async {
+      testWidgets('renders secondary variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton.secondary(
@@ -99,7 +95,7 @@ void main() {
         expect(find.byType(DSButton), findsOneWidget);
       });
 
-      testWidgets('renders ghost variant', (WidgetTester tester) async {
+      testWidgets('renders ghost variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton.ghost(
@@ -112,7 +108,7 @@ void main() {
         expect(find.byType(DSButton), findsOneWidget);
       });
 
-      testWidgets('renders danger variant', (WidgetTester tester) async {
+      testWidgets('renders danger variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton.danger(
@@ -127,7 +123,7 @@ void main() {
     });
 
     group('Sizes', () {
-      testWidgets('renders small size', (WidgetTester tester) async {
+      testWidgets('renders small size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton(
@@ -142,12 +138,11 @@ void main() {
         expect(buttonSize.height, equals(DSSizes.buttonSm));
       });
 
-      testWidgets('renders medium size', (WidgetTester tester) async {
+      testWidgets('renders medium size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton(
               text: 'Medium',
-              size: DSButtonSize.medium,
               onPressed: () {},
             ),
           ),
@@ -157,7 +152,7 @@ void main() {
         expect(buttonSize.height, equals(DSSizes.buttonMd));
       });
 
-      testWidgets('renders large size', (WidgetTester tester) async {
+      testWidgets('renders large size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton(
@@ -174,7 +169,7 @@ void main() {
     });
 
     group('Interactions', () {
-      testWidgets('calls onPressed when tapped', (WidgetTester tester) async {
+      testWidgets('calls onPressed when tapped', (tester) async {
         bool wasPressed = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -190,13 +185,12 @@ void main() {
       });
 
       testWidgets('does not call onPressed when disabled',
-          (WidgetTester tester) async {
-        bool wasPressed = false;
+          (tester) async {
+        const bool wasPressed = false;
         await tester.pumpWidget(
           buildTestableWidget(
-            DSButton(
+            const DSButton(
               text: 'Disabled',
-              onPressed: null,
             ),
           ),
         );
@@ -206,7 +200,7 @@ void main() {
       });
 
       testWidgets('does not call onPressed when loading',
-          (WidgetTester tester) async {
+          (tester) async {
         bool wasPressed = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -225,7 +219,7 @@ void main() {
 
     group('Full width', () {
       testWidgets('expands to full width when isFullWidth is true',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSButton(

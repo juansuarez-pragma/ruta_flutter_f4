@@ -1,20 +1,17 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
 /// Helper widget to wrap components with the design system theme.
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('Accessibility - Touch Targets (WCAG 2.1)', () {
     testWidgets('DSButton small meets minimum touch target of 44px',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           DSButton(
@@ -37,12 +34,11 @@ void main() {
     });
 
     testWidgets('DSButton medium meets minimum touch target of 44px',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           DSButton(
             text: 'Test',
-            size: DSButtonSize.medium,
             onPressed: () {},
           ),
         ),
@@ -58,7 +54,7 @@ void main() {
     });
 
     testWidgets('DSIconButton small meets minimum touch target of 44px',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           DSIconButton(
@@ -102,7 +98,7 @@ void main() {
 
   group('Accessibility - DSIconButton Semantics', () {
     testWidgets('DSIconButton has Semantics widget with button property',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           DSIconButton(
@@ -114,13 +110,13 @@ void main() {
 
       // Verify Semantics widget exists
       final semanticsFinder = find.byWidgetPredicate(
-        (widget) => widget is Semantics && widget.properties.button == true,
+        (widget) => widget is Semantics && (widget.properties.button ?? false),
       );
       expect(semanticsFinder, findsOneWidget);
     });
 
     testWidgets('DSIconButton with tooltip has semantic label',
-        (WidgetTester tester) async {
+        (tester) async {
       const tooltipText = 'Add to favorites';
       await tester.pumpWidget(
         buildTestableWidget(
@@ -143,7 +139,7 @@ void main() {
     });
 
     testWidgets('DSIconButton loading state includes loading in label',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           DSIconButton(
@@ -165,12 +161,11 @@ void main() {
     });
 
     testWidgets('DSIconButton disabled has enabled=false in semantics',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           const DSIconButton(
             icon: Icons.favorite,
-            onPressed: null,
           ),
         ),
       );
@@ -179,7 +174,7 @@ void main() {
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
-            widget.properties.button == true &&
+            (widget.properties.button ?? false) &&
             widget.properties.enabled == false,
       );
       expect(semanticsFinder, findsOneWidget);
@@ -188,7 +183,7 @@ void main() {
 
   group('Accessibility - DSTextField Semantics', () {
     testWidgets('DSTextField has Semantics widget with textField property',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           const DSTextField(
@@ -200,13 +195,13 @@ void main() {
 
       // Verify Semantics widget with textField property exists
       final semanticsFinder = find.byWidgetPredicate(
-        (widget) => widget is Semantics && widget.properties.textField == true,
+        (widget) => widget is Semantics && (widget.properties.textField ?? false),
       );
       expect(semanticsFinder, findsOneWidget);
     });
 
     testWidgets('DSTextField uses label as semantic label',
-        (WidgetTester tester) async {
+        (tester) async {
       const labelText = 'Email Address';
       await tester.pumpWidget(
         buildTestableWidget(
@@ -220,7 +215,7 @@ void main() {
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
-            widget.properties.textField == true &&
+            (widget.properties.textField ?? false) &&
             widget.properties.label != null &&
             widget.properties.label!.contains(labelText),
       );
@@ -228,7 +223,7 @@ void main() {
     });
 
     testWidgets('DSTextField uses custom semanticLabel when provided',
-        (WidgetTester tester) async {
+        (tester) async {
       const customLabel = 'Custom accessible label';
       await tester.pumpWidget(
         buildTestableWidget(
@@ -250,7 +245,7 @@ void main() {
     });
 
     testWidgets('DSTextField with error has error in semantic hint',
-        (WidgetTester tester) async {
+        (tester) async {
       const errorText = 'Invalid email format';
       await tester.pumpWidget(
         buildTestableWidget(
@@ -273,7 +268,7 @@ void main() {
     });
 
     testWidgets('DSTextField password has Password field in semantic hint',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           const DSTextField(
@@ -294,7 +289,7 @@ void main() {
     });
 
     testWidgets('DSTextField disabled has enabled=false in semantics',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           const DSTextField(
@@ -308,7 +303,7 @@ void main() {
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
-            widget.properties.textField == true &&
+            (widget.properties.textField ?? false) &&
             widget.properties.enabled == false,
       );
       expect(semanticsFinder, findsOneWidget);
@@ -317,7 +312,7 @@ void main() {
 
   group('Accessibility - DSBottomNav Semantics', () {
     testWidgets('DSBottomNav items have Semantics with button property',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           DSBottomNav(
@@ -335,7 +330,7 @@ void main() {
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
-            widget.properties.button == true &&
+            (widget.properties.button ?? false) &&
             widget.properties.label != null &&
             widget.properties.label!.contains('Tab'),
       );
@@ -343,7 +338,7 @@ void main() {
     });
 
     testWidgets('DSBottomNav selected item has selected=true in semantics',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           DSBottomNav(
@@ -361,7 +356,7 @@ void main() {
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
-            widget.properties.selected == true &&
+            (widget.properties.selected ?? false) &&
             widget.properties.label != null &&
             widget.properties.label!.contains('selected'),
       );
@@ -369,7 +364,7 @@ void main() {
     });
 
     testWidgets('DSBottomNav badge count is in semantic label',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           DSBottomNav(
@@ -398,7 +393,7 @@ void main() {
     });
 
     testWidgets('DSBottomNav items announce tab position',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           DSBottomNav(
@@ -446,7 +441,7 @@ void main() {
 
   group('Accessibility - DSProductCard Semantics', () {
     testWidgets('DSProductCard image has Semantics with image property',
-        (WidgetTester tester) async {
+        (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           const SizedBox(
@@ -467,7 +462,7 @@ void main() {
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
-            widget.properties.image == true &&
+            (widget.properties.image ?? false) &&
             widget.properties.label != null &&
             widget.properties.label!.contains('Test Product'),
       );
@@ -475,7 +470,7 @@ void main() {
     });
 
     testWidgets('DSProductCard uses custom imageSemanticLabel when provided',
-        (WidgetTester tester) async {
+        (tester) async {
       const customLabel = 'Beautiful red sneakers';
       await tester.pumpWidget(
         buildTestableWidget(
@@ -498,7 +493,7 @@ void main() {
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
-            widget.properties.image == true &&
+            (widget.properties.image ?? false) &&
             widget.properties.label == customLabel,
       );
       expect(semanticsFinder, findsOneWidget);

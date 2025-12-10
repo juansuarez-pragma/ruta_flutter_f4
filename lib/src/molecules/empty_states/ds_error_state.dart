@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/atoms/atoms.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Vista para estados de error del sistema de diseño.
 ///
@@ -42,6 +41,7 @@ class DSErrorState extends StatelessWidget {
   /// Ícono a mostrar.
   final IconData icon;
 
+  /// Crea una vista de estado de error con mensaje y opción de reintentar.
   const DSErrorState({
     super.key,
     required this.message,

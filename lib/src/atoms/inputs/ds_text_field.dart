@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// Campo de texto del sistema de diseño.
 ///
@@ -100,6 +99,7 @@ class DSTextField extends StatelessWidget {
   /// Si no se proporciona, se usa el [label] del campo.
   final String? semanticLabel;
 
+  /// Crea un campo de texto con las opciones especificadas.
   const DSTextField({
     super.key,
     this.label,

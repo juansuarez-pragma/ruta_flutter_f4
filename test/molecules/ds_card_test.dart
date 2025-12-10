@@ -1,19 +1,16 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSCard', () {
     group('Rendering', () {
-      testWidgets('renders child content', (WidgetTester tester) async {
+      testWidgets('renders child content', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCard(
@@ -25,7 +22,7 @@ void main() {
         expect(find.text('Card Content'), findsOneWidget);
       });
 
-      testWidgets('applies padding', (WidgetTester tester) async {
+      testWidgets('applies padding', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCard(
@@ -39,7 +36,7 @@ void main() {
       });
 
       testWidgets('renders with custom border radius',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCard(
@@ -54,7 +51,7 @@ void main() {
     });
 
     group('Elevation', () {
-      testWidgets('renders with elevation 0', (WidgetTester tester) async {
+      testWidgets('renders with elevation 0', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCard(
@@ -67,11 +64,10 @@ void main() {
         expect(find.byType(DSCard), findsOneWidget);
       });
 
-      testWidgets('renders with elevation 1', (WidgetTester tester) async {
+      testWidgets('renders with elevation 1', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCard(
-              elevation: 1,
               child: Text('Elevated'),
             ),
           ),
@@ -80,7 +76,7 @@ void main() {
         expect(find.byType(DSCard), findsOneWidget);
       });
 
-      testWidgets('renders with elevation 2', (WidgetTester tester) async {
+      testWidgets('renders with elevation 2', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCard(
@@ -95,7 +91,7 @@ void main() {
     });
 
     group('Interactions', () {
-      testWidgets('calls onTap when tapped', (WidgetTester tester) async {
+      testWidgets('calls onTap when tapped', (tester) async {
         bool wasTapped = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -111,7 +107,7 @@ void main() {
       });
 
       testWidgets('is not tappable when onTap is null',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSCard(

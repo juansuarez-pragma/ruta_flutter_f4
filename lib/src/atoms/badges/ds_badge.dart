@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/enums/enums.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Badge del sistema de diseño.
 ///
@@ -39,6 +38,9 @@ class DSBadge extends StatelessWidget {
   /// Ícono opcional.
   final IconData? icon;
 
+  /// Crea un badge con el tipo y tamaño especificados.
+  ///
+  /// Por defecto crea un badge neutral de tamaño mediano.
   const DSBadge({
     super.key,
     required this.text,
@@ -140,23 +142,18 @@ class DSBadge extends StatelessWidget {
       case DSBadgeType.success:
         backgroundColor = tokens.colorFeedbackSuccessLight;
         textColor = tokens.colorFeedbackSuccess;
-        break;
       case DSBadgeType.error:
         backgroundColor = tokens.colorFeedbackErrorLight;
         textColor = tokens.colorFeedbackError;
-        break;
       case DSBadgeType.warning:
         backgroundColor = tokens.colorFeedbackWarningLight;
         textColor = tokens.colorFeedbackWarning;
-        break;
       case DSBadgeType.info:
         backgroundColor = tokens.colorFeedbackInfoLight;
         textColor = tokens.colorFeedbackInfo;
-        break;
       case DSBadgeType.neutral:
         backgroundColor = tokens.badgeBackground;
         textColor = tokens.badgeText;
-        break;
     }
 
     return Container(

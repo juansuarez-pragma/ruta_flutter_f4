@@ -1,7 +1,6 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 
 /// Calculates the contrast ratio between two colors according to WCAG 2.1
 ///
@@ -10,11 +9,11 @@ import 'package:fake_store_design_system/fake_store_design_system.dart';
 /// - 3:1 is the minimum for WCAG AA (large text)
 /// - 7:1 is the minimum for WCAG AAA (normal text)
 double calculateContrastRatio(Color foreground, Color background) {
-  double luminance1 = foreground.computeLuminance();
-  double luminance2 = background.computeLuminance();
+  final double luminance1 = foreground.computeLuminance();
+  final double luminance2 = background.computeLuminance();
 
-  double lighter = luminance1 > luminance2 ? luminance1 : luminance2;
-  double darker = luminance1 > luminance2 ? luminance2 : luminance1;
+  final double lighter = luminance1 > luminance2 ? luminance1 : luminance2;
+  final double darker = luminance1 > luminance2 ? luminance2 : luminance1;
 
   return (lighter + 0.05) / (darker + 0.05);
 }

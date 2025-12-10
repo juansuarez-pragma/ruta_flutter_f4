@@ -1,14 +1,11 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: child),
   );
-}
 
 // Simple test product class
 class TestProduct {
@@ -44,7 +41,7 @@ void main() {
       image: 'https://example.com/2.jpg',
       title: 'Product 2',
       price: 29.99,
-      rating: TestRating(rate: 4.0, count: 50),
+      rating: TestRating(rate: 4, count: 50),
     ),
     const TestProduct(
       image: 'https://example.com/3.jpg',
@@ -56,11 +53,12 @@ void main() {
   group('DSProductGrid', () {
     group('Loading State', () {
       testWidgets('renders loading state when isLoading is true',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               isLoading: true,
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -69,12 +67,13 @@ void main() {
       });
 
       testWidgets('shows custom loading message',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               isLoading: true,
               loadingMessage: 'Fetching products...',
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -83,11 +82,12 @@ void main() {
       });
 
       testWidgets('uses default loading message',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               isLoading: true,
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -98,11 +98,12 @@ void main() {
 
     group('Error State', () {
       testWidgets('renders error state when error is provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               error: 'Failed to load products',
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -112,13 +113,14 @@ void main() {
       });
 
       testWidgets('calls onRetry when retry button is tapped in error state',
-          (WidgetTester tester) async {
+          (tester) async {
         bool wasRetried = false;
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               error: 'Network error',
               onRetry: () => wasRetried = true,
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -130,11 +132,11 @@ void main() {
 
     group('Empty State', () {
       testWidgets('renders empty state when products is null',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
-              products: null,
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -143,11 +145,12 @@ void main() {
       });
 
       testWidgets('renders empty state when products list is empty',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               products: const [],
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -156,12 +159,13 @@ void main() {
       });
 
       testWidgets('shows custom empty message',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               products: const [],
               emptyMessage: 'No products found',
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -170,11 +174,12 @@ void main() {
       });
 
       testWidgets('uses default empty message',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               products: const [],
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -183,12 +188,13 @@ void main() {
       });
 
       testWidgets('shows reload action in empty state when onRetry provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               products: const [],
               onRetry: () {},
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -199,7 +205,7 @@ void main() {
 
     group('Grid Rendering', () {
       testWidgets('renders GridView when products are provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
@@ -216,7 +222,7 @@ void main() {
       });
 
       testWidgets('renders correct number of items',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
@@ -238,7 +244,7 @@ void main() {
       });
 
       testWidgets('uses custom itemBuilder when provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
@@ -255,24 +261,32 @@ void main() {
         expect(find.text('Custom: Product 2'), findsOneWidget);
       });
 
-      testWidgets('renders with default product card builder',
-          (WidgetTester tester) async {
+      testWidgets('renders products using itemBuilder',
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               products: testProducts,
+              itemBuilder: (context, product, index) => DSProductCard(
+                key: Key('product-card-$index'),
+                imageUrl: product.image,
+                title: product.title,
+                price: product.price,
+                rating: product.rating?.rate,
+                reviewCount: product.rating?.count,
+              ),
             ),
           ),
         );
 
-        // Should attempt to render DSProductCard for products with expected structure
         expect(find.byType(GridView), findsOneWidget);
+        expect(find.byType(DSProductCard), findsWidgets);
       });
     });
 
     group('Grid Configuration', () {
       testWidgets('uses custom crossAxisCount',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
@@ -292,7 +306,7 @@ void main() {
       });
 
       testWidgets('uses default crossAxisCount of 2',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
@@ -311,12 +325,12 @@ void main() {
       });
 
       testWidgets('uses custom childAspectRatio',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               products: testProducts,
-              childAspectRatio: 1.0,
+              childAspectRatio: 1,
               itemBuilder: (context, product, index) => Container(
                 key: Key('product-$index'),
               ),
@@ -331,7 +345,7 @@ void main() {
       });
 
       testWidgets('uses default childAspectRatio of 0.65',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
@@ -352,7 +366,7 @@ void main() {
 
     group('Interactions', () {
       testWidgets('calls onProductTap when item is tapped via itemBuilder',
-          (WidgetTester tester) async {
+          (tester) async {
         TestProduct? tappedProduct;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -373,7 +387,7 @@ void main() {
       });
 
       testWidgets('calls onAddToCart when add to cart is tapped via itemBuilder',
-          (WidgetTester tester) async {
+          (tester) async {
         TestProduct? addedProduct;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -401,13 +415,14 @@ void main() {
 
     group('State Priority', () {
       testWidgets('loading takes priority over error',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               isLoading: true,
               error: 'Some error',
               products: testProducts,
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -417,12 +432,13 @@ void main() {
       });
 
       testWidgets('error takes priority over empty',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               error: 'Network error',
               products: const [],
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );
@@ -432,11 +448,12 @@ void main() {
       });
 
       testWidgets('empty takes priority over grid when no products',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSProductGrid<TestProduct>(
               products: const [],
+              itemBuilder: (context, product, index) => Text(product.title),
             ),
           ),
         );

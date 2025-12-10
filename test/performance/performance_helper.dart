@@ -1,7 +1,6 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 
 /// Performance thresholds based on industry standards
 /// References:
@@ -45,7 +44,7 @@ class PerformanceThresholds {
   static const int widgetTreeDepthMax = 150;
 
   // Rebuild efficiency - rebuild should not be more than 2x initial build
-  static const double rebuildEfficiencyFactor = 3.0;
+  static const double rebuildEfficiencyFactor = 3;
 
   // Const widget rebuild - should be fast but test env adds overhead
   static const int constRebuildMax = 50;
@@ -173,12 +172,10 @@ Future<List<int>> measureFrameTimes(
 }
 
 /// Builds a testable widget with the design system theme
-Widget buildPerformanceTestWidget(Widget child) {
-  return MaterialApp(
+Widget buildPerformanceTestWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: child),
   );
-}
 
 /// Counts the depth of the widget tree
 int measureWidgetTreeDepth(Element element) {

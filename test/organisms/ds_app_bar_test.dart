@@ -1,22 +1,19 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(
       appBar: child as PreferredSizeWidget,
       body: const SizedBox(),
     ),
   );
-}
 
 void main() {
   group('DSAppBar', () {
     group('Rendering', () {
-      testWidgets('renders with title', (WidgetTester tester) async {
+      testWidgets('renders with title', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSAppBar(
@@ -28,7 +25,7 @@ void main() {
         expect(find.text('Home'), findsOneWidget);
       });
 
-      testWidgets('renders with title widget', (WidgetTester tester) async {
+      testWidgets('renders with title widget', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSAppBar(
@@ -40,7 +37,7 @@ void main() {
         expect(find.byIcon(Icons.home), findsOneWidget);
       });
 
-      testWidgets('renders actions', (WidgetTester tester) async {
+      testWidgets('renders actions', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSAppBar(
@@ -66,7 +63,7 @@ void main() {
 
     group('Leading widget', () {
       testWidgets('renders custom leading widget',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSAppBar(
@@ -83,7 +80,7 @@ void main() {
       });
 
       testWidgets('automatically implies leading when in Navigator',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             theme: FakeStoreTheme.light(),
@@ -92,7 +89,6 @@ void main() {
                 builder: (_) => const Scaffold(
                   appBar: DSAppBar(
                     title: 'Details',
-                    automaticallyImplyLeading: true,
                   ),
                   body: SizedBox(),
                 ),
@@ -107,7 +103,7 @@ void main() {
 
     group('Elevation', () {
       testWidgets('renders with custom elevation',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSAppBar(
@@ -120,12 +116,11 @@ void main() {
         expect(find.byType(DSAppBar), findsOneWidget);
       });
 
-      testWidgets('renders with no elevation', (WidgetTester tester) async {
+      testWidgets('renders with no elevation', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSAppBar(
               title: 'Flat',
-              elevation: 0,
             ),
           ),
         );
@@ -136,12 +131,11 @@ void main() {
 
     group('Center title', () {
       testWidgets('centers title when centerTitle is true',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSAppBar(
               title: 'Centered',
-              centerTitle: true,
             ),
           ),
         );

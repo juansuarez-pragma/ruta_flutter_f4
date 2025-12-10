@@ -1,22 +1,19 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(
       body: const SizedBox(),
       bottomNavigationBar: child,
     ),
   );
-}
 
 void main() {
   group('DSBottomNav', () {
     group('Rendering', () {
-      testWidgets('renders all nav items', (WidgetTester tester) async {
+      testWidgets('renders all nav items', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSBottomNav(
@@ -36,7 +33,7 @@ void main() {
         expect(find.text('Profile'), findsOneWidget);
       });
 
-      testWidgets('renders icons', (WidgetTester tester) async {
+      testWidgets('renders icons', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSBottomNav(
@@ -55,7 +52,7 @@ void main() {
       });
 
       testWidgets('renders selected icon when provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSBottomNav(
@@ -79,7 +76,7 @@ void main() {
     });
 
     group('Badge', () {
-      testWidgets('renders badge count', (WidgetTester tester) async {
+      testWidgets('renders badge count', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSBottomNav(
@@ -101,7 +98,7 @@ void main() {
       });
 
       testWidgets('shows 99+ for large badge counts',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSBottomNav(
@@ -123,7 +120,7 @@ void main() {
       });
 
       testWidgets('does not show badge when count is 0',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSBottomNav(
@@ -146,7 +143,7 @@ void main() {
     });
 
     group('Selection', () {
-      testWidgets('highlights selected item', (WidgetTester tester) async {
+      testWidgets('highlights selected item', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSBottomNav(
@@ -167,7 +164,7 @@ void main() {
 
     group('Interactions', () {
       testWidgets('calls onTap with correct index when item is tapped',
-          (WidgetTester tester) async {
+          (tester) async {
         int? tappedIndex;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -195,7 +192,7 @@ void main() {
 
     group('Styling', () {
       testWidgets('renders with custom background color',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSBottomNav(
@@ -213,7 +210,7 @@ void main() {
         expect(find.byType(DSBottomNav), findsOneWidget);
       });
 
-      testWidgets('renders with elevation', (WidgetTester tester) async {
+      testWidgets('renders with elevation', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSBottomNav(

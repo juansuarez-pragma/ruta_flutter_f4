@@ -1,7 +1,7 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'golden_test_helper.dart';
 
 void main() {
@@ -39,11 +39,11 @@ void main() {
       testWidgets('dark theme types match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Wrap(
+            const Wrap(
               spacing: 8,
               runSpacing: 8,
               alignment: WrapAlignment.center,
-              children: const [
+              children: [
                 DSBadge.success(text: 'Success'),
                 DSBadge.error(text: 'Error'),
                 DSBadge.warning(text: 'Warning'),
@@ -67,11 +67,11 @@ void main() {
       testWidgets('dark theme elevations match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Wrap(
+            const Wrap(
               spacing: 8,
               runSpacing: 8,
               alignment: WrapAlignment.center,
-              children: const [
+              children: [
                 DSCard(
                   elevation: 0,
                   child: Padding(
@@ -80,7 +80,6 @@ void main() {
                   ),
                 ),
                 DSCard(
-                  elevation: 1,
                   child: Padding(
                     padding: EdgeInsets.all(12),
                     child: Text('Elev 1'),
@@ -111,11 +110,11 @@ void main() {
       testWidgets('dark theme variants match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 DSText.headingMedium('Heading Medium'),
                 SizedBox(height: 4),
                 DSText.bodyLarge('Body Large'),

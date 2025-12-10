@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/foundations/foundations.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/enums/enums.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Botón de ícono del sistema de diseño.
 ///
@@ -47,6 +46,9 @@ class DSIconButton extends StatelessWidget {
   /// Si el botón está en estado de carga.
   final bool isLoading;
 
+  /// Crea un botón de ícono con la variante y tamaño especificados.
+  ///
+  /// Por defecto crea un botón ghost de tamaño mediano.
   const DSIconButton({
     super.key,
     required this.icon,
@@ -122,7 +124,6 @@ class DSIconButton extends StatelessWidget {
                       icon,
                       size: _iconSize,
                       color: colors.foreground,
-                      semanticLabel: null, // Handled by parent Semantics
                     ),
             ),
           ),
@@ -131,7 +132,7 @@ class DSIconButton extends StatelessWidget {
     );
 
     if (tooltip != null) {
-      button = Tooltip(message: tooltip!, child: button);
+      button = Tooltip(message: tooltip, child: button);
     }
 
     return button;

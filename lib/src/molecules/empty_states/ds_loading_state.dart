@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/atoms/atoms.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/enums/enums.dart';
+import 'package:flutter/material.dart';
 
 /// Vista para estados de carga del sistema de diseño.
 ///
@@ -28,6 +27,7 @@ class DSLoadingState extends StatelessWidget {
   /// Tamaño del loader.
   final DSLoaderSize size;
 
+  /// Crea una vista de estado de carga con un loader circular.
   const DSLoadingState({
     super.key,
     this.message,
@@ -35,12 +35,10 @@ class DSLoadingState extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
+  Widget build(BuildContext context) => Center(
       child: Padding(
         padding: const EdgeInsets.all(DSSpacing.xxl),
         child: DSCircularLoader(size: size, message: message),
       ),
     );
-  }
 }

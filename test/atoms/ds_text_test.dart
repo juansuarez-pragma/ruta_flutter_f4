@@ -1,19 +1,16 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSText', () {
     group('Rendering', () {
-      testWidgets('renders text content', (WidgetTester tester) async {
+      testWidgets('renders text content', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText('Hello World'),
@@ -23,7 +20,7 @@ void main() {
         expect(find.text('Hello World'), findsOneWidget);
       });
 
-      testWidgets('applies custom color', (WidgetTester tester) async {
+      testWidgets('applies custom color', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText(
@@ -37,7 +34,7 @@ void main() {
         expect(textWidget.style?.color, equals(Colors.red));
       });
 
-      testWidgets('applies text alignment', (WidgetTester tester) async {
+      testWidgets('applies text alignment', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText(
@@ -51,7 +48,7 @@ void main() {
         expect(textWidget.textAlign, equals(TextAlign.center));
       });
 
-      testWidgets('applies max lines', (WidgetTester tester) async {
+      testWidgets('applies max lines', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText(
@@ -65,7 +62,7 @@ void main() {
         expect(textWidget.maxLines, equals(2));
       });
 
-      testWidgets('applies overflow', (WidgetTester tester) async {
+      testWidgets('applies overflow', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText(
@@ -81,7 +78,7 @@ void main() {
     });
 
     group('Variants', () {
-      testWidgets('renders headingLarge variant', (WidgetTester tester) async {
+      testWidgets('renders headingLarge variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.headingLarge('Heading Large'),
@@ -92,7 +89,7 @@ void main() {
       });
 
       testWidgets('renders headingMedium variant',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.headingMedium('Heading Medium'),
@@ -102,7 +99,7 @@ void main() {
         expect(find.text('Heading Medium'), findsOneWidget);
       });
 
-      testWidgets('renders headingSmall variant', (WidgetTester tester) async {
+      testWidgets('renders headingSmall variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.headingSmall('Heading Small'),
@@ -112,7 +109,7 @@ void main() {
         expect(find.text('Heading Small'), findsOneWidget);
       });
 
-      testWidgets('renders titleLarge variant', (WidgetTester tester) async {
+      testWidgets('renders titleLarge variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.titleLarge('Title Large'),
@@ -122,7 +119,7 @@ void main() {
         expect(find.text('Title Large'), findsOneWidget);
       });
 
-      testWidgets('renders titleMedium variant', (WidgetTester tester) async {
+      testWidgets('renders titleMedium variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.titleMedium('Title Medium'),
@@ -132,7 +129,7 @@ void main() {
         expect(find.text('Title Medium'), findsOneWidget);
       });
 
-      testWidgets('renders label variant', (WidgetTester tester) async {
+      testWidgets('renders label variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.label('Label Text'),
@@ -142,7 +139,7 @@ void main() {
         expect(find.text('Label Text'), findsOneWidget);
       });
 
-      testWidgets('renders bodyLarge variant', (WidgetTester tester) async {
+      testWidgets('renders bodyLarge variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.bodyLarge('Body Large'),
@@ -152,7 +149,7 @@ void main() {
         expect(find.text('Body Large'), findsOneWidget);
       });
 
-      testWidgets('renders bodyMedium variant', (WidgetTester tester) async {
+      testWidgets('renders bodyMedium variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.bodyMedium('Body Medium'),
@@ -162,7 +159,7 @@ void main() {
         expect(find.text('Body Medium'), findsOneWidget);
       });
 
-      testWidgets('renders bodySmall variant', (WidgetTester tester) async {
+      testWidgets('renders bodySmall variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.bodySmall('Body Small'),
@@ -172,7 +169,7 @@ void main() {
         expect(find.text('Body Small'), findsOneWidget);
       });
 
-      testWidgets('renders caption variant', (WidgetTester tester) async {
+      testWidgets('renders caption variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSText.caption('Caption'),

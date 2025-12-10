@@ -1,19 +1,16 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSIconButton', () {
     group('Rendering', () {
-      testWidgets('renders with icon', (WidgetTester tester) async {
+      testWidgets('renders with icon', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -26,7 +23,7 @@ void main() {
         expect(find.byIcon(Icons.favorite), findsOneWidget);
       });
 
-      testWidgets('renders with tooltip', (WidgetTester tester) async {
+      testWidgets('renders with tooltip', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -41,7 +38,7 @@ void main() {
       });
 
       testWidgets('shows loading indicator when isLoading is true',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -57,7 +54,7 @@ void main() {
         expect(find.byIcon(Icons.save), findsNothing);
       });
 
-      testWidgets('hides icon when loading', (WidgetTester tester) async {
+      testWidgets('hides icon when loading', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -73,7 +70,7 @@ void main() {
     });
 
     group('Variants', () {
-      testWidgets('renders primary variant', (WidgetTester tester) async {
+      testWidgets('renders primary variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -87,7 +84,7 @@ void main() {
         expect(find.byType(DSIconButton), findsOneWidget);
       });
 
-      testWidgets('renders secondary variant', (WidgetTester tester) async {
+      testWidgets('renders secondary variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -102,7 +99,7 @@ void main() {
       });
 
       testWidgets('renders ghost variant by default',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -115,7 +112,7 @@ void main() {
         expect(find.byType(DSIconButton), findsOneWidget);
       });
 
-      testWidgets('renders danger variant', (WidgetTester tester) async {
+      testWidgets('renders danger variant', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -131,7 +128,7 @@ void main() {
     });
 
     group('Sizes', () {
-      testWidgets('renders small size', (WidgetTester tester) async {
+      testWidgets('renders small size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -148,7 +145,7 @@ void main() {
       });
 
       testWidgets('renders medium size by default',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -163,7 +160,7 @@ void main() {
         expect(buttonSize.height, equals(DSSizes.buttonMd));
       });
 
-      testWidgets('renders large size', (WidgetTester tester) async {
+      testWidgets('renders large size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -181,7 +178,7 @@ void main() {
     });
 
     group('Interactions', () {
-      testWidgets('calls onPressed when tapped', (WidgetTester tester) async {
+      testWidgets('calls onPressed when tapped', (tester) async {
         bool wasPressed = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -197,13 +194,12 @@ void main() {
       });
 
       testWidgets('does not call onPressed when disabled',
-          (WidgetTester tester) async {
-        bool wasPressed = false;
+          (tester) async {
+        const bool wasPressed = false;
         await tester.pumpWidget(
           buildTestableWidget(
             const DSIconButton(
               icon: Icons.favorite,
-              onPressed: null,
             ),
           ),
         );
@@ -213,7 +209,7 @@ void main() {
       });
 
       testWidgets('does not call onPressed when loading',
-          (WidgetTester tester) async {
+          (tester) async {
         bool wasPressed = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -229,7 +225,7 @@ void main() {
         expect(wasPressed, isFalse);
       });
 
-      testWidgets('shows tooltip on long press', (WidgetTester tester) async {
+      testWidgets('shows tooltip on long press', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -249,7 +245,7 @@ void main() {
 
     group('States', () {
       testWidgets('is enabled when onPressed is provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -269,12 +265,11 @@ void main() {
       });
 
       testWidgets('is disabled when onPressed is null',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSIconButton(
               icon: Icons.star,
-              onPressed: null,
             ),
           ),
         );
@@ -288,7 +283,7 @@ void main() {
         expect(semantics.properties.enabled, isFalse);
       });
 
-      testWidgets('is disabled when loading', (WidgetTester tester) async {
+      testWidgets('is disabled when loading', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -311,7 +306,7 @@ void main() {
 
     group('Accessibility', () {
       testWidgets('has Semantics wrapper with button property',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -331,7 +326,7 @@ void main() {
       });
 
       testWidgets('uses tooltip as semantic label when provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -352,7 +347,7 @@ void main() {
       });
 
       testWidgets('generates semantic label with variant when no tooltip',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -374,7 +369,7 @@ void main() {
       });
 
       testWidgets('includes loading state in semantic label',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(
@@ -395,7 +390,7 @@ void main() {
       });
 
       testWidgets('button size meets minimum touch target (44px)',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             DSIconButton(

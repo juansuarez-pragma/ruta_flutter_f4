@@ -1,7 +1,7 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'responsive_helper.dart';
 
 void main() {
@@ -15,7 +15,6 @@ void main() {
         await tester.pumpWidget(
           buildResponsiveTestWidget(
             const DSText.bodyMedium('Sample Text'),
-            textScaleFactor: TextScaleFactors.normal,
           ),
         );
 
@@ -78,7 +77,6 @@ void main() {
           await tester.pumpWidget(
             buildResponsiveTestWidget(
               variant,
-              textScaleFactor: TextScaleFactors.normal,
             ),
           );
           expect(find.byType(DSText), findsOneWidget);
@@ -104,7 +102,6 @@ void main() {
         await tester.pumpWidget(
           buildResponsiveTestWidget(
             DSButton.primary(text: 'Click Me', onPressed: () {}),
-            textScaleFactor: TextScaleFactors.normal,
           ),
         );
 
@@ -184,7 +181,6 @@ void main() {
         await tester.pumpWidget(
           buildResponsiveTestWidget(
             const DSBadge.success(text: 'Active'),
-            textScaleFactor: TextScaleFactors.normal,
           ),
         );
 
@@ -247,7 +243,6 @@ void main() {
               hint: 'Enter your email',
               controller: TextEditingController(),
             ),
-            textScaleFactor: TextScaleFactors.normal,
           ),
         );
 
@@ -310,7 +305,6 @@ void main() {
             buildResponsiveTestWidget(
               DSFilterChip(
                 label: 'Category',
-                isSelected: false,
                 onTap: () {},
               ),
               textScaleFactor: scale,
@@ -424,14 +418,12 @@ void main() {
           await tester.pumpWidget(
             MaterialApp(
               theme: FakeStoreTheme.light(),
-              builder: (context, child) {
-                return MediaQuery(
+              builder: (context, child) => MediaQuery(
                   data: MediaQuery.of(context).copyWith(
                     textScaler: TextScaler.linear(scale),
                   ),
                   child: child!,
-                );
-              },
+                ),
               home: Scaffold(
                 bottomNavigationBar: DSBottomNav(
                   currentIndex: 0,
@@ -466,19 +458,17 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             theme: FakeStoreTheme.light(),
-            builder: (context, child) {
-              return MediaQuery(
+            builder: (context, child) => MediaQuery(
                 data: MediaQuery.of(context).copyWith(
-                  textScaler: TextScaler.linear(TextScaleFactors.large),
+                  textScaler: const TextScaler.linear(TextScaleFactors.large),
                 ),
                 child: child!,
-              );
-            },
-            home: Scaffold(
+              ),
+            home: const Scaffold(
               appBar: DSAppBar(
                 title: 'Application Title',
               ),
-              body: const SizedBox(),
+              body: SizedBox(),
             ),
           ),
         );
@@ -498,7 +488,7 @@ void main() {
           DSButton.primary(text: 'Button', onPressed: () {}),
           const DSBadge.success(text: 'Badge'),
           const DSText.bodyMedium('Text content'),
-          DSFilterChip(label: 'Chip', isSelected: false, onTap: () {}),
+          DSFilterChip(label: 'Chip', onTap: () {}),
         ];
 
         for (final widget in widgets) {

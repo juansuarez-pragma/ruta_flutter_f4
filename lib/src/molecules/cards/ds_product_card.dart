@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/atoms/atoms.dart';
+import 'package:fake_store_design_system/src/molecules/cards/ds_card.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/enums/enums.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
-import 'package:fake_store_design_system/src/molecules/cards/ds_card.dart';
+import 'package:flutter/material.dart';
 
 /// Card especializada para mostrar productos.
 ///
@@ -77,6 +76,7 @@ class DSProductCard extends StatelessWidget {
   /// se usa el [title] del producto.
   final String? imageSemanticLabel;
 
+  /// Crea una card de producto con imagen, título, precio y acciones.
   const DSProductCard({
     super.key,
     required this.imageUrl,
@@ -100,7 +100,6 @@ class DSProductCard extends StatelessWidget {
     return DSCard(
       padding: EdgeInsets.zero,
       onTap: onTap,
-      elevation: 1,
       child: AspectRatio(
         aspectRatio: aspectRatio,
         child: Column(
@@ -125,7 +124,7 @@ class DSProductCard extends StatelessWidget {
                             imageUrl,
                             fit: BoxFit.contain,
                             semanticLabel: '', // Handled by parent Semantics
-                            errorBuilder: (_, __, ___) => Container(
+                            errorBuilder: (_, __, ___) => ColoredBox(
                               color: tokens.colorSurfaceSecondary,
                               child: Icon(
                                 Icons.image_not_supported_outlined,
@@ -135,9 +134,9 @@ class DSProductCard extends StatelessWidget {
                             ),
                             loadingBuilder: (_, child, loadingProgress) {
                               if (loadingProgress == null) return child;
-                              return Container(
+                              return ColoredBox(
                                 color: tokens.colorSurfaceSecondary,
-                                child: Center(
+                                child: const Center(
                                   child: DSCircularLoader(
                                     size: DSLoaderSize.small,
                                   ),

@@ -1,19 +1,16 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSBadge', () {
     group('Rendering', () {
-      testWidgets('renders with text', (WidgetTester tester) async {
+      testWidgets('renders with text', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge(text: 'New'),
@@ -23,7 +20,7 @@ void main() {
         expect(find.text('New'), findsOneWidget);
       });
 
-      testWidgets('renders with icon', (WidgetTester tester) async {
+      testWidgets('renders with icon', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge(
@@ -38,7 +35,7 @@ void main() {
     });
 
     group('Types', () {
-      testWidgets('renders success type', (WidgetTester tester) async {
+      testWidgets('renders success type', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge.success(text: 'Active'),
@@ -48,7 +45,7 @@ void main() {
         expect(find.text('Active'), findsOneWidget);
       });
 
-      testWidgets('renders error type', (WidgetTester tester) async {
+      testWidgets('renders error type', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge.error(text: 'Sold Out'),
@@ -58,7 +55,7 @@ void main() {
         expect(find.text('Sold Out'), findsOneWidget);
       });
 
-      testWidgets('renders warning type', (WidgetTester tester) async {
+      testWidgets('renders warning type', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge.warning(text: 'Low Stock'),
@@ -68,7 +65,7 @@ void main() {
         expect(find.text('Low Stock'), findsOneWidget);
       });
 
-      testWidgets('renders info type', (WidgetTester tester) async {
+      testWidgets('renders info type', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge.info(text: 'Featured'),
@@ -79,7 +76,7 @@ void main() {
       });
 
       testWidgets('renders neutral type by default',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge(text: 'Default'),
@@ -91,7 +88,7 @@ void main() {
     });
 
     group('Sizes', () {
-      testWidgets('renders small size', (WidgetTester tester) async {
+      testWidgets('renders small size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge(
@@ -104,12 +101,11 @@ void main() {
         expect(find.byType(DSBadge), findsOneWidget);
       });
 
-      testWidgets('renders medium size', (WidgetTester tester) async {
+      testWidgets('renders medium size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge(
               text: 'Medium',
-              size: DSBadgeSize.medium,
             ),
           ),
         );
@@ -117,7 +113,7 @@ void main() {
         expect(find.byType(DSBadge), findsOneWidget);
       });
 
-      testWidgets('renders large size', (WidgetTester tester) async {
+      testWidgets('renders large size', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSBadge(

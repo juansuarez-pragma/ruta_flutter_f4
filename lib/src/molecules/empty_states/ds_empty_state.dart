@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/atoms/atoms.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Vista para estados vacíos del sistema de diseño.
 ///
@@ -48,6 +47,7 @@ class DSEmptyState extends StatelessWidget {
   /// Tamaño del ícono.
   final double iconSize;
 
+  /// Crea una vista de estado vacío con ícono, título y acción opcional.
   const DSEmptyState({
     super.key,
     required this.icon,

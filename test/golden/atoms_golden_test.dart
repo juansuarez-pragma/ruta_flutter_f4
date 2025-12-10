@@ -1,7 +1,7 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'golden_test_helper.dart';
 
 void main() {
@@ -48,7 +48,6 @@ void main() {
                 const SizedBox(height: 8),
                 DSButton(
                   text: 'Medium',
-                  size: DSButtonSize.medium,
                   onPressed: () {},
                 ),
                 const SizedBox(height: 8),
@@ -72,15 +71,15 @@ void main() {
       testWidgets('disabled states match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const DSButton.primary(text: 'Primary Disabled'),
-                const SizedBox(height: 8),
-                const DSButton.secondary(text: 'Secondary Disabled'),
-                const SizedBox(height: 8),
-                const DSButton.danger(text: 'Danger Disabled'),
+                DSButton.primary(text: 'Primary Disabled'),
+                SizedBox(height: 8),
+                DSButton.secondary(text: 'Secondary Disabled'),
+                SizedBox(height: 8),
+                DSButton.danger(text: 'Danger Disabled'),
               ],
             ),
             size: const Size(300, 200),
@@ -115,7 +114,6 @@ void main() {
                 const SizedBox(width: 8),
                 DSIconButton(
                   icon: Icons.favorite,
-                  variant: DSButtonVariant.ghost,
                   onPressed: () {},
                 ),
                 const SizedBox(width: 8),
@@ -141,11 +139,11 @@ void main() {
       testWidgets('types match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Wrap(
+            const Wrap(
               spacing: 8,
               runSpacing: 8,
               alignment: WrapAlignment.center,
-              children: const [
+              children: [
                 DSBadge.success(text: 'Success'),
                 DSBadge.error(text: 'Error'),
                 DSBadge.warning(text: 'Warning'),
@@ -166,12 +164,12 @@ void main() {
       testWidgets('sizes match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 DSBadge(text: 'Small', size: DSBadgeSize.small),
                 SizedBox(height: 8),
-                DSBadge(text: 'Medium', size: DSBadgeSize.medium),
+                DSBadge(text: 'Medium'),
                 SizedBox(height: 8),
                 DSBadge(text: 'Large', size: DSBadgeSize.large),
               ],
@@ -191,11 +189,11 @@ void main() {
       testWidgets('variants match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 DSText.headingMedium('Heading Medium'),
                 SizedBox(height: 4),
                 DSText.bodyMedium('Body Medium'),
@@ -218,12 +216,12 @@ void main() {
       testWidgets('sizes match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 DSCircularLoader(size: DSLoaderSize.small),
                 SizedBox(width: 16),
-                DSCircularLoader(size: DSLoaderSize.medium),
+                DSCircularLoader(),
                 SizedBox(width: 16),
                 DSCircularLoader(size: DSLoaderSize.large),
               ],
@@ -246,16 +244,16 @@ void main() {
       testWidgets('shapes match golden', (tester) async {
         await tester.pumpWidget(
           buildGoldenTestWidget(
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const DSSkeleton(width: 200, height: 20),
-                const SizedBox(height: 8),
-                const DSSkeleton.circular(size: 50),
-                const SizedBox(height: 8),
-                const DSSkeleton.text(width: 200),
-                const SizedBox(height: 8),
-                const DSSkeleton.title(width: 200),
+                DSSkeleton(width: 200, height: 20),
+                SizedBox(height: 8),
+                DSSkeleton.circular(size: 50),
+                SizedBox(height: 8),
+                DSSkeleton.text(width: 200),
+                SizedBox(height: 8),
+                DSSkeleton.title(width: 200),
               ],
             ),
             size: const Size(300, 200),

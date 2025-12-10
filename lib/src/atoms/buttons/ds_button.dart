@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/foundations/foundations.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/enums/enums.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Botón base del sistema de diseño.
 ///
@@ -65,6 +64,9 @@ class DSButton extends StatelessWidget {
   /// Si el botón ocupa todo el ancho disponible.
   final bool isFullWidth;
 
+  /// Crea un botón con la variante y tamaño especificados.
+  ///
+  /// Por defecto crea un botón primario de tamaño mediano.
   const DSButton({
     super.key,
     required this.text,
@@ -211,8 +213,7 @@ class DSButton extends StatelessWidget {
     BuildContext context,
     DSThemeData tokens,
     bool isDisabled,
-  ) {
-    return ElevatedButton(
+  ) => ElevatedButton(
       onPressed: isDisabled ? null : onPressed,
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.resolveWith((states) {
@@ -247,14 +248,12 @@ class DSButton extends StatelessWidget {
         isDisabled,
       ),
     );
-  }
 
   Widget _buildSecondaryButton(
     BuildContext context,
     DSThemeData tokens,
     bool isDisabled,
-  ) {
-    return OutlinedButton(
+  ) => OutlinedButton(
       onPressed: isDisabled ? null : onPressed,
       style: ButtonStyle(
         foregroundColor: WidgetStateProperty.resolveWith((states) {
@@ -279,12 +278,10 @@ class DSButton extends StatelessWidget {
           if (states.contains(WidgetState.disabled)) {
             return BorderSide(
               color: tokens.buttonSecondaryTextDisabled,
-              width: DSSizes.borderThin,
             );
           }
           return BorderSide(
             color: tokens.buttonSecondaryBorder,
-            width: DSSizes.borderThin,
           );
         }),
         padding: WidgetStatePropertyAll(_padding),
@@ -300,14 +297,12 @@ class DSButton extends StatelessWidget {
         isDisabled,
       ),
     );
-  }
 
   Widget _buildGhostButton(
     BuildContext context,
     DSThemeData tokens,
     bool isDisabled,
-  ) {
-    return TextButton(
+  ) => TextButton(
       onPressed: isDisabled ? null : onPressed,
       style: ButtonStyle(
         foregroundColor: WidgetStateProperty.resolveWith((states) {
@@ -341,14 +336,12 @@ class DSButton extends StatelessWidget {
         isDisabled,
       ),
     );
-  }
 
   Widget _buildDangerButton(
     BuildContext context,
     DSThemeData tokens,
     bool isDisabled,
-  ) {
-    return ElevatedButton(
+  ) => ElevatedButton(
       onPressed: isDisabled ? null : onPressed,
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.resolveWith((states) {
@@ -383,7 +376,6 @@ class DSButton extends StatelessWidget {
         isDisabled,
       ),
     );
-  }
 
   Widget _buildContent(Color textColor, Color disabledColor, bool isDisabled) {
     if (isLoading) {

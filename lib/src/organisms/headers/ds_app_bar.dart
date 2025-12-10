@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// AppBar del sistema de diseño.
 ///
@@ -67,6 +66,7 @@ class DSAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Altura de la AppBar.
   final double toolbarHeight;
 
+  /// Crea una barra de aplicación con título, acciones y estilos personalizados.
   const DSAppBar({
     super.key,
     this.title,

@@ -27,13 +27,11 @@ abstract final class DSElevation {
       color: Color(0x1A000000), // 10% opacity
       blurRadius: 3,
       offset: Offset(0, 1),
-      spreadRadius: 0,
     ),
     BoxShadow(
       color: Color(0x0D000000), // 5% opacity
       blurRadius: 2,
       offset: Offset(0, 1),
-      spreadRadius: 0,
     ),
   ];
 
@@ -45,13 +43,11 @@ abstract final class DSElevation {
       color: Color(0x1A000000), // 10% opacity
       blurRadius: 6,
       offset: Offset(0, 2),
-      spreadRadius: 0,
     ),
     BoxShadow(
       color: Color(0x0D000000), // 5% opacity
       blurRadius: 4,
       offset: Offset(0, 1),
-      spreadRadius: 0,
     ),
   ];
 
@@ -63,13 +59,11 @@ abstract final class DSElevation {
       color: Color(0x1F000000), // 12% opacity
       blurRadius: 10,
       offset: Offset(0, 4),
-      spreadRadius: 0,
     ),
     BoxShadow(
       color: Color(0x0D000000), // 5% opacity
       blurRadius: 6,
       offset: Offset(0, 2),
-      spreadRadius: 0,
     ),
   ];
 
@@ -81,13 +75,11 @@ abstract final class DSElevation {
       color: Color(0x26000000), // 15% opacity
       blurRadius: 16,
       offset: Offset(0, 8),
-      spreadRadius: 0,
     ),
     BoxShadow(
       color: Color(0x0D000000), // 5% opacity
       blurRadius: 8,
       offset: Offset(0, 4),
-      spreadRadius: 0,
     ),
   ];
 
@@ -99,13 +91,11 @@ abstract final class DSElevation {
       color: Color(0x33000000), // 20% opacity
       blurRadius: 24,
       offset: Offset(0, 12),
-      spreadRadius: 0,
     ),
     BoxShadow(
       color: Color(0x14000000), // 8% opacity
       blurRadius: 12,
       offset: Offset(0, 6),
-      spreadRadius: 0,
     ),
   ];
 
@@ -119,7 +109,6 @@ abstract final class DSElevation {
       color: Color(0x40000000), // 25% opacity
       blurRadius: 4,
       offset: Offset(0, 1),
-      spreadRadius: 0,
     ),
   ];
 
@@ -129,7 +118,6 @@ abstract final class DSElevation {
       color: Color(0x4D000000), // 30% opacity
       blurRadius: 8,
       offset: Offset(0, 2),
-      spreadRadius: 0,
     ),
   ];
 
@@ -139,7 +127,6 @@ abstract final class DSElevation {
       color: Color(0x59000000), // 35% opacity
       blurRadius: 12,
       offset: Offset(0, 4),
-      spreadRadius: 0,
     ),
   ];
 
@@ -149,7 +136,6 @@ abstract final class DSElevation {
       color: Color(0x66000000), // 40% opacity
       blurRadius: 20,
       offset: Offset(0, 8),
-      spreadRadius: 0,
     ),
   ];
 
@@ -159,7 +145,6 @@ abstract final class DSElevation {
       color: Color(0x73000000), // 45% opacity
       blurRadius: 28,
       offset: Offset(0, 12),
-      spreadRadius: 0,
     ),
   ];
 }

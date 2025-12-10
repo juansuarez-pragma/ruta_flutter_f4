@@ -598,8 +598,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     List<BoxShadow>? elevationLevel3,
     List<BoxShadow>? elevationLevel4,
     List<BoxShadow>? elevationLevel5,
-  }) {
-    return DSThemeData(
+  }) => DSThemeData(
       // Surface
       colorSurfacePrimary: colorSurfacePrimary ?? this.colorSurfacePrimary,
       colorSurfaceSecondary:
@@ -752,7 +751,6 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       elevationLevel4: elevationLevel4 ?? this.elevationLevel4,
       elevationLevel5: elevationLevel5 ?? this.elevationLevel5,
     );
-  }
 
   @override
   DSThemeData lerp(covariant DSThemeData? other, double t) {

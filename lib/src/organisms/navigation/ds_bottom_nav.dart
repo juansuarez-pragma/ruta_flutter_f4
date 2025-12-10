@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:fake_store_design_system/src/foundations/foundations.dart';
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
+import 'package:flutter/material.dart';
 
 /// Item de navegación inferior.
 class DSBottomNavItem {
@@ -18,6 +17,7 @@ class DSBottomNavItem {
   /// Contador de badge (ej: items en carrito).
   final int? badgeCount;
 
+  /// Crea un item de navegación inferior con ícono y etiqueta.
   const DSBottomNavItem({
     required this.icon,
     this.selectedIcon,
@@ -58,6 +58,7 @@ class DSBottomNav extends StatelessWidget {
   /// Elevación.
   final double elevation;
 
+  /// Crea una barra de navegación inferior con los items especificados.
   const DSBottomNav({
     super.key,
     required this.currentIndex,
@@ -71,13 +72,12 @@ class DSBottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: backgroundColor ?? tokens.colorSurfacePrimary,
         border: Border(
           top: BorderSide(
             color: tokens.colorBorderSecondary,
-            width: DSSizes.borderThin,
           ),
         ),
         boxShadow: elevation > 0 ? tokens.elevationLevel2 : null,

@@ -1,19 +1,16 @@
+import 'package:fake_store_design_system/fake_store_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fake_store_design_system/fake_store_design_system.dart';
-
-Widget buildTestableWidget(Widget child) {
-  return MaterialApp(
+Widget buildTestableWidget(Widget child) => MaterialApp(
     theme: FakeStoreTheme.light(),
     home: Scaffold(body: Center(child: child)),
   );
-}
 
 void main() {
   group('DSTextField', () {
     group('Rendering', () {
-      testWidgets('renders with label', (WidgetTester tester) async {
+      testWidgets('renders with label', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -25,7 +22,7 @@ void main() {
         expect(find.text('Email'), findsOneWidget);
       });
 
-      testWidgets('renders with hint text', (WidgetTester tester) async {
+      testWidgets('renders with hint text', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -37,7 +34,7 @@ void main() {
         expect(find.text('Enter your email'), findsOneWidget);
       });
 
-      testWidgets('renders with label and hint', (WidgetTester tester) async {
+      testWidgets('renders with label and hint', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -51,7 +48,7 @@ void main() {
         expect(find.text('example@email.com'), findsOneWidget);
       });
 
-      testWidgets('renders with prefix icon', (WidgetTester tester) async {
+      testWidgets('renders with prefix icon', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -64,7 +61,7 @@ void main() {
         expect(find.byIcon(Icons.search), findsOneWidget);
       });
 
-      testWidgets('renders with suffix icon', (WidgetTester tester) async {
+      testWidgets('renders with suffix icon', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -78,7 +75,7 @@ void main() {
       });
 
       testWidgets('renders with both prefix and suffix icons',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -93,7 +90,7 @@ void main() {
         expect(find.byIcon(Icons.clear), findsOneWidget);
       });
 
-      testWidgets('renders with helper text', (WidgetTester tester) async {
+      testWidgets('renders with helper text', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -109,7 +106,7 @@ void main() {
 
     group('States', () {
       testWidgets('renders in enabled state by default',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -123,7 +120,7 @@ void main() {
       });
 
       testWidgets('renders in disabled state when enabled is false',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -138,7 +135,7 @@ void main() {
       });
 
       testWidgets('renders error state with error text',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -152,12 +149,11 @@ void main() {
       });
 
       testWidgets('does not render error when errorText is null',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
               label: 'Email',
-              errorText: null,
             ),
           ),
         );
@@ -168,7 +164,7 @@ void main() {
       });
 
       testWidgets('does not render error when errorText is empty',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -183,7 +179,7 @@ void main() {
       });
 
       testWidgets('obscures text when obscureText is true',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -198,7 +194,7 @@ void main() {
       });
 
       testWidgets('does not obscure text by default',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -212,7 +208,7 @@ void main() {
       });
 
       testWidgets('renders read-only when readOnly is true',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -229,7 +225,7 @@ void main() {
 
     group('Validation', () {
       testWidgets('shows error text when provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -243,7 +239,7 @@ void main() {
       });
 
       testWidgets('respects maxLength constraint',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -260,7 +256,7 @@ void main() {
 
     group('Interactions', () {
       testWidgets('calls onChanged when text changes',
-          (WidgetTester tester) async {
+          (tester) async {
         String? changedValue;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -276,7 +272,7 @@ void main() {
       });
 
       testWidgets('calls onSubmitted when submitted',
-          (WidgetTester tester) async {
+          (tester) async {
         String? submittedValue;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -293,7 +289,7 @@ void main() {
       });
 
       testWidgets('calls onSuffixIconTap when suffix icon is tapped',
-          (WidgetTester tester) async {
+          (tester) async {
         bool wasTapped = false;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -310,7 +306,7 @@ void main() {
       });
 
       testWidgets('does not accept input when disabled',
-          (WidgetTester tester) async {
+          (tester) async {
         String? changedValue;
         await tester.pumpWidget(
           buildTestableWidget(
@@ -326,7 +322,7 @@ void main() {
         expect(changedValue, isNull);
       });
 
-      testWidgets('uses provided controller', (WidgetTester tester) async {
+      testWidgets('uses provided controller', (tester) async {
         final controller = TextEditingController(text: 'Initial');
         await tester.pumpWidget(
           buildTestableWidget(
@@ -342,7 +338,7 @@ void main() {
       });
 
       testWidgets('autofocuses when autofocus is true',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -358,7 +354,7 @@ void main() {
     });
 
     group('Accessibility', () {
-      testWidgets('has Semantics wrapper', (WidgetTester tester) async {
+      testWidgets('has Semantics wrapper', (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -371,7 +367,7 @@ void main() {
       });
 
       testWidgets('uses label as semantic label by default',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -390,7 +386,7 @@ void main() {
       });
 
       testWidgets('uses custom semanticLabel when provided',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -410,7 +406,7 @@ void main() {
       });
 
       testWidgets('includes error in semantic hint when error exists',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -430,7 +426,7 @@ void main() {
       });
 
       testWidgets('indicates disabled state in semantics',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
@@ -450,7 +446,7 @@ void main() {
       });
 
       testWidgets('indicates password field in semantic hint',
-          (WidgetTester tester) async {
+          (tester) async {
         await tester.pumpWidget(
           buildTestableWidget(
             const DSTextField(
