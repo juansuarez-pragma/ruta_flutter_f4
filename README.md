@@ -7,6 +7,8 @@
 
 > Sistema de diseño Flutter con Atomic Design, design tokens y soporte para temas claro/oscuro.
 
+> **🤖 Desarrollo Asistido por IA:** Proyecto desarrollado con asistencia de **Claude** y **Gemini** para validar velocidad de desarrollo.
+
 ## Quick Start
 
 **3 pasos para empezar en 30 segundos:**
@@ -234,10 +236,6 @@ flutter test --coverage   # Con reporte de cobertura
 2. Usar prefijo `DS` para componentes públicos
 3. Documentar con dartdoc incluyendo ejemplos
 4. Asegurar que los tests pasen antes de commit
-
-## Desarrollo Asistido por IA
-
-Este proyecto fue desarrollado con asistencia de **Claude** y **Gemini** como parte de un experimento para validar velocidad de desarrollo con herramientas de IA generativa.
 
 ## Licencia
 
