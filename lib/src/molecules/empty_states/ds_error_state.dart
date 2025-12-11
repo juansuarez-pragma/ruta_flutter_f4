@@ -62,48 +62,46 @@ class DSErrorState extends StatelessWidget {
     final tokens = context.tokens;
 
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(DSSpacing.xxl),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: DSSizes.iconMega,
-              color: tokens.colorFeedbackError,
-            ),
-            const SizedBox(height: DSSpacing.lg),
-            Flexible(
-              child: DSText.headingSmall(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(DSSpacing.xxl),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: DSSizes.iconMega,
+                color: tokens.colorFeedbackError,
+              ),
+              const SizedBox(height: DSSpacing.lg),
+              DSText.headingSmall(
                 message,
                 textAlign: TextAlign.center,
                 color: tokens.colorTextPrimary,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-            ),
-            if (details != null) ...[
-              const SizedBox(height: DSSpacing.sm),
-              Flexible(
-                child: DSText.bodyMedium(
+              if (details != null) ...[
+                const SizedBox(height: DSSpacing.sm),
+                DSText.bodyMedium(
                   details!,
                   textAlign: TextAlign.center,
                   color: tokens.colorTextSecondary,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ),
+              ],
+              if (onRetry != null) ...[
+                const SizedBox(height: DSSpacing.xl),
+                DSButton.secondary(
+                  text: retryText,
+                  icon: Icons.refresh,
+                  onPressed: onRetry,
+                ),
+              ],
             ],
-            if (onRetry != null) ...[
-              const SizedBox(height: DSSpacing.xl),
-              DSButton.secondary(
-                text: retryText,
-                icon: Icons.refresh,
-                onPressed: onRetry,
-              ),
-            ],
-          ],
+          ),
         ),
       ),
     );

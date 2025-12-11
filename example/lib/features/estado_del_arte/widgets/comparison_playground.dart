@@ -305,6 +305,11 @@ class _ComparisonPlaygroundState extends State<ComparisonPlayground> {
           // Cambiar a Column en pantallas pequeñas
           final isNarrow = constraints.maxWidth < 400;
 
+          // Calcular el ancho máximo para cada columna
+          final columnMaxWidth = isNarrow
+              ? constraints.maxWidth
+              : (constraints.maxWidth - DSSpacing.md) / 2;
+
           final flutterColumn = _buildColumn(
             tokens: tokens,
             label: 'FLUTTER NATIVO',
@@ -316,6 +321,7 @@ class _ComparisonPlaygroundState extends State<ComparisonPlayground> {
             showCode: _showFlutterCode,
             onToggleCode: () =>
                 setState(() => _showFlutterCode = !_showFlutterCode),
+            maxWidth: columnMaxWidth,
           );
 
           final dsColumn = _buildColumn(
@@ -326,6 +332,7 @@ class _ComparisonPlaygroundState extends State<ComparisonPlayground> {
             code: widget.dsCodeBuilder(_currentState),
             showCode: _showDsCode,
             onToggleCode: () => setState(() => _showDsCode = !_showDsCode),
+            maxWidth: columnMaxWidth,
           );
 
           if (isNarrow) {
@@ -402,6 +409,7 @@ class _ComparisonPlaygroundState extends State<ComparisonPlayground> {
     required String code,
     required bool showCode,
     required VoidCallback onToggleCode,
+    required double maxWidth,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -435,8 +443,13 @@ class _ComparisonPlaygroundState extends State<ComparisonPlayground> {
             borderRadius: BorderRadius.circular(DSBorderRadius.md),
           ),
           child: Center(
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
+            // ConstrainedBox asegura que el child tenga constraints bounded
+            // para evitar errores con widgets como AppBar que no soportan
+            // constraints infinitos dentro de FittedBox
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: maxWidth - DSSpacing.md * 2,
+              ),
               child: child,
             ),
           ),

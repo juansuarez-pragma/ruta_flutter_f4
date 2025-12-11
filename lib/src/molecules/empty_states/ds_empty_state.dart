@@ -70,40 +70,38 @@ class DSEmptyState extends StatelessWidget {
     final tokens = context.tokens;
 
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(DSSpacing.xxl),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: iconSize, color: tokens.colorIconDisabled),
-            const SizedBox(height: DSSpacing.lg),
-            Flexible(
-              child: DSText.headingSmall(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(DSSpacing.xxl),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: iconSize, color: tokens.colorIconDisabled),
+              const SizedBox(height: DSSpacing.lg),
+              DSText.headingSmall(
                 title,
                 textAlign: TextAlign.center,
                 color: tokens.colorTextSecondary,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-            ),
-            if (description != null) ...[
-              const SizedBox(height: DSSpacing.sm),
-              Flexible(
-                child: DSText.bodyMedium(
+              if (description != null) ...[
+                const SizedBox(height: DSSpacing.sm),
+                DSText.bodyMedium(
                   description!,
                   textAlign: TextAlign.center,
                   color: tokens.colorTextTertiary,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ),
+              ],
+              if (actionText != null && onAction != null) ...[
+                const SizedBox(height: DSSpacing.xl),
+                DSButton.primary(text: actionText!, onPressed: onAction),
+              ],
             ],
-            if (actionText != null && onAction != null) ...[
-              const SizedBox(height: DSSpacing.xl),
-              DSButton.primary(text: actionText!, onPressed: onAction),
-            ],
-          ],
+          ),
         ),
       ),
     );
