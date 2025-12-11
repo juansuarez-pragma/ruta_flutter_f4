@@ -18,6 +18,11 @@ class DSBottomNavItem {
   final int? badgeCount;
 
   /// Crea un item de navegación inferior con ícono y etiqueta.
+  ///
+  /// - [icon]: ícono del item.
+  /// - [selectedIcon]: ícono cuando está seleccionado (opcional).
+  /// - [label]: etiqueta del item.
+  /// - [badgeCount]: contador de badge (opcional).
   const DSBottomNavItem({
     required this.icon,
     this.selectedIcon,
@@ -59,6 +64,12 @@ class DSBottomNav extends StatelessWidget {
   final double elevation;
 
   /// Crea una barra de navegación inferior con los items especificados.
+  ///
+  /// - [currentIndex]: índice del item seleccionado.
+  /// - [onTap]: callback cuando se selecciona un item.
+  /// - [items]: lista de items de navegación.
+  /// - [backgroundColor]: color de fondo personalizado (opcional).
+  /// - [elevation]: nivel de elevación, por defecto `0`.
   const DSBottomNav({
     super.key,
     required this.currentIndex,

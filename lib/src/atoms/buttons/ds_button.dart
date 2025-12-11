@@ -78,6 +78,17 @@ class DSButton extends StatelessWidget {
   /// Crea un botón con la variante y tamaño especificados.
   ///
   /// Por defecto crea un botón primario de tamaño mediano.
+  ///
+  /// - [text]: texto visible del botón.
+  /// - [onPressed]: callback al presionar, `null` para deshabilitar.
+  /// - [icon]: ícono opcional del botón.
+  /// - [iconPosition]: posición del ícono, por defecto `start`.
+  /// - [variant]: variante visual, por defecto `primary`.
+  /// - [size]: tamaño del botón, por defecto `medium`.
+  /// - [isLoading]: muestra indicador de carga si es `true`.
+  /// - [isFullWidth]: expande al ancho disponible si es `true`.
+  /// - [semanticLabel]: etiqueta para lectores de pantalla (opcional).
+  /// - [loadingHint]: hint semántico durante carga (opcional).
   const DSButton({
     super.key,
     required this.text,

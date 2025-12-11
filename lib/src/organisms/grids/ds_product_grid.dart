@@ -99,6 +99,21 @@ class DSProductGrid<T> extends StatelessWidget {
   /// Crea un grid de productos con manejo de estados integrado.
   ///
   /// El [itemBuilder] es requerido para garantizar type safety.
+  ///
+  /// - [products]: lista de productos a mostrar (opcional).
+  /// - [isLoading]: indica estado de carga, por defecto `false`.
+  /// - [error]: mensaje de error (opcional).
+  /// - [onProductTap]: callback al tocar un producto (opcional).
+  /// - [onAddToCart]: callback al agregar al carrito (opcional).
+  /// - [onRetry]: callback para reintentar (opcional).
+  /// - [crossAxisCount]: número de columnas, por defecto `2`.
+  /// - [childAspectRatio]: proporción de cada item, por defecto `0.65`.
+  /// - [crossAxisSpacing]: espacio horizontal, por defecto `DSSpacing.md`.
+  /// - [mainAxisSpacing]: espacio vertical, por defecto `DSSpacing.md`.
+  /// - [padding]: padding del grid, por defecto `DSSpacing.md`.
+  /// - [itemBuilder]: builder requerido para construir cada producto.
+  /// - [emptyMessage]: mensaje cuando no hay productos.
+  /// - [loadingMessage]: mensaje mientras carga.
   const DSProductGrid({
     super.key,
     this.products,

@@ -49,6 +49,13 @@ class DSIconButton extends StatelessWidget {
   /// Crea un botón de ícono con la variante y tamaño especificados.
   ///
   /// Por defecto crea un botón ghost de tamaño mediano.
+  ///
+  /// - [icon]: ícono a mostrar.
+  /// - [onPressed]: callback al presionar, `null` para deshabilitar.
+  /// - [variant]: variante visual, por defecto `ghost`.
+  /// - [size]: tamaño del botón, por defecto `medium`.
+  /// - [tooltip]: texto de tooltip para accesibilidad (opcional).
+  /// - [isLoading]: muestra indicador de carga si es `true`.
   const DSIconButton({
     super.key,
     required this.icon,

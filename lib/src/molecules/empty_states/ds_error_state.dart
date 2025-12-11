@@ -42,6 +42,12 @@ class DSErrorState extends StatelessWidget {
   final IconData icon;
 
   /// Crea una vista de estado de error con mensaje y opción de reintentar.
+  ///
+  /// - [message]: mensaje principal de error.
+  /// - [details]: detalles adicionales del error (opcional).
+  /// - [onRetry]: callback para reintentar (opcional).
+  /// - [retryText]: texto del botón de reintentar, por defecto `'Reintentar'`.
+  /// - [icon]: ícono a mostrar, por defecto `Icons.error_outline`.
   const DSErrorState({
     super.key,
     required this.message,

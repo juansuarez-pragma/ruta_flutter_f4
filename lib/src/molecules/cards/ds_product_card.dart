@@ -78,6 +78,19 @@ class DSProductCard extends StatelessWidget {
   final String? imageSemanticLabel;
 
   /// Crea una card de producto con imagen, título, precio y acciones.
+  ///
+  /// - [imageUrl]: URL de la imagen del producto.
+  /// - [title]: título del producto.
+  /// - [price]: precio del producto.
+  /// - [rating]: calificación de 0 a 5 estrellas (opcional).
+  /// - [reviewCount]: número de reseñas (opcional).
+  /// - [badge]: texto del badge promocional (opcional).
+  /// - [badgeType]: tipo semántico del badge (opcional).
+  /// - [onTap]: callback al tocar la card (opcional).
+  /// - [onAddToCart]: callback al agregar al carrito (opcional).
+  /// - [imageWidget]: widget personalizado para la imagen (opcional).
+  /// - [aspectRatio]: proporción de aspecto de la card, por defecto `0.7`.
+  /// - [imageSemanticLabel]: etiqueta semántica para la imagen (opcional).
   const DSProductCard({
     super.key,
     required this.imageUrl,

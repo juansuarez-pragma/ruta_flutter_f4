@@ -67,6 +67,18 @@ class DSAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double toolbarHeight;
 
   /// Crea una barra de aplicación con título, acciones y estilos personalizados.
+  ///
+  /// - [title]: título de texto de la AppBar (opcional).
+  /// - [titleWidget]: widget personalizado para el título (opcional).
+  /// - [leading]: widget izquierdo (opcional).
+  /// - [automaticallyImplyLeading]: muestra botón de retroceso automático, por defecto `true`.
+  /// - [actions]: lista de acciones a la derecha (opcional).
+  /// - [centerTitle]: centra el título, por defecto `true`.
+  /// - [elevation]: elevación de la AppBar, por defecto `0`.
+  /// - [backgroundColor]: color de fondo personalizado (opcional).
+  /// - [foregroundColor]: color del texto e íconos (opcional).
+  /// - [bottom]: widget inferior como TabBar (opcional).
+  /// - [toolbarHeight]: altura de la barra, por defecto `kToolbarHeight`.
   const DSAppBar({
     super.key,
     this.title,

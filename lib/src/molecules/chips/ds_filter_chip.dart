@@ -43,6 +43,12 @@ class DSFilterChip extends StatelessWidget {
   final bool showCheckmark;
 
   /// Crea un chip de filtro seleccionable.
+  ///
+  /// - [label]: texto del chip.
+  /// - [isSelected]: indica si el chip está seleccionado, por defecto `false`.
+  /// - [onTap]: callback cuando se toca el chip (opcional).
+  /// - [icon]: ícono opcional del chip.
+  /// - [showCheckmark]: muestra checkmark al seleccionar, por defecto `true`.
   const DSFilterChip({
     super.key,
     required this.label,

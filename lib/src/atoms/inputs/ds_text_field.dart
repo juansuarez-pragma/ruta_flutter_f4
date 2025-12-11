@@ -100,6 +100,29 @@ class DSTextField extends StatelessWidget {
   final String? semanticLabel;
 
   /// Crea un campo de texto con las opciones especificadas.
+  ///
+  /// - [label]: etiqueta visible del campo (opcional).
+  /// - [hint]: texto de sugerencia dentro del campo (opcional).
+  /// - [errorText]: mensaje de error, activa estado de error (opcional).
+  /// - [helperText]: texto de ayuda bajo el campo (opcional).
+  /// - [controller]: controlador del campo (opcional).
+  /// - [onChanged]: callback cuando el texto cambia (opcional).
+  /// - [onSubmitted]: callback cuando se envía el campo (opcional).
+  /// - [obscureText]: oculta el texto si es `true`, por defecto `false`.
+  /// - [keyboardType]: tipo de teclado a mostrar (opcional).
+  /// - [prefixIcon]: ícono al inicio del campo (opcional).
+  /// - [suffixIcon]: ícono al final del campo (opcional).
+  /// - [onSuffixIconTap]: callback al tocar el ícono final (opcional).
+  /// - [enabled]: habilita el campo si es `true`, por defecto `true`.
+  /// - [readOnly]: modo solo lectura si es `true`, por defecto `false`.
+  /// - [maxLines]: máximo de líneas, por defecto `1`.
+  /// - [minLines]: mínimo de líneas (opcional).
+  /// - [maxLength]: longitud máxima del texto (opcional).
+  /// - [autofocus]: autoenfoca al montar si es `true`, por defecto `false`.
+  /// - [textInputAction]: acción del teclado (opcional).
+  /// - [inputFormatters]: formateadores de entrada (opcional).
+  /// - [focusNode]: nodo de foco externo (opcional).
+  /// - [semanticLabel]: etiqueta para lectores de pantalla (opcional).
   const DSTextField({
     super.key,
     this.label,

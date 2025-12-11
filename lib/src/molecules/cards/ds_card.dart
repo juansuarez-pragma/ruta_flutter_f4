@@ -57,6 +57,16 @@ class DSCard extends StatelessWidget {
   final double? height;
 
   /// Crea una card con el contenido y estilo especificados.
+  ///
+  /// - [child]: contenido de la card.
+  /// - [padding]: padding interno, por defecto `DSSpacing.base`.
+  /// - [onTap]: callback al tocar la card (opcional).
+  /// - [elevation]: nivel de sombra de 0 a 5, por defecto `1`.
+  /// - [backgroundColor]: color de fondo personalizado (opcional).
+  /// - [borderRadius]: radio del borde, por defecto `DSBorderRadius.base`.
+  /// - [showBorder]: muestra borde si es `true`, por defecto `true`.
+  /// - [width]: ancho fijo de la card (opcional).
+  /// - [height]: alto fijo de la card (opcional).
   const DSCard({
     super.key,
     required this.child,

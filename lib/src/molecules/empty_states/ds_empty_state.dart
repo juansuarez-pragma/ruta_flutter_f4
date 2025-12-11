@@ -48,6 +48,13 @@ class DSEmptyState extends StatelessWidget {
   final double iconSize;
 
   /// Crea una vista de estado vacío con ícono, título y acción opcional.
+  ///
+  /// - [icon]: ícono a mostrar.
+  /// - [title]: título del estado vacío.
+  /// - [description]: descripción adicional (opcional).
+  /// - [actionText]: texto del botón de acción (opcional).
+  /// - [onAction]: callback del botón de acción (opcional).
+  /// - [iconSize]: tamaño del ícono, por defecto `DSSizes.iconMega`.
   const DSEmptyState({
     super.key,
     required this.icon,
