@@ -235,6 +235,10 @@ flutter test --coverage   # Con reporte de cobertura
 3. Documentar con dartdoc incluyendo ejemplos
 4. Asegurar que los tests pasen antes de commit
 
+## Desarrollo Asistido por IA
+
+Este proyecto fue desarrollado con asistencia de **Claude** y **Gemini** como parte de un experimento para validar velocidad de desarrollo con herramientas de IA generativa.
+
 ## Licencia
 
 Propietario - Proyecto educativo de la Ruta de Crecimiento Flutter.
