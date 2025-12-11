@@ -137,17 +137,17 @@ class _NavItem extends StatelessWidget {
         ? item.selectedIcon!
         : item.icon;
 
-    // Build semantic label with badge info if present
+    // Construir etiqueta semántica - usar label del item
+    // El estado selected se comunica via Semantics.selected
+    // El badge count se incluye como número si existe
     final badgeInfo = item.badgeCount != null && item.badgeCount! > 0
-        ? ', ${item.badgeCount} items'
+        ? ' (${item.badgeCount})'
         : '';
-    final selectedInfo = isSelected ? ', selected' : '';
-    final positionInfo = 'Tab ${index + 1} of $totalItems';
 
     return Semantics(
       selected: isSelected,
       button: true,
-      label: '${item.label}$badgeInfo$selectedInfo, $positionInfo',
+      label: '${item.label}$badgeInfo',
       child: InkWell(
         onTap: onTap,
         excludeFromSemantics: true,

@@ -64,10 +64,16 @@ class DSButton extends StatelessWidget {
   /// Si el botón ocupa todo el ancho disponible.
   final bool isFullWidth;
 
-  /// Etiqueta semántica personalizada para accesibilidad.
+  /// Etiqueta semántica para accesibilidad.
   ///
-  /// Si no se proporciona, se usa el texto del botón.
+  /// Si no se proporciona, se usa el [text] del botón.
   final String? semanticLabel;
+
+  /// Hint semántico para estado de carga.
+  ///
+  /// Se anuncia a lectores de pantalla cuando [isLoading] es `true`.
+  /// Ejemplo: `'Cargando'`, `'Procesando'`, `'Enviando'`.
+  final String? loadingHint;
 
   /// Crea un botón con la variante y tamaño especificados.
   ///
@@ -83,6 +89,7 @@ class DSButton extends StatelessWidget {
     this.isLoading = false,
     this.isFullWidth = false,
     this.semanticLabel,
+    this.loadingHint,
   });
 
   /// Crea un botón primario.
@@ -96,6 +103,7 @@ class DSButton extends StatelessWidget {
     this.isLoading = false,
     this.isFullWidth = false,
     this.semanticLabel,
+    this.loadingHint,
   }) : variant = DSButtonVariant.primary;
 
   /// Crea un botón secundario.
@@ -109,6 +117,7 @@ class DSButton extends StatelessWidget {
     this.isLoading = false,
     this.isFullWidth = false,
     this.semanticLabel,
+    this.loadingHint,
   }) : variant = DSButtonVariant.secondary;
 
   /// Crea un botón ghost.
@@ -122,6 +131,7 @@ class DSButton extends StatelessWidget {
     this.isLoading = false,
     this.isFullWidth = false,
     this.semanticLabel,
+    this.loadingHint,
   }) : variant = DSButtonVariant.ghost;
 
   /// Crea un botón de peligro.
@@ -135,6 +145,7 @@ class DSButton extends StatelessWidget {
     this.isLoading = false,
     this.isFullWidth = false,
     this.semanticLabel,
+    this.loadingHint,
   }) : variant = DSButtonVariant.danger;
 
   double get _height {
@@ -195,14 +206,14 @@ class DSButton extends StatelessWidget {
     final tokens = context.tokens;
     final isDisabled = onPressed == null || isLoading;
 
-    // Build semantic hint for loading state
-    final String? loadingHint = isLoading ? 'Loading' : null;
+    // Usar hint semántico solo si está en estado de carga y se proporcionó
+    final String? effectiveHint = isLoading ? loadingHint : null;
 
     return Semantics(
       button: true,
       enabled: !isDisabled,
       label: semanticLabel ?? text,
-      hint: loadingHint,
+      hint: effectiveHint,
       child: ExcludeSemantics(
         child: SizedBox(
           width: isFullWidth ? double.infinity : null,
@@ -230,7 +241,7 @@ class DSButton extends StatelessWidget {
     }
   }
 
-  /// Helper to resolve background color based on widget state.
+  /// Resuelve el color de fondo según el estado del widget.
   WidgetStateProperty<Color> _resolveBackgroundColor({
     required Color base,
     required Color hover,
@@ -244,7 +255,7 @@ class DSButton extends StatelessWidget {
         return base;
       });
 
-  /// Helper to resolve foreground color based on widget state.
+  /// Resuelve el color de primer plano según el estado del widget.
   WidgetStateProperty<Color> _resolveForegroundColor({
     required Color base,
     required Color disabled,

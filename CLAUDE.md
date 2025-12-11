@@ -495,7 +495,8 @@ class ProductCard extends StatelessWidget {
 | Paquete | Versión | Propósito |
 |---------|---------|-----------|
 | `flutter` | SDK | Framework base |
-| `equatable` | ^2.0.7 | Comparación por valor en ThemeExtension |
+
+> **Nota**: Este paquete no tiene dependencias externas, maximizando compatibilidad.
 
 ## Documentación Relacionada
 

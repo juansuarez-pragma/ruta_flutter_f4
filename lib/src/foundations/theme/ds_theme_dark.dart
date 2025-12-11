@@ -138,7 +138,7 @@ abstract final class DSThemeDark {
     badgeText: DSColors.neutral300,
 
     // ============================================
-    // TYPOGRAPHY
+    // TIPOGRAFÍA
     // ============================================
     typographyDisplayLarge: TextStyle(
       fontFamily: DSFontFamily.display,
@@ -286,7 +286,7 @@ abstract final class DSThemeDark {
     ),
 
     // ============================================
-    // ELEVATION
+    // ELEVACIÓN
     // ============================================
     elevationLevel1: DSElevation.level1Dark,
     elevationLevel2: DSElevation.level2Dark,

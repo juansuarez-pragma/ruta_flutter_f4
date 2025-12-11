@@ -401,8 +401,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:equatable/equatable.dart';
-
 import 'package:fake_store_design_system/src/tokens/tokens.dart';
 import 'package:fake_store_design_system/src/utils/extensions/extensions.dart';
 ```

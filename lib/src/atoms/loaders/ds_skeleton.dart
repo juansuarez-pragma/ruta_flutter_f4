@@ -33,9 +33,10 @@ class DSSkeleton extends StatefulWidget {
   /// Si el skeleton es circular.
   final bool isCircular;
 
-  /// Etiqueta semántica personalizada para accesibilidad.
+  /// Etiqueta semántica para accesibilidad.
   ///
-  /// Si no se proporciona, se usa 'Loading content'.
+  /// Se recomienda proporcionar una etiqueta descriptiva para lectores de pantalla.
+  /// Ejemplo: `'Cargando imagen de producto'`, `'Cargando título'`.
   final String? semanticLabel;
 
   /// Crea un skeleton rectangular con las dimensiones especificadas.
@@ -103,11 +104,8 @@ class _DSSkeletonState extends State<DSSkeleton>
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    // Build semantic label
-    final effectiveLabel = widget.semanticLabel ?? 'Loading content';
-
     return Semantics(
-      label: effectiveLabel,
+      label: widget.semanticLabel,
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, child) => Container(

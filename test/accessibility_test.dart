@@ -327,12 +327,12 @@ void main() {
       );
 
       // Verify each nav item has Semantics with button property
+      // Ahora usa solo el label del item (sin strings hardcodeados)
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
             (widget.properties.button ?? false) &&
-            widget.properties.label != null &&
-            widget.properties.label!.contains('Tab'),
+            widget.properties.label != null,
       );
       expect(semanticsFinder, findsNWidgets(2));
     });
@@ -352,13 +352,12 @@ void main() {
         ),
       );
 
-      // Verify selected item has selected=true and label contains 'selected'
+      // Verify selected item has selected=true (estado comunicado via propiedad)
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
             (widget.properties.selected ?? false) &&
-            widget.properties.label != null &&
-            widget.properties.label!.contains('selected'),
+            widget.properties.label == 'Home',
       );
       expect(semanticsFinder, findsOneWidget);
     });
@@ -382,17 +381,16 @@ void main() {
         ),
       );
 
-      // Verify badge count is in semantic label
+      // Verify badge count is in semantic label (formato: 'Label (count)')
       final semanticsFinder = find.byWidgetPredicate(
         (widget) =>
             widget is Semantics &&
-            widget.properties.label != null &&
-            widget.properties.label!.contains('5 items'),
+            widget.properties.label == 'Cart (5)',
       );
       expect(semanticsFinder, findsOneWidget);
     });
 
-    testWidgets('DSBottomNav items announce tab position',
+    testWidgets('DSBottomNav items use their label as semantic label',
         (tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
@@ -408,13 +406,12 @@ void main() {
         ),
       );
 
-      // Verify each tab announces its position
+      // Verify each tab uses its label (sin strings hardcodeados de posición)
       expect(
         find.byWidgetPredicate(
           (widget) =>
               widget is Semantics &&
-              widget.properties.label != null &&
-              widget.properties.label!.contains('Tab 1 of 3'),
+              widget.properties.label == 'Home',
         ),
         findsOneWidget,
       );
@@ -422,8 +419,7 @@ void main() {
         find.byWidgetPredicate(
           (widget) =>
               widget is Semantics &&
-              widget.properties.label != null &&
-              widget.properties.label!.contains('Tab 2 of 3'),
+              widget.properties.label == 'Search',
         ),
         findsOneWidget,
       );
@@ -431,8 +427,7 @@ void main() {
         find.byWidgetPredicate(
           (widget) =>
               widget is Semantics &&
-              widget.properties.label != null &&
-              widget.properties.label!.contains('Tab 3 of 3'),
+              widget.properties.label == 'Profile',
         ),
         findsOneWidget,
       );

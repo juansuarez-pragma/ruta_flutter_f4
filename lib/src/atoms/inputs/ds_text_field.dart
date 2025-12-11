@@ -131,7 +131,7 @@ class DSTextField extends StatelessWidget {
     final tokens = context.tokens;
     final hasError = errorText != null && errorText!.isNotEmpty;
 
-    // Build semantic hint based on state
+    // Construir hint semántico según el estado
     final semanticHint = _buildSemanticHint(hasError);
 
     return Semantics(

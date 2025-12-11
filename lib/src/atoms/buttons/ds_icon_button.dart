@@ -88,7 +88,7 @@ class DSIconButton extends StatelessWidget {
 
     final colors = _getColors(tokens, isDisabled);
 
-    // Semantic label for accessibility
+    // Etiqueta semántica para accesibilidad
     final semanticLabel = tooltip ?? _getDefaultSemanticLabel();
 
     Widget button = Semantics(

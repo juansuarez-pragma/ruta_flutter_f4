@@ -72,8 +72,9 @@ class DSProductCard extends StatelessWidget {
 
   /// Etiqueta semántica para la imagen del producto.
   ///
-  /// Se usa para lectores de pantalla. Si no se proporciona,
-  /// se usa el [title] del producto.
+  /// Se recomienda proporcionar una etiqueta descriptiva para lectores de pantalla.
+  /// Ejemplo: `'Foto del producto: Camiseta azul'`.
+  /// Si no se proporciona, se usa el [title] del producto.
   final String? imageSemanticLabel;
 
   /// Crea una card de producto con imagen, título, precio y acciones.
@@ -118,12 +119,12 @@ class DSProductCard extends StatelessWidget {
                     child:
                         imageWidget ??
                         Semantics(
-                          label: imageSemanticLabel ?? 'Product image: $title',
+                          label: imageSemanticLabel ?? title,
                           image: true,
                           child: Image.network(
                             imageUrl,
                             fit: BoxFit.contain,
-                            semanticLabel: '', // Handled by parent Semantics
+                            semanticLabel: '', // Manejado por Semantics padre
                             errorBuilder: (_, __, ___) => ColoredBox(
                               color: tokens.colorSurfaceSecondary,
                               child: Icon(

@@ -614,7 +614,7 @@ abstract class DSProductModel {
 | **Tamaños soportados** | 3-4 (small, medium, large, extraLarge) |
 | **Tests** | 11 (~15% cobertura) |
 | **Barrel files** | 12 |
-| **Dependencias externas** | 1 (equatable) |
+| **Dependencias externas** | 0 |
 | **Warnings análisis** | 2 |
 | **Errores análisis** | 0 |
 | **SDK Dart** | ^3.9.2 |

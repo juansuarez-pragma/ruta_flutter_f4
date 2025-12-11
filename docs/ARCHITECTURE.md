@@ -375,10 +375,9 @@ El paquete mantiene dependencias mínimas:
 dependencies:
   flutter:
     sdk: flutter
-  equatable: ^2.0.7  # Para comparación en ThemeExtension
 ```
 
-**Filosofía**: Evitar dependencias externas para maximizar compatibilidad y minimizar tamaño.
+**Filosofía**: Sin dependencias externas para maximizar compatibilidad y minimizar tamaño.
 
 ---
 

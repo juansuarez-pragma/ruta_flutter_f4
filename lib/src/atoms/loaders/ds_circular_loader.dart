@@ -31,9 +31,10 @@ class DSCircularLoader extends StatelessWidget {
   /// Si no se especifica, usa el color de la marca primaria.
   final Color? color;
 
-  /// Etiqueta semántica personalizada para accesibilidad.
+  /// Etiqueta semántica para accesibilidad.
   ///
-  /// Si no se proporciona, se usa 'Loading' o el mensaje si está disponible.
+  /// Se recomienda proporcionar una etiqueta descriptiva para lectores de pantalla.
+  /// Si no se proporciona, se usa el [message] si está disponible.
   final String? semanticLabel;
 
   /// Crea un loader circular con el tamaño y mensaje especificados.
@@ -76,8 +77,8 @@ class DSCircularLoader extends StatelessWidget {
     final tokens = context.tokens;
     final loaderColor = color ?? tokens.colorBrandPrimary;
 
-    // Build semantic label
-    final effectiveLabel = semanticLabel ?? message ?? 'Loading';
+    // Usar etiqueta semántica proporcionada o el mensaje
+    final effectiveLabel = semanticLabel ?? message;
 
     return Semantics(
       label: effectiveLabel,

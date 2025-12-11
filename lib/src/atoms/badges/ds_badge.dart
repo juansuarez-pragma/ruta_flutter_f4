@@ -38,9 +38,13 @@ class DSBadge extends StatelessWidget {
   /// Ícono opcional.
   final IconData? icon;
 
-  /// Etiqueta semántica personalizada para accesibilidad.
+  /// Etiqueta semántica para accesibilidad.
   ///
-  /// Si no se proporciona, se usa el texto del badge con el tipo.
+  /// Se recomienda proporcionar una etiqueta descriptiva que incluya
+  /// el contexto del tipo de badge para lectores de pantalla.
+  /// Ejemplo: `'Estado: Activo'`, `'Error: Producto agotado'`.
+  ///
+  /// Si no se proporciona, se usa solo el [text] del badge.
   final String? semanticLabel;
 
   /// Crea un badge con el tipo y tamaño especificados.
@@ -142,22 +146,6 @@ class DSBadge extends StatelessWidget {
     }
   }
 
-  /// Returns the semantic type label for screen readers.
-  String get _typeLabel {
-    switch (type) {
-      case DSBadgeType.success:
-        return 'success';
-      case DSBadgeType.error:
-        return 'error';
-      case DSBadgeType.warning:
-        return 'warning';
-      case DSBadgeType.info:
-        return 'info';
-      case DSBadgeType.neutral:
-        return '';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
@@ -183,9 +171,8 @@ class DSBadge extends StatelessWidget {
         textColor = tokens.badgeText;
     }
 
-    // Build semantic label with type info
-    final effectiveLabel = semanticLabel ??
-        (_typeLabel.isNotEmpty ? '$_typeLabel: $text' : text);
+    // Usar etiqueta semántica proporcionada o el texto del badge
+    final effectiveLabel = semanticLabel ?? text;
 
     return Semantics(
       label: effectiveLabel,

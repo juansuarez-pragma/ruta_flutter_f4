@@ -138,7 +138,7 @@ abstract final class DSThemeLight {
     badgeText: DSColors.neutral700,
 
     // ============================================
-    // TYPOGRAPHY
+    // TIPOGRAFÍA
     // ============================================
     typographyDisplayLarge: TextStyle(
       fontFamily: DSFontFamily.display,
@@ -286,7 +286,7 @@ abstract final class DSThemeLight {
     ),
 
     // ============================================
-    // ELEVATION
+    // ELEVACIÓN
     // ============================================
     elevationLevel1: DSElevation.level1,
     elevationLevel2: DSElevation.level2,

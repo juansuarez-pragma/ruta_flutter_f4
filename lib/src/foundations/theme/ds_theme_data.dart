@@ -292,7 +292,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
   final Color badgeText;
 
   // ============================================
-  // TYPOGRAPHY STYLES
+  // ESTILOS DE TIPOGRAFÍA
   // ============================================
 
   /// Display Large
@@ -350,7 +350,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
   final TextStyle typographyButton;
 
   // ============================================
-  // ELEVATION
+  // ELEVACIÓN
   // ============================================
 
   /// Elevación nivel 1
@@ -457,7 +457,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     // Badge
     required this.badgeBackground,
     required this.badgeText,
-    // Typography
+    // Tipografía
     required this.typographyDisplayLarge,
     required this.typographyDisplayMedium,
     required this.typographyDisplaySmall,
@@ -476,7 +476,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     required this.typographyCaption,
     required this.typographyOverline,
     required this.typographyButton,
-    // Elevation
+    // Elevación
     required this.elevationLevel1,
     required this.elevationLevel2,
     required this.elevationLevel3,
@@ -573,7 +573,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     // Badge
     Color? badgeBackground,
     Color? badgeText,
-    // Typography
+    // Tipografía
     TextStyle? typographyDisplayLarge,
     TextStyle? typographyDisplayMedium,
     TextStyle? typographyDisplaySmall,
@@ -592,7 +592,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
     TextStyle? typographyCaption,
     TextStyle? typographyOverline,
     TextStyle? typographyButton,
-    // Elevation
+    // Elevación
     List<BoxShadow>? elevationLevel1,
     List<BoxShadow>? elevationLevel2,
     List<BoxShadow>? elevationLevel3,
@@ -717,7 +717,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       // Badge
       badgeBackground: badgeBackground ?? this.badgeBackground,
       badgeText: badgeText ?? this.badgeText,
-      // Typography
+      // Tipografía
       typographyDisplayLarge:
           typographyDisplayLarge ?? this.typographyDisplayLarge,
       typographyDisplayMedium:
@@ -744,7 +744,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       typographyCaption: typographyCaption ?? this.typographyCaption,
       typographyOverline: typographyOverline ?? this.typographyOverline,
       typographyButton: typographyButton ?? this.typographyButton,
-      // Elevation
+      // Elevación
       elevationLevel1: elevationLevel1 ?? this.elevationLevel1,
       elevationLevel2: elevationLevel2 ?? this.elevationLevel2,
       elevationLevel3: elevationLevel3 ?? this.elevationLevel3,
@@ -752,21 +752,30 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       elevationLevel5: elevationLevel5 ?? this.elevationLevel5,
     );
 
-  /// Lerp helper for `List<BoxShadow>`.
+  /// Helper de interpolación para `List<BoxShadow>`.
   ///
-  /// Interpolates each [BoxShadow] in the list for smooth theme transitions.
+  /// Interpola cada [BoxShadow] de la lista para transiciones suaves entre temas.
+  /// Cuando las listas de sombras tienen diferentes longitudes, usa cambio binario
+  /// en el punto medio porque interpolar cantidades distintas de sombras
+  /// produciría artefactos visuales durante las transiciones de tema.
   static List<BoxShadow> _lerpBoxShadowList(
-    List<BoxShadow> a,
-    List<BoxShadow> b,
-    double t,
+    List<BoxShadow> startShadows,
+    List<BoxShadow> endShadows,
+    double interpolationFactor,
   ) {
-    // If lengths differ, use binary switch at t=0.5
-    if (a.length != b.length) {
-      return t < 0.5 ? a : b;
+    // Cambio binario en punto medio para cantidades de sombras distintas
+    // para evitar artefactos visuales al interpolar estructuras diferentes
+    if (startShadows.length != endShadows.length) {
+      return interpolationFactor < 0.5 ? startShadows : endShadows;
     }
 
     return [
-      for (int i = 0; i < a.length; i++) BoxShadow.lerp(a[i], b[i], t)!,
+      for (int index = 0; index < startShadows.length; index++)
+        BoxShadow.lerp(
+          startShadows[index],
+          endShadows[index],
+          interpolationFactor,
+        )!,
     ];
   }
 
@@ -1106,7 +1115,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       // Badge
       badgeBackground: Color.lerp(badgeBackground, other.badgeBackground, t)!,
       badgeText: Color.lerp(badgeText, other.badgeText, t)!,
-      // Typography (no lerp needed for TextStyle in most cases)
+      // Tipografía (lerp de TextStyle para transiciones suaves)
       typographyDisplayLarge: TextStyle.lerp(
         typographyDisplayLarge,
         other.typographyDisplayLarge,
@@ -1197,7 +1206,7 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
         other.typographyButton,
         t,
       )!,
-      // Elevation (interpolate BoxShadow properties)
+      // Elevación (interpolar propiedades de BoxShadow)
       elevationLevel1: _lerpBoxShadowList(
         elevationLevel1,
         other.elevationLevel1,

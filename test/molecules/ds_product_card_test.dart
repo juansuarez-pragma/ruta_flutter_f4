@@ -383,8 +383,9 @@ void main() {
         );
 
         final semantics = tester.widgetList<Semantics>(find.byType(Semantics));
+        // Ahora usa solo el título como etiqueta por defecto (sin texto hardcodeado)
         final imageSemantics = semantics.where((s) =>
-            s.properties.label?.contains('Product image: Accessible Product') ?? false);
+            s.properties.label == 'Accessible Product' && (s.properties.image ?? false));
         expect(imageSemantics, isNotEmpty);
       });
 
