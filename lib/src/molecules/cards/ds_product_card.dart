@@ -178,68 +178,83 @@ class DSProductCard extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Padding(
-                padding: const EdgeInsets.all(DSSpacing.md),
+                padding: const EdgeInsets.all(DSSpacing.sm),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     // Título
-                    Expanded(
+                    Flexible(
                       child: Text(
                         title,
-                        style: tokens.typographyTitleSmall,
+                        style: tokens.typographyLabelMedium,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    const SizedBox(height: DSSpacing.xs),
-                    // Rating
-                    if (rating != null) ...[
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            size: DSSizes.iconSm,
-                            color: tokens.colorFeedbackWarning,
-                          ),
-                          const SizedBox(width: DSSpacing.xxs),
-                          Text(
-                            rating!.toStringAsFixed(1),
-                            style: tokens.typographyLabelSmall,
-                          ),
-                          if (reviewCount != null) ...[
-                            const SizedBox(width: DSSpacing.xs),
-                            Text(
-                              '($reviewCount)',
-                              style: tokens.typographyCaption.copyWith(
-                                color: tokens.colorTextTertiary,
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
-                      const SizedBox(height: DSSpacing.xs),
-                    ],
-                    // Precio y botón
+                    const SizedBox(height: DSSpacing.xxs),
+                    // Precio y Rating en una fila
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '\$${price.toStringAsFixed(2)}',
-                          style: tokens.typographyTitleMedium.copyWith(
-                            color: tokens.colorBrandPrimary,
-                            fontWeight: DSFontWeight.bold,
+                        Flexible(
+                          child: Text(
+                            '\$${price.toStringAsFixed(2)}',
+                            style: tokens.typographyTitleSmall.copyWith(
+                              color: tokens.colorBrandPrimary,
+                              fontWeight: DSFontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        if (onAddToCart != null)
-                          DSIconButton(
-                            icon: Icons.add_shopping_cart,
-                            size: DSButtonSize.small,
-                            variant: DSButtonVariant.primary,
-                            onPressed: onAddToCart,
-                            tooltip: 'Agregar al carrito',
+                        if (rating != null) ...[
+                          const SizedBox(width: DSSpacing.xs),
+                          Flexible(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  size: DSSizes.iconXs,
+                                  color: tokens.colorFeedbackWarning,
+                                ),
+                                const SizedBox(width: DSSpacing.xxs),
+                                Text(
+                                  rating!.toStringAsFixed(1),
+                                  style: tokens.typographyCaption,
+                                ),
+                                if (reviewCount != null) ...[
+                                  const SizedBox(width: DSSpacing.xxs),
+                                  Flexible(
+                                    child: Text(
+                                      '($reviewCount)',
+                                      style: tokens.typographyCaption.copyWith(
+                                        color: tokens.colorTextTertiary,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ),
                           ),
+                        ],
                       ],
                     ),
+                    // Botón carrito (opcional, solo si hay espacio)
+                    if (onAddToCart != null) ...[
+                      const SizedBox(height: DSSpacing.xxs),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: DSIconButton(
+                          icon: Icons.add_shopping_cart,
+                          size: DSButtonSize.small,
+                          variant: DSButtonVariant.primary,
+                          onPressed: onAddToCart,
+                          tooltip: 'Agregar al carrito',
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
