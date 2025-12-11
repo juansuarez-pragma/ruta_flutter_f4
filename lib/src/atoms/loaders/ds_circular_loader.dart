@@ -98,13 +98,17 @@ class DSCircularLoader extends StatelessWidget {
           ),
           if (message != null) ...[
             const SizedBox(height: DSSpacing.md),
-            ExcludeSemantics(
-              child: Text(
-                message!,
-                style: tokens.typographyBodySmall.copyWith(
-                  color: tokens.colorTextSecondary,
+            Flexible(
+              child: ExcludeSemantics(
+                child: Text(
+                  message!,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: tokens.typographyBodySmall.copyWith(
+                    color: tokens.colorTextSecondary,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
           ],

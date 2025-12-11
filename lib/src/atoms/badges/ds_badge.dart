@@ -189,14 +189,18 @@ class DSBadge extends StatelessWidget {
               Icon(icon, size: _iconSize, color: textColor),
               const SizedBox(width: DSSpacing.xs),
             ],
-            ExcludeSemantics(
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: _fontSize,
-                  fontWeight: DSFontWeight.medium,
-                  color: textColor,
-                  height: DSLineHeight.tight,
+            Flexible(
+              child: ExcludeSemantics(
+                child: Text(
+                  text,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: _fontSize,
+                    fontWeight: DSFontWeight.medium,
+                    color: textColor,
+                    height: DSLineHeight.tight,
+                  ),
                 ),
               ),
             ),

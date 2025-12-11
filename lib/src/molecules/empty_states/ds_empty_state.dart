@@ -78,17 +78,25 @@ class DSEmptyState extends StatelessWidget {
           children: [
             Icon(icon, size: iconSize, color: tokens.colorIconDisabled),
             const SizedBox(height: DSSpacing.lg),
-            DSText.headingSmall(
-              title,
-              textAlign: TextAlign.center,
-              color: tokens.colorTextSecondary,
+            Flexible(
+              child: DSText.headingSmall(
+                title,
+                textAlign: TextAlign.center,
+                color: tokens.colorTextSecondary,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             if (description != null) ...[
               const SizedBox(height: DSSpacing.sm),
-              DSText.bodyMedium(
-                description!,
-                textAlign: TextAlign.center,
-                color: tokens.colorTextTertiary,
+              Flexible(
+                child: DSText.bodyMedium(
+                  description!,
+                  textAlign: TextAlign.center,
+                  color: tokens.colorTextTertiary,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
             if (actionText != null && onAction != null) ...[

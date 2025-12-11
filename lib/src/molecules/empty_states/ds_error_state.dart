@@ -74,17 +74,25 @@ class DSErrorState extends StatelessWidget {
               color: tokens.colorFeedbackError,
             ),
             const SizedBox(height: DSSpacing.lg),
-            DSText.headingSmall(
-              message,
-              textAlign: TextAlign.center,
-              color: tokens.colorTextPrimary,
+            Flexible(
+              child: DSText.headingSmall(
+                message,
+                textAlign: TextAlign.center,
+                color: tokens.colorTextPrimary,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             if (details != null) ...[
               const SizedBox(height: DSSpacing.sm),
-              DSText.bodyMedium(
-                details!,
-                textAlign: TextAlign.center,
-                color: tokens.colorTextSecondary,
+              Flexible(
+                child: DSText.bodyMedium(
+                  details!,
+                  textAlign: TextAlign.center,
+                  color: tokens.colorTextSecondary,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
             if (onRetry != null) ...[

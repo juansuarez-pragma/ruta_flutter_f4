@@ -428,27 +428,33 @@ class DSButton extends StatelessWidget {
 
     final color = isDisabled ? disabledColor : textColor;
 
-    if (icon == null) {
-      return Text(
-        text,
-        style: TextStyle(fontSize: _fontSize, fontWeight: DSFontWeight.medium),
-      );
-    }
-
-    final iconWidget = Icon(icon, size: _iconSize, color: color);
     final textWidget = Text(
       text,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
       style: TextStyle(fontSize: _fontSize, fontWeight: DSFontWeight.medium),
     );
 
-    final children = iconPosition == DSButtonIconPosition.start
-        ? [iconWidget, const SizedBox(width: DSSpacing.sm), textWidget]
-        : [textWidget, const SizedBox(width: DSSpacing.sm), iconWidget];
+    if (icon == null) {
+      return textWidget;
+    }
+
+    final iconWidget = Icon(icon, size: _iconSize, color: color);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: children,
+      children: [
+        if (iconPosition == DSButtonIconPosition.start) ...[
+          iconWidget,
+          const SizedBox(width: DSSpacing.sm),
+        ],
+        Flexible(child: textWidget),
+        if (iconPosition == DSButtonIconPosition.end) ...[
+          const SizedBox(width: DSSpacing.sm),
+          iconWidget,
+        ],
+      ],
     );
   }
 }

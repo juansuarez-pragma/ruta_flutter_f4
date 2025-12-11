@@ -103,15 +103,17 @@ class _ComparisonPlaygroundState extends State<ComparisonPlayground> {
         ),
         boxShadow: tokens.elevationLevel1,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildHeader(tokens),
-          if (_hasControls) _buildControls(tokens),
-          _buildComparison(tokens),
-          if (widget.advantages.isNotEmpty || widget.limitations.isNotEmpty)
-            _buildInfoSection(tokens),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildHeader(tokens),
+            if (_hasControls) _buildControls(tokens),
+            _buildComparison(tokens),
+            if (widget.advantages.isNotEmpty || widget.limitations.isNotEmpty)
+              _buildInfoSection(tokens),
+          ],
+        ),
       ),
     );
   }
@@ -298,38 +300,54 @@ class _ComparisonPlaygroundState extends State<ComparisonPlayground> {
   Widget _buildComparison(DSThemeData tokens) {
     return Padding(
       padding: const EdgeInsets.all(DSSpacing.md),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Flutter Native Column
-          Expanded(
-            child: _buildColumn(
-              tokens: tokens,
-              label: 'FLUTTER NATIVO',
-              labelColor: Colors.blue,
-              child: widget.noFlutterEquivalent != null
-                  ? _buildNoEquivalent(tokens)
-                  : widget.flutterBuilder(_currentState),
-              code: widget.flutterCodeBuilder(_currentState),
-              showCode: _showFlutterCode,
-              onToggleCode: () =>
-                  setState(() => _showFlutterCode = !_showFlutterCode),
-            ),
-          ),
-          const SizedBox(width: DSSpacing.md),
-          // Design System Column
-          Expanded(
-            child: _buildColumn(
-              tokens: tokens,
-              label: 'DESIGN SYSTEM',
-              labelColor: tokens.colorBrandPrimary,
-              child: widget.dsBuilder(_currentState),
-              code: widget.dsCodeBuilder(_currentState),
-              showCode: _showDsCode,
-              onToggleCode: () => setState(() => _showDsCode = !_showDsCode),
-            ),
-          ),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Cambiar a Column en pantallas pequeñas
+          final isNarrow = constraints.maxWidth < 400;
+
+          final flutterColumn = _buildColumn(
+            tokens: tokens,
+            label: 'FLUTTER NATIVO',
+            labelColor: Colors.blue,
+            child: widget.noFlutterEquivalent != null
+                ? _buildNoEquivalent(tokens)
+                : widget.flutterBuilder(_currentState),
+            code: widget.flutterCodeBuilder(_currentState),
+            showCode: _showFlutterCode,
+            onToggleCode: () =>
+                setState(() => _showFlutterCode = !_showFlutterCode),
+          );
+
+          final dsColumn = _buildColumn(
+            tokens: tokens,
+            label: 'DESIGN SYSTEM',
+            labelColor: tokens.colorBrandPrimary,
+            child: widget.dsBuilder(_currentState),
+            code: widget.dsCodeBuilder(_currentState),
+            showCode: _showDsCode,
+            onToggleCode: () => setState(() => _showDsCode = !_showDsCode),
+          );
+
+          if (isNarrow) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                flutterColumn,
+                const SizedBox(height: DSSpacing.md),
+                dsColumn,
+              ],
+            );
+          }
+
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: flutterColumn),
+              const SizedBox(width: DSSpacing.md),
+              Expanded(child: dsColumn),
+            ],
+          );
+        },
       ),
     );
   }
@@ -416,7 +434,12 @@ class _ComparisonPlaygroundState extends State<ComparisonPlayground> {
             color: tokens.colorSurfaceSecondary,
             borderRadius: BorderRadius.circular(DSBorderRadius.md),
           ),
-          child: Center(child: child),
+          child: Center(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: child,
+            ),
+          ),
         ),
         const SizedBox(height: DSSpacing.sm),
         // Code Toggle
