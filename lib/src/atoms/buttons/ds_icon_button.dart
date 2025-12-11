@@ -121,7 +121,7 @@ class DSIconButton extends StatelessWidget {
                       width: _iconSize,
                       height: _iconSize,
                       child: CircularProgressIndicator(
-                        strokeWidth: 2,
+                        strokeWidth: DSSizes.borderMedium,
                         valueColor: AlwaysStoppedAnimation<Color>(
                           colors.foreground,
                         ),

@@ -125,9 +125,13 @@ class DSCard extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(borderRadius),
-          hoverColor: tokens.cardBackgroundHover.withValues(alpha: 0.5),
+          hoverColor: tokens.cardBackgroundHover.withValues(
+            alpha: DSColors.opacityHover,
+          ),
           splashColor: tokens.cardBackgroundHover,
-          highlightColor: tokens.cardBackgroundHover.withValues(alpha: 0.3),
+          highlightColor: tokens.cardBackgroundHover.withValues(
+            alpha: DSColors.opacityHighlight,
+          ),
           child: card,
         ),
       );

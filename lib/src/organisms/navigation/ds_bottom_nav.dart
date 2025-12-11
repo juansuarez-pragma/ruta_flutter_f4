@@ -95,7 +95,7 @@ class DSBottomNav extends StatelessWidget {
       ),
       child: SafeArea(
         child: SizedBox(
-          height: 64,
+          height: DSSizes.bottomNavHeight,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: items.asMap().entries.map((entry) {
@@ -185,8 +185,8 @@ class _NavItem extends StatelessWidget {
                         ),
                       ),
                       constraints: const BoxConstraints(
-                        minWidth: 16,
-                        minHeight: 16,
+                        minWidth: DSSizes.badgeMinSize,
+                        minHeight: DSSizes.badgeMinSize,
                       ),
                       child: Text(
                         item.badgeCount! > 99 ? '99+' : '${item.badgeCount}',

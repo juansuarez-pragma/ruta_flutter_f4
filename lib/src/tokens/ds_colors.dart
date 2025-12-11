@@ -317,4 +317,20 @@ abstract final class DSColors {
 
   /// Blanco con 80% de opacidad
   static const Color whiteAlpha80 = Color(0xCCFFFFFF);
+
+  // ============================================
+  // OPACITY VALUES
+  // ============================================
+
+  /// Opacidad mínima para animación de skeleton - 30%
+  static const double opacitySkeletonMin = 0.3;
+
+  /// Opacidad máxima para animación de skeleton - 60%
+  static const double opacitySkeletonMax = 0.6;
+
+  /// Opacidad para estado hover - 50%
+  static const double opacityHover = 0.5;
+
+  /// Opacidad para estado highlight/pressed - 30%
+  static const double opacityHighlight = 0.3;
 }

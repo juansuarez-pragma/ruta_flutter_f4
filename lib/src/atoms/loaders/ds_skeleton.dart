@@ -58,13 +58,13 @@ class DSSkeleton extends StatefulWidget {
 
   /// Crea un skeleton para texto.
   const DSSkeleton.text({super.key, this.width, double? height, this.semanticLabel})
-    : height = height ?? 16,
+    : height = height ?? DSSizes.skeletonText,
       borderRadius = DSBorderRadius.xs,
       isCircular = false;
 
   /// Crea un skeleton para un título.
   const DSSkeleton.title({super.key, this.width, this.semanticLabel})
-    : height = 24,
+    : height = DSSizes.skeletonTitle,
       borderRadius = DSBorderRadius.sm,
       isCircular = false;
 
@@ -89,8 +89,8 @@ class _DSSkeletonState extends State<DSSkeleton>
       ..repeat(reverse: true);
 
     _animation = Tween<double>(
-      begin: 0.3,
-      end: 0.6,
+      begin: DSColors.opacitySkeletonMin,
+      end: DSColors.opacitySkeletonMax,
     ).animate(CurvedAnimation(parent: _controller, curve: DSCurves.standard));
   }
 

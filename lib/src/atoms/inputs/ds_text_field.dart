@@ -250,7 +250,7 @@ class DSTextField extends StatelessWidget {
                   color: hasError
                       ? tokens.inputBorderError
                       : tokens.inputBorderFocused,
-                  width: 2,
+                  width: DSSizes.borderMedium,
                 ),
               ),
               errorBorder: OutlineInputBorder(
@@ -261,7 +261,7 @@ class DSTextField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(DSBorderRadius.md),
                 borderSide: BorderSide(
                   color: tokens.inputBorderError,
-                  width: 2,
+                  width: DSSizes.borderMedium,
                 ),
               ),
               disabledBorder: OutlineInputBorder(

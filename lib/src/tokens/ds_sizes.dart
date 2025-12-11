@@ -87,4 +87,24 @@ abstract final class DSSizes {
 
   /// Borde heavy - 4px
   static const double borderHeavy = 4;
+
+  // ============================================
+  // SKELETON HEIGHTS
+  // ============================================
+
+  /// Altura de skeleton para texto - 16px (basado en bodyMedium)
+  static const double skeletonText = 16;
+
+  /// Altura de skeleton para título - 24px (basado en headingSmall)
+  static const double skeletonTitle = 24;
+
+  // ============================================
+  // NAVIGATION SIZES
+  // ============================================
+
+  /// Altura de barra de navegación inferior - 64px
+  static const double bottomNavHeight = 64;
+
+  /// Tamaño mínimo de badge - 16px
+  static const double badgeMinSize = 16;
 }
