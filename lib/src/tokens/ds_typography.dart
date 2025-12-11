@@ -111,6 +111,9 @@ abstract final class DSFontSize {
 
   /// Overline - 10px
   static const double overline = 10;
+
+  /// Badge text - 10px (para contadores en badges)
+  static const double badgeText = 10;
 }
 
 /// Alturas de línea del sistema de diseño.

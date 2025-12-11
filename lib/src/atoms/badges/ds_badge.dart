@@ -196,7 +196,7 @@ class DSBadge extends StatelessWidget {
                   fontSize: _fontSize,
                   fontWeight: DSFontWeight.medium,
                   color: textColor,
-                  height: 1,
+                  height: DSLineHeight.tight,
                 ),
               ),
             ),

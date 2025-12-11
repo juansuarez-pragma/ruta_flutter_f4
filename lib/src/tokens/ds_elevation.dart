@@ -16,6 +16,28 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 abstract final class DSElevation {
+  // ============================================
+  // MATERIAL ELEVATION VALUES (double)
+  // Para usar con widgets Material: AppBar, Card, ElevatedButton, etc.
+  // ============================================
+
+  /// Elevación Material nivel 0 (flat/sin sombra)
+  static const double materialNone = 0;
+
+  /// Elevación Material nivel 1 (sutil)
+  static const double materialLow = 1;
+
+  /// Elevación Material nivel 2 (media)
+  static const double materialMedium = 4;
+
+  /// Elevación Material nivel 3 (alta)
+  static const double materialHigh = 8;
+
+  // ============================================
+  // BOX SHADOW LISTS
+  // Para usar con BoxDecoration.boxShadow
+  // ============================================
+
   /// Sin elevación
   static const List<BoxShadow> none = [];
 

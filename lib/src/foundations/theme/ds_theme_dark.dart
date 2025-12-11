@@ -305,14 +305,14 @@ abstract final class DSThemeDark {
     ),
     scaffoldBackgroundColor: DSColors.neutral900,
     appBarTheme: const AppBarTheme(
-      elevation: 0,
+      elevation: DSElevation.materialNone,
       centerTitle: true,
       backgroundColor: DSColors.neutral900,
       foregroundColor: DSColors.neutral100,
       surfaceTintColor: DSColors.transparent,
     ),
     cardTheme: CardThemeData(
-      elevation: 0,
+      elevation: DSElevation.materialNone,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(DSBorderRadius.base),
         side: const BorderSide(color: DSColors.neutral700),
@@ -321,7 +321,7 @@ abstract final class DSThemeDark {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        elevation: 0,
+        elevation: DSElevation.materialNone,
         backgroundColor: DSColors.primary400,
         foregroundColor: DSColors.neutral900,
         disabledBackgroundColor: DSColors.neutral700,
@@ -398,8 +398,8 @@ abstract final class DSThemeDark {
     ),
     dividerTheme: const DividerThemeData(
       color: DSColors.neutral700,
-      thickness: 1,
-      space: 1,
+      thickness: DSSizes.borderThin,
+      space: DSSizes.borderThin,
     ),
     extensions: [data],
   );

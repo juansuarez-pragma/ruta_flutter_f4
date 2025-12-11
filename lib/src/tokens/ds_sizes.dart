@@ -107,4 +107,10 @@ abstract final class DSSizes {
 
   /// Tamaño mínimo de badge - 16px
   static const double badgeMinSize = 16;
+
+  /// Offset horizontal del badge (posición) - -8px
+  static const double badgeOffsetX = -8;
+
+  /// Offset vertical del badge (posición) - -4px
+  static const double badgeOffsetY = -4;
 }

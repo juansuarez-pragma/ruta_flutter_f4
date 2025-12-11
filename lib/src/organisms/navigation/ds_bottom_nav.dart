@@ -171,8 +171,8 @@ class _NavItem extends StatelessWidget {
                 Icon(icon, size: DSSizes.iconBase, color: color),
                 if (item.badgeCount != null && item.badgeCount! > 0)
                   Positioned(
-                    right: -8,
-                    top: -4,
+                    right: DSSizes.badgeOffsetX,
+                    top: DSSizes.badgeOffsetY,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: DSSpacing.xs,
@@ -191,7 +191,7 @@ class _NavItem extends StatelessWidget {
                       child: Text(
                         item.badgeCount! > 99 ? '99+' : '${item.badgeCount}',
                         style: TextStyle(
-                          fontSize: DSFontSize.labelSmall - 1,
+                          fontSize: DSFontSize.badgeText,
                           fontWeight: DSFontWeight.bold,
                           color: tokens.colorTextInverse,
                         ),
