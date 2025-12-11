@@ -752,9 +752,9 @@ class DSThemeData extends ThemeExtension<DSThemeData> {
       elevationLevel5: elevationLevel5 ?? this.elevationLevel5,
     );
 
-  /// Lerp helper for List<BoxShadow>.
+  /// Lerp helper for `List<BoxShadow>`.
   ///
-  /// Interpolates each BoxShadow in the list for smooth theme transitions.
+  /// Interpolates each [BoxShadow] in the list for smooth theme transitions.
   static List<BoxShadow> _lerpBoxShadowList(
     List<BoxShadow> a,
     List<BoxShadow> b,
