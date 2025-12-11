@@ -61,7 +61,9 @@ class SummarySection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: DSSpacing.md),
-        Row(
+        Wrap(
+          spacing: DSSpacing.sm,
+          runSpacing: DSSpacing.sm,
           children: [
             _CategoryChip(
               label: 'Átomos',
@@ -69,14 +71,12 @@ class SummarySection extends StatelessWidget {
               color: tokens.colorFeedbackSuccess,
               tokens: tokens,
             ),
-            const SizedBox(width: DSSpacing.sm),
             _CategoryChip(
               label: 'Moléculas',
               count: 6,
               color: tokens.colorFeedbackInfo,
               tokens: tokens,
             ),
-            const SizedBox(width: DSSpacing.sm),
             _CategoryChip(
               label: 'Organismos',
               count: 3,
