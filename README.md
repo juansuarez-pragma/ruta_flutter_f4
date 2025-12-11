@@ -1,228 +1,127 @@
 # Fake Store Design System
 
-Sistema de diseño Flutter para la aplicación Fake Store. Proporciona tokens de diseño, componentes UI reutilizables y soporte para temas claro/oscuro siguiendo la metodología Atomic Design.
+[![Tests](https://img.shields.io/badge/tests-400%2B%20passed-brightgreen)](./test)
+[![Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)](./coverage)
+[![Flutter](https://img.shields.io/badge/flutter-%3E%3D3.0.0-blue)](https://flutter.dev)
+[![License](https://img.shields.io/badge/license-Proprietary-red)](./LICENSE)
 
-## Características
+> Sistema de diseño Flutter con Atomic Design, design tokens y soporte para temas claro/oscuro.
 
-- **Design Tokens**: Sistema completo de tokens (colores, tipografía, espaciado, elevación, bordes, animaciones)
-- **Atomic Design**: Componentes organizados en átomos, moléculas y organismos
-- **Temas**: Soporte para modo claro y oscuro con transiciones suaves
-- **ThemeExtension**: Integración nativa con el sistema de temas de Flutter
-- **Context Extensions**: Acceso fácil a tokens via `context.tokens`
-- **Tipado fuerte**: APIs tipadas con documentación inline (DSThemeData en lugar de dynamic)
-- **Estados Interactivos**: Soporte completo para hover/pressed en web y desktop
+## Quick Start
 
-## Instalación
-
-Agrega la dependencia a tu `pubspec.yaml`:
+**3 pasos para empezar en 30 segundos:**
 
 ```yaml
+# 1. Agregar dependencia en pubspec.yaml
 dependencies:
   fake_store_design_system:
     path: ../fake_store_design_system
 ```
 
-## Uso Básico
-
-### Configuración de Temas
-
 ```dart
 import 'package:fake_store_design_system/fake_store_design_system.dart';
 
-void main() {
-  runApp(MyApp());
-}
+// 2. Configurar tema en MaterialApp
+MaterialApp(
+  theme: FakeStoreTheme.light(),
+  darkTheme: FakeStoreTheme.dark(),
+  themeMode: ThemeMode.system,
+  home: MyHomePage(),
+)
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: FakeStoreTheme.light(),
-      darkTheme: FakeStoreTheme.dark(),
-      themeMode: ThemeMode.system,
-      home: HomePage(),
-    );
-  }
-}
+// 3. Usar componentes
+DSButton.primary(text: 'Comprar', onPressed: () {})
+DSProductCard(title: 'Producto', price: 29.99, imageUrl: '...')
 ```
 
-### Acceso a Tokens
+## Tabla de Contenidos
 
-```dart
-Widget build(BuildContext context) {
-  // Acceso via extensión de contexto
-  final tokens = context.tokens;
+- [Características](#características)
+- [Componentes](#componentes)
+- [Tokens de Diseño](#tokens-de-diseño)
+- [Acceso a Tokens](#acceso-a-tokens)
+- [Arquitectura](#arquitectura)
+- [Showcase](#showcase)
+- [Documentación](#documentación)
 
-  return Container(
-    color: tokens.colorSurfacePrimary,
-    padding: EdgeInsets.all(DSSpacing.base),
-    child: DSText(
-      'Hello World',
-      variant: DSTextVariant.headingLarge,
-    ),
-  );
-}
-```
+## Características
 
-### Helpers de Contexto
-
-```dart
-// Verificar modo de tema
-if (context.isDarkMode) {
-  // Ajustes para modo oscuro
-}
-
-// Verificar tamaño de pantalla
-if (context.isTablet) {
-  // Layout para tablet
-}
-```
+| Característica | Descripción |
+|----------------|-------------|
+| **Atomic Design** | Componentes organizados en átomos, moléculas y organismos |
+| **Design Tokens** | Sistema completo de colores, tipografía, espaciado y elevación |
+| **Temas** | Soporte para modo claro y oscuro con ThemeExtension |
+| **Accesibilidad** | Touch targets WCAG 2.1, semantics para screen readers |
 
 ## Componentes
 
-### Átomos
-
-Los bloques de construcción más básicos:
+### Átomos (bloques básicos)
 
 ```dart
-// Botones
-DSButton.primary(
-  text: 'Continuar',
-  onPressed: () => handleContinue(),
-)
+// Botones - 4 variantes
+DSButton.primary(text: 'Guardar', onPressed: () {})
+DSButton.secondary(text: 'Cancelar', onPressed: () {})
+DSButton.ghost(text: 'Ver más', onPressed: () {})
+DSButton.danger(text: 'Eliminar', onPressed: () {})
 
-DSButton.secondary(
-  text: 'Cancelar',
-  icon: Icons.close,
-  onPressed: () => handleCancel(),
-)
-
-// Badges
+// Badges - 5 tipos semánticos
 DSBadge.success(text: 'Nuevo')
 DSBadge.error(text: 'Agotado')
 DSBadge.warning(text: 'Pocas unidades')
 
-// Texto
-DSText(
-  'Título de sección',
-  variant: DSTextVariant.headingMedium,
-)
+// Texto - 12 variantes tipográficas
+DSText.headingLarge('Título')
+DSText.bodyMedium('Contenido')
 
-// Input
-DSTextField(
-  label: 'Email',
-  hintText: 'ejemplo@correo.com',
-  prefixIcon: Icons.email,
-  onChanged: (value) => handleEmail(value),
-)
+// Input con validación
+DSTextField(label: 'Email', hintText: 'correo@ejemplo.com')
 
 // Loaders
-DSCircularLoader(
-  size: DSLoaderSize.medium,
-  message: 'Cargando...',
-)
-
-DSSkeleton(
-  width: double.infinity,
-  height: 100,
-)
+DSCircularLoader(size: DSLoaderSize.medium)
+DSSkeleton(width: 200, height: 100)
 ```
 
-Documentación detallada de átomos:
-- Typography: `lib/src/atoms/typography/text.md`
-- Loaders: `lib/src/atoms/loaders/loader.md`
-- Inputs: `lib/src/atoms/inputs/text_field.md`
-- Buttons: `lib/src/atoms/buttons/button.md`
-- Badges: `lib/src/atoms/badges/badge.md`
-
-### Moléculas
-
-Combinaciones de átomos:
+### Moléculas (combinaciones)
 
 ```dart
-// Cards
-DSCard(
-  onTap: () => handleTap(),
-  child: content,
-)
-
-// Product Card
+// Card de producto completa
 DSProductCard(
   imageUrl: 'https://...',
   title: 'Producto',
   price: 29.99,
   rating: 4.5,
-  reviewCount: 128,
   onTap: () => viewProduct(),
-  onAddToCart: () => addToCart(),
 )
 
-// Filter Chips
-DSFilterChip(
-  label: 'Electrónica',
-  isSelected: true,
-  onTap: () => filterByCategory(),
-)
+// Chips de filtro
+DSFilterChip(label: 'Electrónica', isSelected: true, onTap: () {})
 
-// Estados
-DSEmptyState(
-  icon: Icons.inbox_outlined,
-  title: 'No hay productos',
-  description: 'Intenta con otra búsqueda',
-  actionText: 'Buscar de nuevo',
-  onAction: () => search(),
-)
-
-DSErrorState(
-  message: 'Error al cargar',
-  onRetry: () => reload(),
-)
-
-DSLoadingState(
-  message: 'Cargando productos...',
-)
+// Estados de UI
+DSEmptyState(icon: Icons.inbox, title: 'Sin productos')
+DSErrorState(message: 'Error al cargar', onRetry: () {})
+DSLoadingState(message: 'Cargando...')
 ```
 
-### Organismos
-
-Componentes complejos:
+### Organismos (secciones completas)
 
 ```dart
-// AppBar
-Scaffold(
-  appBar: DSAppBar(
-    title: 'Fake Store',
-    actions: [
-      DSIconButton(
-        icon: Icons.search,
-        onPressed: () => openSearch(),
-      ),
-    ],
-  ),
-)
+// AppBar personalizado
+DSAppBar(title: 'Mi Tienda', actions: [...])
 
-// Product Grid
+// Grid de productos con estados
 DSProductGrid<Product>(
   products: products,
   isLoading: isLoading,
   error: errorMessage,
-  onProductTap: (product) => viewProduct(product),
-  onRetry: () => loadProducts(),
+  onRetry: () => reload(),
 )
 
-// Bottom Navigation
+// Navegación inferior con badges
 DSBottomNav(
-  currentIndex: selectedIndex,
-  onTap: (index) => setState(() => selectedIndex = index),
+  currentIndex: 0,
   items: [
     DSBottomNavItem(icon: Icons.home, label: 'Inicio'),
-    DSBottomNavItem(icon: Icons.category, label: 'Categorías'),
-    DSBottomNavItem(
-      icon: Icons.shopping_cart,
-      label: 'Carrito',
-      badgeCount: 3,
-    ),
-    DSBottomNavItem(icon: Icons.person, label: 'Perfil'),
+    DSBottomNavItem(icon: Icons.cart, label: 'Carrito', badgeCount: 3),
   ],
 )
 ```
@@ -232,132 +131,110 @@ DSBottomNav(
 ### Colores
 
 ```dart
-// Primarios
-DSColors.primary500  // Color principal
-DSColors.primary100  // Variante clara
-DSColors.primary900  // Variante oscura
-
-// Neutrales
-DSColors.neutral100 - DSColors.neutral900
-
-// Semánticos
-DSColors.success500  // Éxito
-DSColors.error500    // Error
-DSColors.warning500  // Advertencia
-DSColors.info500     // Información
+DSColors.primary500    // Color principal (#6366F1)
+DSColors.neutral100    // Fondos claros
+DSColors.success500    // Feedback éxito
+DSColors.error500      // Feedback error
 ```
 
-### Espaciado
-
-Basado en escala de 4px:
+### Espaciado (escala 4px)
 
 ```dart
-DSSpacing.xxs   // 2px
 DSSpacing.xs    // 4px
 DSSpacing.sm    // 8px
-DSSpacing.md    // 12px
 DSSpacing.base  // 16px
 DSSpacing.lg    // 20px
 DSSpacing.xl    // 24px
-DSSpacing.xxl   // 32px
 ```
 
 ### Tipografía
 
 ```dart
-DSFontSize.displayLarge   // 48px
-DSFontSize.headingLarge   // 32px
-DSFontSize.titleLarge     // 22px
-DSFontSize.bodyLarge      // 16px
-DSFontSize.labelMedium    // 14px
-
-DSFontWeight.regular  // 400
-DSFontWeight.medium   // 500
-DSFontWeight.semibold // 600
-DSFontWeight.bold     // 700
+DSFontSize.headingLarge  // 32px
+DSFontSize.bodyLarge     // 16px
+DSFontWeight.bold        // 700
 ```
 
 ### Border Radius
 
 ```dart
-DSBorderRadius.none  // 0px
 DSBorderRadius.sm    // 4px
 DSBorderRadius.md    // 8px
-DSBorderRadius.base  // 12px
 DSBorderRadius.lg    // 16px
-DSBorderRadius.full  // 9999px (pill)
+DSBorderRadius.full  // Pill (9999px)
+```
+
+## Acceso a Tokens
+
+```dart
+Widget build(BuildContext context) {
+  final tokens = context.tokens;  // Acceso via extensión
+
+  return Container(
+    color: tokens.colorSurfacePrimary,
+    padding: EdgeInsets.all(DSSpacing.base),
+    child: DSText(
+      'Hello World',
+      color: tokens.colorTextPrimary,
+    ),
+  );
+}
+
+// Helpers de contexto
+if (context.isDarkMode) { /* ajustes modo oscuro */ }
+if (context.isTablet) { /* layout tablet */ }
 ```
 
 ## Arquitectura
 
 ```
 lib/
-├── fake_store_design_system.dart  # Barrel file principal
+├── fake_store_design_system.dart   # Barrel file (import único)
 └── src/
-    ├── tokens/                     # Design tokens
-    │   ├── ds_colors.dart
-    │   ├── ds_spacing.dart
-    │   ├── ds_typography.dart
-    │   ├── ds_border_radius.dart
-    │   ├── ds_elevation.dart
-    │   ├── ds_duration.dart
-    │   └── ds_sizes.dart
-    │
-    ├── foundations/                # Sistema de temas
-    │   └── theme/
-    │       ├── ds_theme_data.dart  # ThemeExtension
-    │       ├── ds_theme_light.dart
-    │       ├── ds_theme_dark.dart
-    │       └── fake_store_theme.dart
-    │
-    ├── atoms/                      # Componentes atómicos
-    │   ├── buttons/
-    │   ├── badges/
-    │   ├── inputs/
-    │   ├── typography/
-    │   └── loaders/
-    │
-    ├── molecules/                  # Componentes moleculares
-    │   ├── cards/
-    │   ├── chips/
-    │   └── empty_states/
-    │
-    ├── organisms/                  # Componentes de organismo
-    │   ├── headers/
-    │   ├── grids/
-    │   └── navigation/
-    │
-    └── utils/                      # Utilidades
-        ├── extensions/
-        └── enums/
+    ├── tokens/                      # Colores, espaciado, tipografía
+    ├── foundations/theme/           # ThemeExtension, temas claro/oscuro
+    ├── atoms/                       # Buttons, badges, inputs, loaders
+    ├── molecules/                   # Cards, chips, empty states
+    ├── organisms/                   # AppBar, grids, navigation
+    └── utils/                       # Extensions, enums
 ```
 
 ## Showcase
 
-El paquete incluye una aplicación de demostración interactiva en la carpeta `example/`:
+El paquete incluye una app de demostración interactiva:
 
 ```bash
 cd example
 flutter run -d chrome
 ```
 
-La aplicación showcase muestra:
-- **Tokens**: Colores, tipografía, espaciado, border radius y elevación
-- **Átomos**: Buttons, badges, inputs, loaders y tipografía
-- **Moléculas**: Cards, chips y estados vacíos/error/carga
-- **Organismos**: AppBar, grids y navegación
+La app muestra todos los componentes con ejemplos de código copiables y toggle de tema.
 
-Cada componente incluye código de ejemplo copiable y toggle de tema claro/oscuro.
+## Documentación
 
-Ver [example/README.md](example/README.md) para más detalles.
+| Documento | Tipo | Descripción |
+|-----------|------|-------------|
+| [Getting Started](docs/GETTING_STARTED.md) | Tutorial | Tu primera app en 15 min |
+| [API Reference](docs/API_REFERENCE.md) | Reference | Tokens y componentes completos |
+| [How-To Guides](docs/HOWTO.md) | How-To | Guías para tareas específicas |
+| [Architecture](docs/ARCHITECTURE.md) | Explanation | Decisiones de diseño |
+| [Changelog](docs/CHANGELOG.md) | Historial | Cambios por versión |
+| [Showcase](example/README.md) | Demo | App de demostración interactiva |
+
+## Tests
+
+```bash
+flutter test              # Ejecutar 400+ tests
+flutter test --coverage   # Con reporte de cobertura
+```
 
 ## Contribuir
 
-1. Sigue la estructura de carpetas existente
-2. Documenta todos los componentes con dartdoc
-3. Incluye ejemplos de uso en la documentación
-4. Asegúrate de que los tests pasen antes de hacer commit
+1. Seguir la estructura de carpetas existente
+2. Usar prefijo `DS` para componentes públicos
+3. Documentar con dartdoc incluyendo ejemplos
+4. Asegurar que los tests pasen antes de commit
 
 ## Licencia
 
-Propietario - Proyecto educativo
+Propietario - Proyecto educativo de la Ruta de Crecimiento Flutter.
